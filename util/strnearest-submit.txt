@@ -1,0 +1,15 @@
+Find nearest-matching string from a set
+
+Computes shortest distance between a key string and a set of strings to
+find the nearest match.
+
+Uses a modified Vagner-Fischer algorithm to find the Levenshtein distance
+between each pair of strings.  Progressively narrows the threshold to equal
+the distance of the best match found so far, reducing run time.
+
+Optional behaviors include an upper-bound threshold distance, detect first
+or multiple matches of equal distance, case insensitivity.
+
+string matching, levenshtein distance
+
+uses code from: 17585

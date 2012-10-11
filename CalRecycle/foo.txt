@@ -1,0 +1,8 @@
+TeXKey,Label,Style,VarA,VarB,VarC,VarD,VarE,VarF,VarG
+
+CRUnits,Units,*c,Mgal,Mgal,Mgal,Mgal,Mgal,Mgal,Mgal
+MDUnits,,*c,Mgal,Mgal,Mgal,Mgal,Mgal,Mgal,Mgal
+Year,,*c,ߔ,ߕ,ߖ,ߗ,ߘ,ߙ,ߚ
+TOTAL
+ , , , , , , , , , 
+

@@ -1,0 +1,77 @@
+==========
+Thu Sep 27 19:31:29 -0700 2012
+
+Need to put this to bed.  
+
+Observable changes:
+
+ * C / G / Tx / P categorization needs to be refined
+ * origin facilities for out-of-state shipments need to be inspected
+ * disposition needs to be improved
+ * AVH is doing CR / facility-provided data checking
+ * RFO overflow to DK to fill its consumption
+ * need a "not used oil" disposition route
+ * facility-specific characterizations -> XLS for collab
+ * 222 and 223- UO determination by NAICS code?
+
+Observable Outputs:
+
+ * List of P and Tx facilities in CA should closely match permits
+ * Disposition routes should be cleaned up & inspectable
+
+Notes:
+
+ - Complaints at stakeholder meeting mostly fell into correspondence
+   between my definition of "processor" and DTSC's
+
+   - apparently there are only 4 (or 6 or 8) permitted facilities for UO
+     processing; I need to figure out which ones they are.  Other
+     facilities are permitted for UO transfer; ditto.  Any facilities that
+     show up on my list as receiving used oil manifests warrant further
+     attention.
+
+   - using the transfer station permitting, I should be able to improve my
+     tx modeling.
+
+==========
+Fri Aug 17 22:01:08 PDT 2012
+
+Here is the layout:
+
+The Grand Oil Model has essentially two phases: the Use phase, and the Mgmt
+phase.  I have two parallel data sets which describe the Mgmt phase
+(CalRecycle and DTSC); what I am doing now is reconciling them, which
+basically means giving identity to the SRC_UNKNOWN and DEST_UNKNOWN flows
+in the CalRecycle data set (assuming the DTSC data set is complete)
+
+I am building a set of nodes (cr_node.m and md_node.m), which are
+facilities which receive flows.  This matches the flows manuscript
+perfectly.  In each dataset, I need to identify the flows which are
+internal to the system (i.e. flows between nodes).  From md_node help: 
+
+% Approach: classify each manifest record in group A, B, or C:
+%
+% A: straight GEN -> TSDF
+% B: GEN -> Tx, nonterminal
+% C: Tx -> TSDF, terminal
+
+Characterizing the fragment input means looking at A and B flows; output
+means looking at B and C flows.  
+
+What the node function ultimately needs to deliver is identificatoin of the
+B and C flows in the manifest.
+
+But!  the data are not complete, because CR data is voluntary, and DTSC
+data only tracks haz waste.  So, for instance, advanced environmental inc,
+declassifies the oil and then ships it on to DK, but this doesn't show up
+in either data set.
+
+In truth, I don't know that Adv Env -> DK - I think it's something bob
+boughton told me.  But who knows. Fontana.. could be a rail hookup.
+
+according to corporationwiki.com, Bruce Demenno is President and Steve
+Kerdoon is Manager.
+
+So yeah.  probably shipping to DK, lol.
+
+

@@ -1,0 +1,44 @@
+==========
+Thu Jul 12 07:09:36 PDT 2012
+
+
+manfiles={'TANNER2011.txt',%2011
+          'Manifest.txt',%2010
+          'MANIFEST.txt',%2009
+          'tanner2008.txt',
+          'TANNER2007.txt',
+          'TANNER2006.txt',
+          'tanner2005.txt',
+          'tanner2004.txt',
+          'tanner2003.txt',
+          'tanner2002.txt',
+          '2001_SUMMARY.txt',
+          'tanner2000.txt',
+          'tanner_1999.txt',
+          'tanner_1998.txt',
+          'tanner_1997.txt',
+          'tanner_1996.txt',
+          'tanner_1995.txt',
+          'tanner_1994.txt',
+          'tanner_1993.txt'         };
+
+
+TANNER2007 tab-delimited (!)
+
+TANNER2006.txt has a spurious double- and over-large entry (18,000 t from a
+bad EPAID to somewhere in Utah) for WC 223
+
+
+tanner_1996.txt line 81982 has trailing comma in TSD_EPA_ID
+
+
+tanner_1993.txt line 6891 has commas in TSD_EPA_ID
+		line 37817 has a + in TSD_EPA_ID which is problematic
+		line 61742 trailing comma in TSD_EPA_ID
+		line 94265 has a + in TSD_EPA_ID which is problematic
+		line 104590 leading comma in TSD_EPA_ID
+		line 104734 erroneous TSD_EPA_ID
+		line 146928 trailing comma in TSD_EPA_ID
+		line 147245 trailing comma in TSD_EPA_ID
+		line 147249 trailing comma in TSD_EPA_ID
+		

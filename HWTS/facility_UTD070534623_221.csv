@@ -1,0 +1,20 @@
+
+###
+##
+## Facility Report for UTD070534623
+## Waste Code 221
+##
+,GEN_EPA_ID ,UTD070534623
+,  FAC_NAME ,GOLDEN EAGLE OIL REFINERY INC
+,  FAC_STR1 ,1474 W 1500 SOUTH
+,  FAC_CITY ,"WOODS CROSS"
+,  FAC_CNTY ,99
+,    FAC_ST ,UT
+,   FAC_ZIP ,84087
+
+Indicator    ,D_2006      ,D_2007      ,D_2008      ,D_2009      ,D_2010      
+
+ 221_Received,    156.9637,   2301.4575,   1777.1141,   2780.7540,   4344.7388
+         221_,    155.0768,   2301.4575,   1777.1141,   2780.7540,   4344.7388
+      221_T03,      1.8870,      0.0000,      0.0000,      0.0000,      0.0000
+221_Generated,      0.0000,      0.0000,      0.0000,      0.0000,      0.0000

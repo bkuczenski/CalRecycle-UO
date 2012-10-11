@@ -1,0 +1,73 @@
+==========
+Tue Aug 07 16:43:43  2012
+
+Data cleanup:
+
+1- Converted , to _ throughout
+2- Corrected fieldnames to not include spaces or special characters
+3- removed embedded newlines in CR-hauler, comments field, several
+occurrences
+
+
+Proper errata:
+
+CR-recycler
+Several duplicate entries:
+Advanced Environmental_ Inc. CAT080025711       April - June 2006        2x
+Advanced Environmental_ Inc. CAT080025711       April - June 2008        2x
+Advanced Environmental_ Inc. CAT080025711   July - September 2004        2x
+Advanced Environmental_ Inc. CAT080025711 October - December 2004        2x
+Advanced Environmental_ Inc. CAT080025711 October - December 2005        2x
+Advanced Environmental_ Inc. CAT080025711 October - December 2008        2x
+                    DK Dixon CAT080012602    January - March 2011        2x
+                    DK Dixon CAT080012602 October - December 2010        2x
+y_ Inc. (ORRCO) - Klamath Fa ORD980980775   July - September 2007        2x
+             Chico Drain Oil CAD980694103 October - December 2010        3xx
+               Evergreen Oil CAD980887418       April - June 2009        3xx
+
+The firms/quarter-years listed are each counted twice, each with constant
+collection reports but increasing Txfr reports.  All records except the one
+with the largest Txfr value were removed (placed here for reference:)
+
+Advanced Environmental_ Inc.,CAT080025711,July - September 2004,2218371,1043940,,,34655,
+Advanced Environmental_ Inc.,CAT080025711,October - December 2004,2068801,973553,,,19955,
+Advanced Environmental_ Inc.,CAT080025711,October - December 2005,1709487,804465,,,80726,
+Advanced Environmental_ Inc.,CAT080025711,April - June 2006,1846240,868819,,,20518,
+Advanced Environmental_ Inc.,CAT080025711,April - June 2008,1930748,908588,,,37957,
+Advanced Environmental_ Inc.,CAT080025711,October - December 2008,1915929,901614,,,,
+DK Dixon,CAT080012602,October - December 2010,2040602,,,,,
+DK Dixon,CAT080012602,January - March 2011,2177957,,,,910355,
+Oil Re-Refining Company_ Inc. (ORRCO) - Klamath Fa,ORD980980775,July - September 2007,258075,764997,,,,
+Chico Drain Oil,CAD980694103,October - December 2010,396271,,,,2514,
+Chico Drain Oil,CAD980694103,October - December 2010,396271,,,,82197,
+Evergreen Oil,CAD980887418,April - June 2009,3916925,54106,7390,,,
+Evergreen Oil,CAD980887418,April - June 2009,3916925,54106,7390,,86245,
+
+CR-refund.csv
+
+Q1 2005 entries are spurious and should properly be 2008, merely based on
+their RefundClaim numbers (14185 and 14187; 2008 began with 13777 and ended
+with 14910).
+
+CR-recycler - seems to contain equivalent data to CR-processor, except
+(1) TotalLubTransferedGallons is smaller on 7 occasions:
+Chico Drain Oil			CAD980694103	Q4 2010 -84711 gal
+Evergreen Oil			CAD980887418	Q2 2009	-86245 gal
+Advanced Environmental_ Inc.	CAT080025711	Q3 2004	-34655 gal
+Advanced Environmental_ Inc.	CAT080025711	Q4 2004	-19955 gal
+Advanced Environmental_ Inc.	CAT080025711	Q4 2005	-80726 gal
+Advanced Environmental_ Inc.	CAT080025711	Q2 2006	-20518 gal
+Advanced Environmental_ Inc.	CAT080025711	Q2 2008	-37957 gal
+
+(2) CR-recycler contains data from Q1-Q2 2011, and processor does not.
+
+
+
+
+CR-Hauler.csv, line 933:
+CAR000159681, Q1 2008, 3115 gal was erroneously entered as 315 gal (3 occasions)
+
+CR-Processor.csv, line 58:
+CAD980887418 reported receiving 33,555,527 gal in Q1; should be 3,355,527
+gal or 3,555,527 gal (4 entries are off by 30,000,000 or 30,200,000
+gal). I'm going with 3,355,527
