@@ -10,6 +10,10 @@ function Da=accum(D,Cols,pre)
 %  a - accumulate column (numeric)
 %  c - concatenate column (char)
 %  d - drop column
+%  # - number from 1-9: collapse to # leading characters
+%      (i.e. for hierarchical classification systems like NAICS.  A '2' in the
+%      column specification would lead to '5617' and '56211A' being collapsed
+%      together into '56', and '551110' being grouped separately in '55'.)
 %
 % The function reviews D record by record.  If the entries in the 'match' columns for
 % a given record ALL match those of a prior record, the contents of the 'accumulate'
@@ -69,6 +73,20 @@ Cols(find(Cols=='d'))='';
 
 % reset fieldnames and grab matches
 FN=fieldnames(D);
+
+% next- collapse all hierarchical fields to spec
+Hier=find(Cols>'0' & Cols<':');
+if ~isempty(Hier)
+  for i=1:length(Hier)
+    Hlevel=str2num(Cols(Hier(i)));
+    D=moddata(D,FN{Hier(i)},@(x)(subsref([x repmat(' ',1,Hlevel)],substruct('()',{1:Hlevel}))));
+    newname=[FN{Hier(i)} Cols(Hier(i))];
+    D=mvfield(D,FN{Hier(i)},newname);
+    FN{Hier(i)}=newname;
+    Cols(Hier(i))='m';
+  end
+end
+
 MatchCols=find(Cols=='m');
 NumericMatchCols=[];
 % handle no-match case
