@@ -1,6 +1,7 @@
 % Script file to read in and preprocess CalRecycle data.
 
 global GEO_CONTEXT
+global use_md2
 if ~strcmp(GEO_CONTEXT,'Facilities')
   warning('Geographic context should be ''Facilities''')
 end
@@ -13,10 +14,10 @@ do_save=false;
 do_correction=false;
 
 do_computation=true;
-do_MD=true;
-force_MD=true;
+do_MD=false;
+force_MD=false;
 do_csv=false;
-years=2004:2010;
+years=2011;
 wc=221:223;
 
 
@@ -33,8 +34,8 @@ end
 
 if do_readdata
   %% Part 0- Sales Data
-  fprintf('%s\n',{'WARNING- data needs for CR-sales.csv: ',' * put in quarter-year data',...
-                  ' * add in motor-carrier and commerce exemption data'})
+  fprintf('%s\n','WARNING- data needs for CR-sales.csv: ',' * put in quarter-year data',...
+                  ' * add in motor-carrier and commerce exemption data')
   CRData.Sales=read_dat('CR-sales.csv',',','d');
   %% these are in million gallons
   
@@ -209,11 +210,11 @@ end
 
 if do_correction
   fprintf('%s','Reading Transfer auto-corrections: ')
-  Txfr_Corr=read_dat('TxfrCorr.csv',',');
-  CRData.Txfr_Corr=Txfr_Corr;
+  CRData.Txfr_Corr=read_dat('TxfrCorr.csv',',');
+  CRData.Do_Txfr_Corr=true;
 else
   fprintf('%s\n','Disabling Transfer auto-correction')
-  CRData.Txfr_Corr=false;
+  CRData.Do_Txfr_Corr=false;
 end
 
 %% =================================================================

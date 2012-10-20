@@ -64,7 +64,7 @@ if length(Ti)>1
 else
   T=Ti{1};
 end
-if length(Ti)>3
+if length(Ti)>2
   T=stack(T,Ti{3});
 end
 

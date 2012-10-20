@@ -41,7 +41,7 @@ function [Rnode,MAN,Rin]=cr_node(CRData,year,varargin)
 %%
 %%%% ==================================================
 
-do_sanity_check=false;
+do_sanity_check=true;
 printcsv=false;
 
 while ~isempty(varargin)
@@ -112,7 +112,7 @@ Pa=accum(filter(P,'Year',{@eq},year),'dmdmddddddddaddaaaaaaaaaddda','');
 Ta=accum(filter(T,'Year',{@eq},year),'mmdmaaadd','');
 
 % add together 'other haulers'
-Ha=fields(Ha,'LubOtherHaulersGallons',...
+Ha=fieldop(Ha,'LubOtherHaulersGallons',...
           '#LubOtherHaulersGallons + #IndOtherHaulersGallons');
 
 % detect self-transfers
@@ -280,7 +280,7 @@ for i=1:length(Ta) % self-txfrs already removed
 end
 
 % Add in correctional transfers
-if isfield(CRData,'Txfr_Corr') & isstruct(CRData.Txfr_Corr)
+if isfield(CRData,'Do_Txfr_Corr') & CRData.Do_Txfr_Corr==true
   Tc=CRData.Txfr_Corr;
   ss.Txfr_Corr=true;
   for i=1:length(Tc)
@@ -345,7 +345,7 @@ for i=1:length(R)
             % don't add in dest for dest_unknown
           end
           % need to correct Rin
-          disp(['Adding corrective transfer for ' R(i).EPAID ' to ' ...
+          disp(['Adding hauler outbound correction for ' R(i).EPAID ' to ' ...
                 MAN(L).TSDF_EPA_ID ': ' num2str(R(i).H_Total) ' gal'])
           src=i;
           Rin(src).Tx_Out=Rin(src).Tx_Out+R(i).H_Total;
@@ -438,7 +438,7 @@ Rn = mvfield(Rn,'ResidualMaterialHazardousGallons','Haz');
 % gen + inbound - outbound: DestGALLONS is C039 + C139 + C141 + C142 + C144
 % "reported-recycled" + Tx_In + Self Transfer + Source-unknown
 % Self Transfer is already counted in H_Total so subtract it back out.
-Rn = fields(Rn,'balance','#H_Total + #DestGALLONS - #C142 - #Tx_Out');%...
+Rn = fieldop(Rn,'balance','#H_Total + #DestGALLONS - #C142 - #Tx_Out');%...
 %                    ' - ( #BaseOil + #IndOil + #Fuels + #Asphalt + #consumed + ' ...
 %                    ' #NonHaz + #Haz )']);
 

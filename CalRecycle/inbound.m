@@ -7,7 +7,7 @@ global Facilities
 Facilities(FACILITY_lookup(ID))
 fprintf('\n%s\n','Inbound From:')
 t=sort(accum(filter(man,'TSDF_EPA_ID',{@strcmp},ID),'mddddda',''),2);
-show(top(t,2,100))
+show(top(flookup(t,'GEN_EPA_ID','FAC_NAME'),2,100))
 
 if ~isempty(t)
   fprintf('\n%s\n','Inbound Disposition:')
