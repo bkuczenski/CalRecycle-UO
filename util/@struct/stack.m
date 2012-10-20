@@ -28,8 +28,11 @@ end
 
 sortorder=[FNS1;d1];
 
+S1=S1(:);
+S2=S2(:);
+
 S=orderfields(S1,sortorder);
-S=[S orderfields(S2,sortorder)];
+S=[S ; orderfields(S2,sortorder)];
 
     
 
