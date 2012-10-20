@@ -141,12 +141,16 @@ while L~=-1
       Data{i}=thisdata;
     end
   end
-  Data=Data(1:length(FieldNames));
+  try
+    Data=Data(1:length(FieldNames));
+  catch
+    fprintf('%d: not enough data fields?\n',NumRecords)
+    keyboard
+  end
   try
     FN=[FieldNames;Data];
   catch
-    disp('Freak error')
-    disp(NumRecords)
+    fprintf('%d: too many data fields [freak error]?\n',NumRecords)
     keyboard
     FN=[FieldNames;Data];
   end
