@@ -591,7 +591,7 @@ FacilityID,HaulerReportID,QuarterYearID,FacilityName,EPAIDNumber,QuarterYear,Pre
 321,1822,543,Elite Oil Transport,CAR000190082,January - March 2009,Sonia,Salmerson,Controller,,0,0,0,0,0,0,1169491,1169491,0,0,0,0,0,0,0,0,1169491,466120,0,466120
 308,1799,543,Environmental Logistics,CAR000172460,January - March 2009,Wade,Riddering,Regulatory Compliance,,12748,26505,0,360,13345,0,52958,105916,55,3146,254,0,0,0,3455,6910,112826,109613,0,109613
 347,1958,543,Espinoza Trucking_ Inc.,CAL000297859,January - March 2009,Mary,Quintero,Ops Mgr,,0,0,0,0,0,0,600930,600930,0,0,0,0,0,0,0,0,600930,600930,0,600930
-29,196,543,Evergreen Environmental Services (Newark),CAD982413262,January - March 2009,Albert,Farran,Lab Mgr,"Line 13 - 5070 Gallons included in lines 8-12__ Line 21 - 8206 gallons included in lines 16-20",3643700,63695,515,85629,197217,0,0,3990756,2500,111010,0,0,4575,0,0,118085,4108841,4108841,0,4108841
+29,196,543,Evergreen Environmental Services (Newark),CAD982413262,January - March 2009,Albert,Farran,Lab Mgr,Line 13 - 5070 Gallons included in lines 8-12__ Line 21 - 8206 gallons included in lines 16-20,3643700,63695,515,85629,197217,0,0,3990756,2500,111010,0,0,4575,0,0,118085,4108841,4108841,0,4108841
 30,219,543,Express Environmental Corp._dba Express Oil,CAL000264806,January - March 2009,Sandra,Jacinto,Office Mgr,,0,105945,0,0,0,0,0,105945,0,65135,0,0,0,0,0,65135,171080,171080,0,171080
 257,1743,543,Fremouw Environmental Services,CAR000171017,January - March 2009,Ted,Fremouw,President,,146503,5588,3320,12944,7923,0,0,176278,16278,1863,175,3236,417,0,0,21969,198247,198247,0,198247
 304,1786,543,Glyco Environmental Services,CAL000309743,January - March 2009,Luciano,Quintero,Owner/Operator,,36200,0,0,0,0,0,0,36200,0,0,0,0,0,0,0,0,36200,36200,0,36200
@@ -1105,7 +1105,7 @@ FacilityID,HaulerReportID,QuarterYearID,FacilityName,EPAIDNumber,QuarterYear,Pre
 137,832,536,Ecology Control Industries_ Inc.,CAD982030173,April - June 2007,Rod,Cleem,Project Mgr,,0,3120,0,0,0,0,0,3120,0,0,0,0,0,0,0,0,3120,3120,0,3120
 168,1069,536,Ed Staub & Sons Petroleum_ Inc.,CAL921495383,April - June 2007,Jeff,Fredrick,Manager,No information to report,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 184,1177,536,EFR Environmental Services Inc.,CAR000011205,April - June 2007,Thad,Harris,CFO,,0,3450,0,4580,620,0,0,8650,0,0,0,0,0,0,0,0,8650,8650,0,8650
-29,189,536,Evergreen Environmental Services (Newark),CAD982413262,April - June 2007,Albert,Farran,Laboratory Mgr,"Lubricating Oil - Outside California figure (3_730 gals) is already included in figure for the lines 8-12 so it is not included on line 15. Industrial Oil - Outside California figure (7_963 gals) is already included in figure 16-20_ so it is not included on line 23. (9/26/07 US)",4435903,89061,180,104843,194065,0,0,4824052,2200,72192,0,250,5295,0,0,79937,4903989,4903989,0,4903989
+29,189,536,Evergreen Environmental Services (Newark),CAD982413262,April - June 2007,Albert,Farran,Laboratory Mgr,Lubricating Oil - Outside California figure (3_730 gals) is already included in figure for the lines 8-12 so it is not included on line 15. Industrial Oil - Outside California figure (7_963 gals) is already included in figure 16-20_ so it is not included on line 23. (9/26/07 US),4435903,89061,180,104843,194065,0,0,4824052,2200,72192,0,250,5295,0,0,79937,4903989,4903989,0,4903989
 30,212,536,Express Environmental Corp._dba Express Oil,CAL000264806,April - June 2007,Sandra,Jacinto,Office Manager,,0,125218,0,0,0,0,0,125218,0,30870,0,0,0,0,0,30870,156088,156088,0,156088
 107,714,536,Filter Recycling Services_ Inc.,CAD982444481,April - June 2007,Wade,Riddering,Compliance,,30259,2130,0,0,6363,0,0,38752,465,6089,0,0,0,0,0,6554,45306,10000,0,10000
 257,1736,536,Fremouw Environmental Services,CAR000171017,April - June 2007,Theodore,Fremouw,CEO,,167757,5246,3966,15528,4650,0,0,197147,18640,1749,209,3882,245,0,0,24725,221872,221872,0,221872
@@ -1183,7 +1183,7 @@ FacilityID,HaulerReportID,QuarterYearID,FacilityName,EPAIDNumber,QuarterYear,Pre
 137,831,535,Ecology Control Industries_ Inc.,CAD982030173,January - March 2007,Rod,Cleem,Project Mgr,,0,2100,0,0,0,0,0,2100,0,0,0,0,0,0,0,0,2100,2100,0,2100
 168,1068,535,Ed Staub & Sons Petroleum_ Inc.,CAL921495383,January - March 2007,Jeff,Fredrick,Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 184,1176,535,EFR Environmental Services Inc.,CAR000011205,January - March 2007,Thad,Harris,CFO,,0,5800,0,5125,300,0,0,11225,0,0,0,0,0,0,0,0,11225,11225,0,11225
-29,188,535,Evergreen Environmental Services (Newark),CAD982413262,January - March 2007,Albert,Farran,Lab Manager,"Lubrication Oil - Outside CA figure (3925 gal) is included in lines 8-12__ Industrial Oil - Outside CA figure (3976 gal) is included in lines 16-20__ (Notes included on submission and amounts not entered as out-of-state independently)",4568517,94581,570,103030,184472,0,0,4951170,2100,74006,0,0,5535,0,0,81641,5032811,5032811,0,5032811
+29,188,535,Evergreen Environmental Services (Newark),CAD982413262,January - March 2007,Albert,Farran,Lab Manager,Lubrication Oil - Outside CA figure (3925 gal) is included in lines 8-12__ Industrial Oil - Outside CA figure (3976 gal) is included in lines 16-20__ (Notes included on submission and amounts not entered as out-of-state independently),4568517,94581,570,103030,184472,0,0,4951170,2100,74006,0,0,5535,0,0,81641,5032811,5032811,0,5032811
 30,211,535,Express Environmental Corp._dba Express Oil,CAL000264806,January - March 2007,Sandra,Jacinto,Office Mgr,,0,129782,0,0,0,0,0,129782,0,41946,0,0,0,0,0,41946,171728,171728,0,171728
 107,713,535,Filter Recycling Services_ Inc.,CAD982444481,January - March 2007,Wade,Riddering,VP,,24260,24501,0,0,8330,0,0,57091,615,6115,0,0,0,0,0,6730,63821,19000,0,19000
 257,1735,535,Fremouw Environmental Services,CAR000171017,January - March 2007,Ted,Fremouw,President/CEO,,186260,7627,3952,21696,3548,0,0,223083,20695,2543,208,5424,187,0,0,29057,252140,252140,0,252140
@@ -1257,14 +1257,14 @@ FacilityID,HaulerReportID,QuarterYearID,FacilityName,EPAIDNumber,QuarterYear,Pre
 146,874,534,Clearwater Environmental Management,CAR000007013,October - December 2006,Kirk,Hayward,CEO,,879310,0,2085,3150,21505,0,0,906050,0,29955,0,0,0,0,0,29955,936005,936005,0,936005
 252,1679,534,Cole's Services_ Inc.,CAL000268462,October - December 2006,Ben,McNeill,President,,84267,2870,0,8675,10310,0,0,106122,0,0,0,0,0,0,0,0,106122,106122,0,106122
 155,1609,534,Compliance Environmental Services,CAL000161247,October - December 2006,Patricia,Urbina,Treasure,,50740,0,0,0,250,0,0,50990,0,0,0,0,0,0,0,0,50990,0,0,0
-206,1346,534,Consultant Environmental Operations; C.E.O.,CAL000209884,October - December 2006,Francisco,Arrieta,Owner/operator,"Ms. Cecilia Rosana__ Per our phone conversation on Jan. 16_ 2007_ I have canceled my registration as well as my EPA ID No. since August 2006. I've not been a transporter since then.",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+206,1346,534,Consultant Environmental Operations; C.E.O.,CAL000209884,October - December 2006,Francisco,Arrieta,Owner/operator,Ms. Cecilia Rosana__ Per our phone conversation on Jan. 16_ 2007_ I have canceled my registration as well as my EPA ID No. since August 2006. I've not been a transporter since then.,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 26,165,534,Crane's Waste Oil_ Inc.,CAD980813950,October - December 2006,Robin,Tebow,Office Manager,,135215,47885,0,21270,7990,0,0,212360,0,4860,0,415,0,0,0,5275,217635,191284,0,191284
 169,1089,534,D & R Oil Company,CAL000253903,October - December 2006,Ruben,Hernandez,Owner,,53940,0,0,0,0,0,0,53940,0,0,0,0,0,0,0,0,53940,53940,0,53940
 137,830,534,Ecology Control Industries_ Inc.,CAD982030173,October - December 2006,Rod,Cleem,Project Manager,,0,2475,0,0,0,0,0,2475,0,0,0,0,0,0,0,0,2475,2475,0,2475
 168,1067,534,Ed Staub & Sons Petroleum_ Inc.,CAL921495383,October - December 2006,Jeff,Fredrick,Manager,None,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 184,1175,534,EFR Environmental Services Inc.,CAR000011205,October - December 2006,Thad,Harris,CFO,,0,6425,0,4290,275,0,0,10990,0,0,0,0,0,0,0,0,10990,10990,0,10990
 29,187,534,Evergreen Environmental Services (Newark),CAD982413262,October - December 2006,Albert,Farran,Laboratory Manager,Outside California figure is already included in figures for the lines 8-12_ so it is not included on line #15,4573046,108145,0,80865,196415,0,0,4958471,1900,78880,0,0,5658,0,0,86438,5044909,5044936,0,5044936
-30,210,534,Express Environmental Corp._dba Express Oil,CAL000264806,October - December 2006,Sandra,Jacinto,Office Manager,"Attn: Cecilia (818) 551 - 2850",0,128025,0,0,0,0,0,128025,0,53842,0,0,0,0,0,53842,181867,181867,0,181867
+30,210,534,Express Environmental Corp._dba Express Oil,CAL000264806,October - December 2006,Sandra,Jacinto,Office Manager,Attn: Cecilia (818) 551 - 2850,0,128025,0,0,0,0,0,128025,0,53842,0,0,0,0,0,53842,181867,181867,0,181867
 107,712,534,Filter Recycling Services_ Inc.,CAD982444481,October - December 2006,Wade,Riddering,Vice President,,34720,32095,0,0,5842,0,0,72657,55,6620,0,0,0,0,0,6675,79332,121200,0,121200
 257,1734,534,Fremouw Environmental Services,CAR000171017,October - December 2006,Theodore,Fremouw,CEO,,148320,3859,3339,6328,1838,0,0,163684,16480,1286,176,1582,97,0,0,19621,183305,183305,0,183305
 304,1778,534,Glyco Environmental Services,CAL000309743,October - December 2006,Luciano,Quintero,Owner,,7850,0,0,0,0,0,0,7850,0,0,0,0,0,0,0,0,7850,7850,0,7850
@@ -2257,3 +2257,392 @@ FacilityID,HaulerReportID,QuarterYearID,FacilityName,EPAIDNumber,QuarterYear,Pre
 201,1264,523,Universal Waste Oil Company,CAL000183236,January - March 2004,Salvador,Salceda,Owner,,72315,0,0,0,0,0,0,72315,0,0,0,0,0,0,0,0,72315,72315,0,72315
 74,541,523,Waste Oil Recovery Systems_ Inc.,CAD000137592,January - March 2004,Tina,Falcon,Vice President,,60368,0,2095,0,0,0,0,62463,0,1290,0,0,0,0,0,1290,63753,0,0,0
 170,1101,523,Western Environmental,CAO000904540,January - March 2004,Eva,Tice,Office Manager,,0,625,0,0,0,0,0,625,0,550,0,0,0,0,0,550,1175,1175,0,1175
+54,2564,554,Alarcon's_ Mark_ Waste Oil Service,CAD980814446,October - December 2011,Mark ,Alarcon,President,,1630,14550,50,350,5980,0,0,22560,0,12215,0,0,40,0,0,12255,34815,22560,12255,34815
+410,2561,554,Aley & L Group Corporation,CAL000363983,October - December 2011,,,,,556439,0,0,0,0,0,0,556439,0,0,0,0,0,0,0,0,556439,556439,0,556439
+175,2567,554,All Valley Disposal Inc.,CAR000181586,October - December 2011,Marcella,Ramirez,HR Manager,,15835,15331,150,29795,935,0,0,62046,0,0,0,0,0,0,0,0,62046,62046,0,62046
+135,2562,554,All Valley Environmental,CAL000263169,October - December 2011,Juanita ,Schow,Office Manager,,81250,0,0,0,0,0,0,81250,0,0,0,0,0,0,0,0,81250,81200,0,81200
+214,2565,554,Alpha Oil Company,CAL000331370,October - December 2011,Nella,Osadehaya,President,,157786,0,0,0,0,0,0,157786,0,0,0,0,0,0,0,0,157786,157786,0,157786
+14,2560,554,American Oil Company,CAD981427669,October - December 2011,Rochelle,Gomelsky,Office Manager,,221230,0,0,0,0,0,192195,413425,0,1244,0,0,0,0,0,1244,414669,414669,0,414669
+162,2566,554,American Valley Waste Oil,CAL000827878,October - December 2011,Julie,Huber,Manager,,84183,32700,0,95500,10000,0,0,222383,0,10100,0,0,0,0,0,10100,232483,222383,10100,232483
+16,2563,554,Asbury Environmental Services-Compton,CAD028277036,October - December 2011,Rosemary,Domino,Director_ Environmental Affairs,,7044542,433755,28350,128863,5670,54680,3510018,11205878,0,880654,57559,0,11512,0,0,949725,12155603,8590905,0,8590905
+39,2573,554,Bayside Oil II_ Inc.,CAD088838222,October - December 2011,Kim,Glenn,President,,68578,0,0,0,0,0,0,68578,0,7970,0,0,0,0,0,7970,76548,68578,7970,76548
+412,2569,554,Ben's Truck and Equipment Inc.,CAD055559678,October - December 2011,Connie,Nanfito,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+292,2568,554,Best Environmental_ LLC,NVD982358483,October - December 2011,John,Reeder,Plant Manager,,7979,0,0,0,4650,191024,80250,283903,0,0,0,0,0,0,0,0,283903,283903,0,283903
+351,2570,554,Big Sky Environmental Solutions,CAL000346010,October - December 2011,Jennifer,Chen,Administrative Assistant,,63495,0,0,0,1880,0,0,65375,0,0,0,0,0,0,0,0,65375,65375,0,65375
+21,2571,554,Black Star Oil Company,CAL912823785,October - December 2011,I.,Katz,Office Manager,,124008,31002,0,0,0,0,0,155010,0,0,0,0,0,0,0,0,155010,155010,0,155010
+47,2572,554,Butler_ J.W._ Oil_ Inc.,CAD981426539,October - December 2011,Dennis,Butler,Owner,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+233,2575,554,Carrs Waste Oil Service,CAL000280677,October - December 2011,J. Concepcion,Carrera,Manager/Owner,,40683,0,0,0,0,0,0,40683,0,0,0,0,0,0,0,0,40683,40683,0,40683
+148,2574,554,Chain Enterprises,CAL000277184,October - December 2011,Steven,Chain,Owner,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+252,2577,554,Cole's Services_ Inc.,CAL000268462,October - December 2011,Mary,Miller,CSR Office Manager,,22280,14081,0,5981,0,0,0,42342,0,0,0,0,0,0,0,0,42342,42342,0,42342
+206,2579,554,Consultant Environmental Operations; C.E.O.,CAL000209884,October - December 2011,Francisco Javier,Arrieta,Owner,,7025,2055,0,0,0,0,0,9080,2650,1775,0,0,0,0,0,4425,13505,9080,4425,13505
+354,2578,554,Copper State Petroleum,AZR000501346,October - December 2011,David,Emmett,Vice President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+26,2576,554,Crane's Waste Oil_ Inc.,CAD980813950,October - December 2011,Robin Tebow,Crane,Supervisor,,129920,53950,0,31975,14375,0,0,230220,0,4655,0,120,0,0,0,4775,234995,225985,4775,230760
+169,2580,554,D & R Oil Company,CAL000253903,October - December 2011,Ruben,Hernandez,Owner,,25840,0,0,0,0,0,0,25840,0,0,0,0,0,0,0,0,25840,25840,0,25840
+355,2581,554,DenBeste Transportation,CAD982513632,October - December 2011,Lori,Denbeste,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+393,2582,554,EcoLogic Environmental Svcs,CAR000208421,October - December 2011,Monica,Falcon,Manager,,18510,420,65,0,11075,0,0,30070,0,0,0,0,0,0,0,0,30070,30070,0,30070
+137,2586,554,Ecology Control Industries_ Inc.,CAD982030173,October - December 2011,Rod,Cleem,Project Manager,,0,2760,0,0,0,0,0,2760,0,0,0,0,0,0,0,0,2760,2760,0,2760
+376,2583,554,Edgar's Mobile Lube,CAL000293019,October - December 2011,Edgar,Ocon,Owner,,3605,0,0,0,0,0,0,3605,0,0,0,0,0,0,0,0,3605,3605,0,3605
+184,2585,554,EFR Environmental Services Inc.,CAR000011205,October - December 2011,Thad,Harris,Vice President,,0,3834,0,5452,0,0,0,9286,0,0,0,0,0,0,0,0,9286,9286,0,9286
+30,2584,554,Express Environmental Corp._dba Express Oil,CAL000264806,October - December 2011,Sandra,Jacinto,Office Manager,,0,75563,0,0,0,0,0,75563,0,55980,0,0,0,0,0,55980,131543,75563,55980,131543
+402,2588,554,First Team Oil Transport_ Inc.,CAR000217315,October - December 2011,Sonia,Salmeron,Controller,,0,0,0,0,0,0,800392,800392,0,0,0,0,0,0,0,0,800392,800392,0,800392
+257,2587,554,Fremouw Environmental Services,CAR000171017,October - December 2011,Theodore,Fremouw,President,,404257,28253,3387,13536,29872,0,0,479305,44919,9418,179,3384,1573,0,0,59473,538778,579305,59473,638778
+379,2589,554,G & G Transportation,CAL000827858,October - December 2011,Tawnya,Gomes,Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+304,2590,554,Glyco Environmental Services,CAL000309743,October - December 2011,Luciano,Quintero,Owner/Operator,,24600,0,0,0,0,0,0,24600,0,0,0,0,0,0,0,0,24600,24600,0,24600
+397,2591,554,Golden Eagle Oil Refinery,UTD070534623,October - December 2011,Colleen T.,Wilson,Office Manager,,0,0,0,0,0,0,171413,171413,0,0,0,0,0,0,0,0,171413,171413,0,171413
+34,2592,554,Golden Oil,CAD982472623,October - December 2011,Rebecca,Sharp,Owner,,2000,0,0,0,0,0,0,2000,0,200,0,0,0,0,0,200,2200,2000,200,2200
+190,2594,554,Haz Mat Trans_ Inc.,CAT080012800,October - December 2011,Deva,McKnight,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+254,2593,554,Hazardous Technologies,CAR000168229,October - December 2011,Danette,Tice,Sales/Office,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+357,2599,554,IDR Environmental Services,CAD981377864,October - December 2011,Dawn,DeVroom,CFO,,0,2605,0,0,0,0,0,2605,0,165,0,0,0,0,0,165,2770,2330,165,2495
+333,2600,554,Industrial Waste Utilization,CAD980585293,October - December 2011,Casey,Francini,HR/Building Contracts,,0,0,0,0,0,0,0,0,0,335,0,0,1390,0,0,1725,1725,0,1725,1725
+43,2597,554,Interstate Pumping Company,CAL000328860,October - December 2011,Gordon,Smith,Owner,,875,0,0,0,0,0,0,875,0,0,0,0,0,0,0,0,875,875,0,875
+111,2596,554,J.B. Trans Services_Inc (dba) All Phase Env.,CAL000253361,October - December 2011,Anna,Calvert,Manager,,378809,0,0,0,0,0,0,378809,0,0,0,0,0,0,0,0,378809,378809,0,378809
+45,2648,554,Jack Stone Drainage Oil Service,CAD080075096,October - December 2011,Frank,Stone,Owner,,136290,10920,8420,0,5930,0,0,161560,0,4340,0,0,0,0,0,4340,165900,161560,4340,165900
+359,2602,554,Johnson Machinery Company,CAD006910855,October - December 2011,Jerry F.,Welch,Administrative Assistant,,0,221,0,0,126,0,0,347,0,0,0,0,0,0,0,0,347,347,0,347
+358,2601,554,Johnson Power Systems,CAL000161534,October - December 2011,Jerry F.,Welch,Administrative Assistant,,0,2040,0,0,560,0,0,2600,0,0,0,0,0,0,0,0,2600,2600,0,2600
+116,2595,554,JSE Environmental Services,CAL000827857,October - December 2011,Greg,Pasqualetto,President,,5193,0,0,0,0,0,0,5193,0,0,0,0,0,0,0,0,5193,5193,0,5193
+147,2603,554,Kern Oil Filter Recycling,CAL000327867,October - December 2011,Maria,Alvarez,Office Manager,,277211,0,0,0,0,0,0,277211,0,0,0,0,0,0,0,0,277211,277211,0,277211
+46,2598,554,Knight_ Jim_ Drain Oil Service,CAL000027718,October - December 2011,I.,Katz,Office Manager,,43035,10758,0,0,0,0,0,53793,0,0,0,0,0,0,0,0,53793,53793,0,53793
+407,2604,554,Kwik-Kleen,CA0000039792,October - December 2011,Bruce,Stout,Manager,,0,5400,90,1190,170,0,0,6850,0,210,0,0,0,0,0,210,7060,6850,210,7060
+335,2607,554,Lee's Trucking_ Inc.,ARD981513385,October - December 2011,Greg,Howard,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+361,2606,554,Los Angeles Dept of Power & Water (LA DPW),CAD000632992,October - December 2011,Dat,Quach,Manager of Hazardous Sub. Management,,0,0,0,0,8350,0,0,8350,0,0,0,0,95,0,0,95,8445,8350,95,8445
+225,2605,554,Los Angeles Pumping,CAR000201459,October - December 2011,Nancy,Pena,General Manager,,119485,0,0,0,0,0,0,119485,2210,0,0,0,0,0,0,2210,121695,119485,2210,121695
+167,2608,554,Lowry_ George W._ Inc.,CAR000047019,October - December 2011,Deni,Wright,Modesto Office Manager,,21985,1495,0,7340,5935,0,0,36755,0,3920,0,0,0,0,0,3920,40675,36755,3920,40675
+362,2615,554,Marine Express_ Inc.,CAL000126290,October - December 2011,Tracie,Rasmussen,COO,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+160,2610,554,Maximum Oil Service,CAL000188867,October - December 2011,Max,Maxwell,Manager,,77382,11363,84,1431,3758,0,0,94018,8598,3788,56,954,418,0,0,13814,107832,94018,13814,107832
+363,2613,554,Melfred Industrial Services,CAL000348567,October - December 2011,Fred,McDonald,President,,20060,7620,0,0,325,0,0,28005,0,0,0,0,0,0,0,0,28005,28005,0,28005
+364,2612,554,Miles Chemical Co,CAD983613688,October - December 2011,Mark,Glaser,General Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+319,2614,554,Millenium Waste Oil_ Inc.,CAL000327031,October - December 2011,Tina S.,Pease,Office Manager/Haz-Waste Advisor,,118925,0,0,1500,0,0,0,120425,0,1650,0,0,0,0,0,1650,122075,120425,1650,122075
+408,2616,554,Moveel Fuel,CAL000360685,October - December 2011,Robert ,Somermah,President,,23309,0,0,0,0,0,0,23309,0,0,0,0,0,0,0,0,23309,23309,0,23309
+141,2611,554,MP Environmental,CAT000624247,October - December 2011,Amanda,Little,Customer Representative,,0,0,0,0,0,0,0,0,0,4900,0,0,0,0,0,4900,4900,0,4900,4900
+314,2620,554,North State Environmental,CAR000206086,October - December 2011,John,Erickson,Operations Manager,,0,1630,0,0,0,0,0,1630,0,0,0,0,0,0,0,0,1630,1630,0,1630
+89,2617,554,North Valley Oil Company,CAL000027759,October - December 2011,Larry,Evans,President,,5460,0,0,0,0,0,0,5460,0,21125,0,0,0,0,0,21125,26585,5460,21125,26585
+82,2609,554,Nottingham_ M.C._ Co. of So. Cal,CAD059240713,October - December 2011,Virginia,Polzin,Secretary (Board of Directors),,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+365,2621,554,Ocean Blue Environmental Services,CAD983608258,October - December 2011,Julio,Gaeta,Dispatcher,,0,2087,0,0,181,0,0,2268,0,0,0,0,0,0,0,0,2268,2268,0,2268
+340,2626,554,Pan Pacific Petroleum,CAL000142074,October - December 2011,Don,Stewart,Safety Manager,,0,0,0,0,0,0,888628,888628,0,0,0,0,0,0,0,0,888628,888628,0,888628
+24,2625,554,Philip Services Corp.(Philip West Ind Svcs),CAD980584510,October - December 2011,Paul,DeWitt,Manager,,0,0,0,26850,0,0,0,26850,0,0,0,0,0,0,0,0,26850,26850,0,26850
+269,2628,554,Philip West Industrial Services,CAR000177527,October - December 2011,Stephanie,Smith,Admin,,0,0,0,0,0,0,0,0,0,18555,0,0,0,0,0,18555,18555,0,16073,16073
+44,2624,554,PSC Environmental Services of Pomona LP,CAR000053405,October - December 2011,Greg,Emele,EH&S,,0,1445,0,0,0,0,0,1445,0,0,0,0,0,0,0,0,1445,1445,0,1445
+380,2622,554,Quinn Company-Bakersfield,CAD118803717,October - December 2011,James,Holtz,ECM,,0,0,0,605,0,0,0,605,0,0,0,0,0,0,0,0,605,605,0,605
+381,2623,554,Quinn Company-Salinas,CAD050513217,October - December 2011,James,Holtz,ECM,,0,0,0,2110,0,0,0,2110,0,0,0,0,0,0,0,0,2110,2110,0,2110
+414,2627,554,Quinn Company-Selma,CAD029451945,October - December 2011,James,Holtz,ECM,,0,0,0,1211,0,0,0,1211,0,0,0,0,0,0,0,0,1211,1211,0,1211
+202,2633,554,Rae-Vac Pumping,CAR000053272,October - December 2011,Rachel,Gonzalez,Owner/Operator,,42910,0,0,0,0,0,0,42910,4535,0,0,0,0,0,0,4535,47445,0,0,0
+61,2638,554,RCA Oil Recovery,CAD981385149,October - December 2011,Rosendo ,Arteaga,Owner,,43575,0,0,0,0,0,0,43575,0,0,0,0,0,0,0,0,43575,43575,0,43575
+232,2639,554,Real Deal Waste Oil Service,CAL000280873,October - December 2011,Charles,Holyfield,Owner,,33825,0,0,0,0,0,0,33825,0,0,0,0,0,0,0,0,33825,33825,0,33825
+235,2635,554,Recycle-It Environmental Services,CAL000280060,October - December 2011,Tom,Wooten,President,,110360,0,0,0,0,0,0,110360,0,0,0,0,0,0,0,0,110360,110360,0,110360
+62,2636,554,Reno Drain Oil Service,NVD980893663,October - December 2011,Toni,Ralston,Bookkeeper,,15769,39421,11826,11826,19712,0,0,98554,0,0,0,0,0,0,0,0,98554,0,0,0
+149,2637,554,Rho-Chem Corporation,CAD008364432,October - December 2011,Greg,Emele,EH&S,,0,3873,0,0,0,0,0,3873,0,347,0,0,0,0,0,347,4220,3873,347,4220
+348,2640,554,Rio Express Corporation,CAL000322668,October - December 2011,Joel,Olaguez,President,,0,0,0,0,0,0,806613,806613,0,0,0,0,0,0,0,0,806613,806613,0,806613
+105,2641,554,Sacramento Waste Oil,CAL913534912,October - December 2011,Albert,Hernandez,Owner,,225660,2450,2500,29340,0,0,0,259950,0,490,8810,12045,0,0,0,21345,281295,0,21345,21345
+220,2643,554,Safety-Kleen,TXR000050930,October - December 2011,Dan,Appelt,Director_ EHS Admin,,0,0,0,0,0,0,0,0,0,10121,0,0,0,0,0,10121,10121,0,10121,10121
+253,2647,554,San Fernando Oil,CAL000301304,October - December 2011,Jesus,Hernandez,Owner,,2357,0,0,0,0,98816,200,101373,0,0,0,0,0,0,0,0,101373,101373,0,101373
+140,2642,554,San Joaquin Filter Recycling,CAL000188148,October - December 2011,Lynne,Loyd,Owner,,176698,0,0,14615,460,0,0,191773,0,1520,0,0,0,0,0,1520,193293,193293,0,193293
+395,2644,554,SOS Ecology Management,CAR000111583,October - December 2011,Jose,Aguilar,Assistant Services,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3750,3750,3750,0,3750,3750
+70,2646,554,Starlite Reclamation,CAR000148296,October - December 2011,Melissa,Marks,Office Manager,,30049,0,0,0,0,0,0,30049,0,0,0,0,0,0,0,0,30049,0,30049,30049
+93,2645,554,Swift Oil & Vacuum_ Inc.,CAD982488470,October - December 2011,Richard,Rozuk,President,,40535,20425,0,0,0,0,0,60960,0,16460,0,0,0,0,0,16460,77420,60960,16460,77420
+270,2651,554,Thermo Fluids - Las Vegas,NVR000001032,October - December 2011,Brian,Haney,Corp EHS Manager,,765,142558,0,0,0,0,0,143323,0,0,0,0,0,0,0,0,143323,143323,0,143323
+341,2652,554,Thermo Fluids - Medford,ORQ000007781,October - December 2011,Brian,Haney,Corp EHS Manager,,37752,1962,0,0,193,0,0,39907,0,0,0,0,0,0,0,0,39907,39907,0,39907
+188,2649,554,Thermo Fluids - Phoenix,AZR000003681,October - December 2011,Brian,Haney,Corp EHS Manager,,22461,0,0,0,0,0,0,22461,0,0,0,0,0,0,0,0,22461,22461,0,22461
+305,2653,554,Thermo Fluids - Reno,NVD982510711,October - December 2011,Brian,Haney,Corp EHS Manager,,1150,12040,0,0,0,0,0,13190,0,0,0,0,0,0,0,0,13190,13190,0,13190
+327,2650,554,Thermo Fluids - Tucson,AZO000878744,October - December 2011,Brian,Haney,Corp EHS Manager,,6897,0,0,0,0,0,0,6897,0,0,0,0,0,0,0,0,6897,16897,0,16897
+416,2654,554,Thomas Crane & Trucking Co._ Inc.,CAD061605036,October - December 2011,Patrick,Herrera,Safety Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+417,2656,554,Triad Transport Inc.,OKD981588791,October - December 2011,Michelle,Kerns,Permit Manager,,0,0,0,0,0,0,987,987,0,0,0,0,0,0,0,0,987,987,0,987
+142,2659,554,United Pumping,CAD072953771,October - December 2011,Katie,Perry,HR and H&S Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+201,2658,554,Universal Waste Oil Company,CAL000183236,October - December 2011,Salvador,Salceda,Owner,,61220,0,0,0,0,0,0,61220,0,0,0,0,0,0,0,0,61220,61220,0,61220
+243,2660,554,Western Environmental Services,CAR000159681,October - December 2011,Eva,Tice,Office Manager,,0,12077,0,0,0,0,0,12077,0,0,0,0,0,0,0,0,12077,12077,0,12077
+237,2463,553,A&S Metal Recycling,CAD081402407,July - September 2011,Ray G.,Pena Jr.,Technical Director,,0,275,0,0,0,0,0,275,0,9115,0,0,0,0,0,9115,9390,275,9115,9390
+396,2460,553,Advanced Chemical Transport,CAR000070540,July - September 2011,Stephanie,Alves,Compliance Specialist,,673,985,0,0,113,0,0,1771,65,7557,165,0,55,0,0,7842,9613,1771,7842,9613
+54,2466,553,Alarcon's_ Mark_ Waste Oil Service,CAD980814446,July - September 2011,Mark,Alarcon,Owner,,2205,16835,180,560,4590,0,0,24370,0,21030,0,0,50,0,0,21080,45450,24370,21080,45450
+295,2468,553,Alexis Environmental,CAR000130864,July - September 2011,Tina,Vallejos,Office Manager,,0,13937,0,0,0,0,0,13937,0,24928,0,0,0,0,0,24928,38865,16015,22850,38865
+175,2467,553,All Valley Disposal Inc.,CAR000181586,July - September 2011,Marcella,Ramirez,Human Resources Manager,,23000,16980,200,17501,575,0,0,58256,0,0,0,0,0,0,0,0,58256,58256,0,58256
+135,2461,553,All Valley Environmental,CAL000263169,July - September 2011,Ken,Schow,Partner,,64850,0,0,0,0,0,0,64850,0,0,0,0,0,0,0,0,64850,64850,0,64850
+214,2472,553,Alpha Oil Company,CAL000331370,July - September 2011,Nella,Osadehaya,President,,162068,0,0,0,0,0,0,162068,0,0,0,0,0,0,0,0,162068,162068,0,162068
+256,2462,553,Amberwick Corporation,CAR000172189,July - September 2011,Lynn,McLenon,Office Manager,,0,0,0,0,0,0,0,0,0,5006,0,0,0,0,0,5006,5006,0,5006,5006
+14,2544,553,American Oil Company,CAD981427669,July - September 2011,Rochelle,Gomelsky,Office Manager,,240451,0,0,0,0,0,191015,431466,0,3425,0,0,0,0,0,3425,434891,441891,0,441891
+162,2465,553,American Valley Waste Oil,CAL000827878,July - September 2011,Julie,Huber,Manager,,110067,25100,0,91000,0,0,0,226167,0,7000,0,0,0,0,0,7000,233167,226167,7000,233167
+16,2464,553,Asbury Environmental Services-Compton,CAD028277036,July - September 2011,Rosemary,Domino,Director_ Environmental Affairs,,7639648,470397,30745,139750,6149,22010,3414574,11723273,0,955049,62422,0,12484,0,0,1029955,12753228,9316644,0,9316644
+165,2473,553,Bay Valley Environmental_ Inc.,CAL000162034,July - September 2011,Jake,Sagun,Bookeeper,,35040,2555,0,0,55,0,0,37650,0,0,0,0,0,0,0,0,37650,37650,0,37650
+39,2559,553,Bayside Oil II_ Inc.,CAD088838222,July - September 2011,Kim,Glenn,,,81170,0,0,0,0,0,0,81170,0,12086,0,0,0,0,0,12086,93256,81170,12086,93256
+20,2470,553,Black Gold Industries,CAD983609678,July - September 2011,Victor J. ,Villard,President,,0,0,0,0,0,0,0,0,0,0,0,0,5384,0,0,5384,5384,0,5384,5384
+21,2469,553,Black Star Oil Company,CAL912823785,July - September 2011,Kaatz,Irina,Office Manager,,128224,32056,0,0,0,0,0,160280,0,0,0,0,0,0,0,0,160280,160280,0,160280
+47,2471,553,Butler_ J.W._ Oil_ Inc.,CAD981426539,July - September 2011,Dennis W.,Butler,Co-Trustee,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+313,2480,553,California Coolant Services,CAR000047167,July - September 2011,Luiz C.,Machado,President,,58891,0,0,0,120,0,0,59011,0,0,0,0,0,0,0,0,59011,59011,0,59011
+317,2475,553,California Pumping_ Inc.,CAL000282383,July - September 2011,Allan,Roston,President,,10700,0,0,0,0,0,0,10700,0,0,0,0,0,0,0,0,10700,0,0,0
+233,2478,553,Carrs Waste Oil Service,CAL000280677,July - September 2011,J. Concepcion,Carrera,Manager/Owner,,44571,0,0,0,0,0,0,44571,0,0,0,0,0,0,0,0,44571,44571,0,44571
+307,2483,553,Clean Tech Environmental,CAL000330453,July - September 2011,Robert E. ,Brown III,President,,1005607,0,0,0,0,0,0,1005607,0,0,0,0,0,0,0,0,1005607,1005607,0,1005607
+252,2479,553,Cole's Services_ Inc.,CAL000268462,July - September 2011,Mary,Miller,Office Manager,,79119,45056,0,25300,3864,0,55,153394,0,0,0,0,0,0,0,0,153394,153394,0,153394
+155,2474,553,Compliance Environmental Services,CAL000161247,July - September 2011,Patricia ,Urbina,Treasurer,,128665,0,0,0,0,0,0,128665,0,0,0,0,0,0,0,0,128665,128665,0,128665
+206,2481,553,Consultant Environmental Operations; C.E.O.,CAL000209884,July - September 2011,Francisco J.,Arrieta,Owner/Operator,,7185,5250,0,0,0,0,0,12435,2650,2100,0,0,0,0,0,4750,17185,12435,4750,17185
+26,2476,553,Crane's Waste Oil_ Inc.,CAD980813950,July - September 2011,Robin Tebow,Crane,Supervisor,,129395,64155,0,34965,16775,0,0,245290,0,6300,0,1130,0,0,0,7430,252720,238570,7430,246000
+392,2482,553,CVC Environmental,CAR000051169,July - September 2011,Charles,Heard,Dispatcher,,0,0,0,0,0,0,0,0,0,9000,0,0,0,0,0,9000,9000,0,0,0
+169,2485,553,D & R Oil Company,CAL000253903,July - September 2011,Ruben,Hernandez,Owner,,34165,0,0,0,0,0,0,34165,0,0,0,0,0,0,0,0,34165,34165,0,34165
+268,2484,553,Desert Environmental Services_ Inc.,CAR000074542,July - September 2011,Fernando,Nieves,President,,0,26930,0,0,0,0,0,26930,0,0,0,0,0,0,0,0,26930,26930,0,26930
+137,2486,553,Ecology Control Industries_ Inc.,CAD982030173,July - September 2011,Rod,Cleem,Project Manager,,0,3235,0,0,0,0,0,3235,0,0,0,0,0,0,0,0,3235,0,0,0
+376,2556,553,Edgar's Mobile Lube,CAL000293019,July - September 2011,Edgar,Ocon,Owner,,3520,0,0,0,0,0,0,3520,0,0,0,0,0,0,0,0,3520,3520,0,3520
+184,2487,553,EFR Environmental Services Inc.,CAR000011205,July - September 2011,Thad,Harris,CFO,,0,6805,0,2355,0,0,0,9160,0,0,0,0,0,0,0,0,9160,9160,0,9160
+308,2488,553,Environmental Logistics,CAR000172460,July - September 2011,Wade,Riddering,Regulatory Compliance Officer,,5847,16691,0,0,10852,0,39578,72968,135,8309,0,0,0,0,10006,18450,91418,72968,18450,91418
+347,2530,553,Espinoza Trucking_ Inc.,CAL000297859,July - September 2011,Mary,Quintero,Operations Manager,,0,0,0,0,0,12532,954922,967454,0,0,0,0,0,0,0,0,967454,362959,0,362959
+30,2489,553,Express Environmental Corp._dba Express Oil,CAL000264806,July - September 2011,Sandra,Jacinto,Manager,,0,91279,0,0,0,0,0,91279,0,67495,0,0,0,0,0,67495,158774,91279,67495,158774
+107,2491,553,Filter Recycling Services_ Inc.,CAD982444481,July - September 2011,Wade,Riddering,Vice President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+402,2492,553,First Team Oil Transport_ Inc.,CAR000217315,July - September 2011,Sonia,Salmeron,Controller,,0,0,0,0,0,0,873656,873656,0,0,0,0,0,0,0,0,873656,873656,0,873656
+257,2490,553,Fremouw Environmental Services,CAR000171017,July - September 2011,Theodore,Fremouw,President,,398752,19888,5961,16796,16591,0,0,457988,44306,6629,314,4199,874,0,0,56322,514310,457988,56321,514309
+379,2494,553,G & G Transportation,CAL000827858,July - September 2011,Tawnya,Gomes,Office Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+304,2493,553,Glyco Environmental Services,CAL000309743,July - September 2011,Luciano,Quintero,Owner/Operator,,26400,0,0,0,0,0,0,26400,0,0,0,0,0,0,0,0,26400,26400,0,26400
+397,2495,553,Golden Eagle Oil Refinery,UTD070534623,July - September 2011,Colleen T.,Wilson,Office Manager,,0,0,0,0,0,0,88454,88454,0,0,0,0,0,0,0,0,88454,88454,0,88454
+190,2496,553,Haz Mat Trans_ Inc.,CAT080012800,July - September 2011,Deva,McKnight,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+254,2497,553,Hazardous Technologies,CAR000168229,July - September 2011,Danette,Tice,Sales/Office,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+356,2498,553,Hazardous Waste Transportation Services,CAR000129759,July - September 2011,Erin,Winett,EHS Manager,,0,7357,0,0,0,0,0,7357,0,830,0,0,0,0,0,830,8187,7357,830,8187
+357,2500,553,IDR Environmental Services,CAD981377864,July - September 2011,Dawn,DeVroom,CFO,,0,800,0,0,0,0,0,800,0,490,0,0,0,0,0,490,1290,800,380,1180
+333,2499,553,Industrial Waste Utilization,CAD980585293,July - September 2011,Casey,Franchum,Bids and Contracts,,0,0,0,0,0,0,0,0,0,335,0,0,1705,0,0,2040,2040,0,2040,2040
+43,2505,553,Interstate Pumping Company,CAL000328860,July - September 2011,Gordon,Smith,Owner,,420,0,0,0,0,0,0,420,0,0,0,0,0,0,0,0,420,420,0,420
+111,2504,553,J.B. Trans Services_Inc (dba) All Phase Env.,CAL000253361,July - September 2011,Anna,Calvert,Manager,,419377,0,0,0,0,0,0,419377,0,0,0,0,0,0,0,0,419377,419377,0,419377
+45,2535,553,Jack Stone Drainage Oil Service,CAD080075096,July - September 2011,Frank,Stone,Owner,,147920,11280,8220,0,5020,0,0,172440,0,4370,0,0,0,0,0,4370,176810,172440,4370,176810
+359,2502,553,Johnson Machinery Company,CAD006910855,July - September 2011,Jerry F.,Welch,Administrative Assistant,,0,612,0,0,264,0,0,876,0,0,0,0,0,0,0,0,876,876,0,876
+358,2501,553,Johnson Power Systems,CAL000161534,July - September 2011,Jerry F.,Welch,Administrative Assistant,,0,1722,0,0,910,0,0,2632,0,0,0,0,0,0,0,0,2632,2632,0,2632
+116,2503,553,JSE Environmental Services,CAL000827857,July - September 2011,Greg,Pasqualetto,President,,9977,0,0,0,0,0,0,9977,0,0,0,0,0,0,0,0,9977,9977,0,9977
+147,2506,553,Kern Oil Filter Recycling,CAL000327867,July - September 2011,Maria G.,Alvarez,Secretary,,307423,0,0,0,0,0,0,307423,0,0,0,0,0,0,0,0,307423,307423,0,307423
+46,2507,553,Knight_ Jim_ Drain Oil Service,CAL000027718,July - September 2011,I.,Katz,Office Manager,,49787,12446,0,0,0,0,0,62233,0,0,0,0,0,0,0,0,62233,62233,0,62233
+407,2552,553,Kwik-Kleen,CA0000039792,July - September 2011,Bruce,Stout,Manager,,5152,0,210,0,500,0,0,5862,300,0,0,0,0,0,0,300,6162,5862,300,6162
+335,2511,553,Lee's Trucking_ Inc.,ARD981513385,July - September 2011,Greg,Howard,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+361,2508,553,Los Angeles Dept of Power & Water (LA DPW),CAD000632992,July - September 2011,Mark,Sedlacek,,,0,0,0,7730,0,0,0,7730,0,0,0,80,0,0,0,80,7810,0,0,0
+225,2509,553,Los Angeles Pumping,CAR000201459,July - September 2011,Nancy,Pena,General Manager,,147716,0,0,0,0,0,0,147716,4835,0,0,0,0,0,0,4835,152551,147716,4835,152551
+167,2510,553,Lowry_ George W._ Inc.,CAR000047019,July - September 2011,Deni A.,Wright,Office Manager,,25845,1310,160,12910,6035,0,0,46260,0,9630,0,0,0,0,0,9630,55890,41260,9630,50890
+362,2517,553,Marine Express_ Inc.,CAL000126290,July - September 2011,Tracie,Rasmussen,Operations Coordinator,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+160,2513,553,Maximum Oil Service,CAL000188867,July - September 2011,Max,Maxwell,Manager,,68882,12476,393,1695,3411,0,0,86857,7654,4159,262,1130,379,0,0,13584,100441,86856,13584,100440
+363,2516,553,Melfred Industrial Services,CAL000348567,July - September 2011,Fred,McDonald,President,,23340,10925,0,0,300,0,0,34565,0,0,0,0,0,0,0,0,34565,23640,10925,34565
+364,2514,553,Miles Chemical Co,CAD983613688,July - September 2011,Mark R.,Glaser,General Manager,,0,0,0,0,0,0,0,0,0,2944,0,0,0,0,0,2944,2944,0,2944,2944
+319,2515,553,Millenium Waste Oil_ Inc.,CAL000327031,July - September 2011,Tina S.,Pease,Office Manager,,136330,0,0,850,1050,0,0,138230,0,2870,0,0,0,0,0,2870,141100,138230,2870,141100
+408,2553,553,Moveel Fuel,CAL000360685,July - September 2011,Robert,Somermah,President,,12907,0,0,0,0,0,0,12907,0,0,0,0,0,0,0,0,12907,12907,0,12907
+141,2518,553,MP Environmental,CAT000624247,July - September 2011,Amanda,Little,Customer Representative,,0,0,0,0,0,0,0,0,0,8000,0,0,0,0,0,8000,8000,0,8000,8000
+314,2519,553,North State Environmental,CAR000206086,July - September 2011,John M.,Erickson,Operations Manager,,0,2400,0,0,850,0,0,3250,0,0,0,0,0,0,0,0,3250,0,3250,3250
+89,2618,553,North Valley Oil Company,CAL000027759,July - September 2011,Larry,Evans,President,,6700,0,0,0,0,0,0,6700,0,26824,0,0,0,0,0,26824,33524,6700,26824,33524
+82,2512,553,Nottingham_ M.C._ Co. of So. Cal,CAD059240713,July - September 2011,Ginny,Polzin,Secretary,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+365,2520,553,Ocean Blue Environmental Services,CAD983608258,July - September 2011,Julio,Gaeta,Dispatcher,,0,2873,0,0,788,0,0,3661,0,1543,0,0,0,0,0,1543,5204,3661,1543,5204
+340,2521,553,Pan Pacific Petroleum,CAL000142074,July - September 2011,Don,Stewart,Safety Director,,0,0,0,0,0,0,238198,238198,0,0,0,0,0,0,0,0,238198,238198,0,238198
+215,2546,553,Patriot Environmental Services,CAD053866794,July - September 2011,Michael,Sullivan,Vice President,,0,0,0,0,0,0,0,0,0,6604,0,0,0,0,0,6604,6604,0,6604,6604
+24,2522,553,Philip Services Corp.(Philip West Ind Svcs),CAD980584510,July - September 2011,Paul,DeWitt,Manager,,0,0,0,19200,0,0,0,19200,0,0,0,0,0,0,0,0,19200,19200,0,19200
+269,2525,553,Philip West Industrial Services,CAR000177527,July - September 2011,Stephanie,Smith,DOT Admin,,0,8932,0,0,0,0,0,8932,0,25808,0,0,0,0,0,25808,34740,8932,25808,34740
+44,2523,553,PSC Environmental Services of Pomona LP,CAR000053405,July - September 2011,Craig,Erickson,EHS Manager,,0,4290,0,0,0,0,0,4290,0,630,0,0,0,0,0,630,4920,4290,630,4920
+381,2526,553,Quinn Company-Salinas,CAD050513217,July - September 2011,James,Holtz,Environmental Compliance Manager,,0,0,0,2108,0,0,0,2108,0,0,0,0,0,0,0,0,2108,2108,0,2108
+60,2634,553,Ramos Environmental Services,CAD044003556,July - September 2011,Sally,Welch,Bookkeeper,,75385,13996,1160,4839,5395,0,0,100775,26380,54529,0,3636,2190,0,0,86735,187510,100775,86735,187510
+61,2531,553,RCA Oil Recovery,CAD981385149,July - September 2011,Rosendo ,Arteaga,Owner,,43528,0,0,0,0,0,0,43528,0,0,0,0,0,0,0,0,43528,43528,0,43528
+235,2529,553,Recycle-It Environmental Services,CAL000280060,July - September 2011,Tom,Wooten,President,,119550,0,0,0,0,0,0,119550,0,0,0,0,0,0,0,0,119550,119550,0,119550
+409,2554,553,Reliable Environmental Services,CAL000352388,July - September 2011,Bob,Stavely,Vice President,,34450,0,0,0,0,0,0,34450,0,0,0,0,0,0,0,0,34450,34450,0,34450
+62,2533,553,Reno Drain Oil Service,NVD980893663,July - September 2011,Toni,Ralston,Bookkeeper,,14321,35803,10741,10741,17901,0,0,89507,0,0,0,0,0,0,0,0,89507,0,0,0
+149,2528,553,Rho-Chem Corporation,CAD008364432,July - September 2011,Craig,Erickson,EHS Manager,,0,6976,0,0,0,0,0,6976,0,8841,0,0,0,0,0,8841,15817,6976,8841,15817
+348,2532,553,Rio Express Corporation,CAL000322668,July - September 2011,Joel,Olaguez,President,,0,0,0,0,0,0,1415488,1415488,0,0,0,0,0,0,0,0,1415488,1408977,6511,1415488
+105,2539,553,Sacramento Waste Oil,CAL913534912,July - September 2011,Albert,Hernandez,Owner,Albert did not specify how much of the oil was being transported to Ramos Environmental. Past reports have indicated that all oil is transferred. ,252159,5430,7940,5800,0,0,0,271329,4952,2905,1600,800,0,0,0,10257,281586,271329,10257,281586
+220,2537,553,Safety-Kleen,TXR000050930,July - September 2011,Dan,Appelt,Director_ EHS Admin,,463,0,0,0,0,0,0,463,0,14535,0,0,0,0,0,14535,14998,463,14535,14998
+253,2538,553,San Fernando Oil,CAL000301304,July - September 2011,Jesus,Hernandez,Owner,,0,0,0,0,0,111225,2785,114010,0,0,0,0,0,0,0,0,114010,114010,0,114010
+395,2536,553,SOS Ecology Management,CAR000111583,July - September 2011,Jose,Aguilar,Customer Services Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3810,3810,3810,0,3810,3810
+93,2534,553,Swift Oil & Vacuum_ Inc.,CAD982488470,July - September 2011,Richard,Rozuk,President,,46615,23070,0,0,0,0,0,69685,0,16505,0,0,0,0,0,16505,86190,69685,16505,86190
+72,2657,553,Tadeo_ Ricardo D. Waste Oil Service,CAD981634363,July - September 2011,Ricardo,Tadeo,Owner,,179130,0,0,0,0,0,0,179130,0,2260,0,0,0,0,0,2260,181390,179130,2260,181390
+270,2547,553,Thermo Fluids - Las Vegas,NVR000001032,July - September 2011,Brian,Haney,Corporate EHS Manager,,0,147409,0,0,0,0,0,147409,0,0,0,0,0,0,0,0,147409,0,0,0
+341,2549,553,Thermo Fluids - Medford,ORQ000007781,July - September 2011,Brian,Haney,Corporate EHS Manager,,42228,1138,0,0,1084,0,0,44450,0,0,0,0,0,0,0,0,44450,0,0,0
+188,2550,553,Thermo Fluids - Phoenix,AZR000003681,July - September 2011,Brian,Haney,Corporate EHS Manager,,54828,15915,0,0,0,0,0,70743,0,0,0,0,0,0,0,0,70743,0,0,0
+305,2551,553,Thermo Fluids - Reno,NVD982510711,July - September 2011,Brian,Haney,Corporate EHS Manager,,0,11996,0,0,0,0,0,11996,0,0,0,0,0,0,0,0,11996,0,0,0
+327,2548,553,Thermo Fluids - Tucson,AZO000878744,July - September 2011,Brian,Haney,Corporate EHS Manager,,41699,0,0,0,0,0,0,41699,0,0,0,0,0,0,0,0,41699,0,0,0
+417,2655,553,Triad Transport Inc.,OKD981588791,July - September 2011,Michelle,Kerns,Permit Manager,,0,0,0,0,0,0,8977,8977,0,0,0,0,0,0,0,0,8977,8977,0,8977
+142,2540,553,United Pumping,CAD072953771,July - September 2011,Katie,Perry,Regulatory Affairs Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+201,2555,553,Universal Waste Oil Company,CAL000183236,July - September 2011,Salvador,Salceda,Owner,,60140,0,0,0,0,0,0,60140,0,0,0,0,0,0,0,0,60140,60140,0,60140
+243,2542,553,Western Environmental Services,CAR000159681,July - September 2011,Eva,Tice,Office Manager,,0,13076,0,0,0,0,0,13076,0,0,0,0,0,0,0,0,13076,13076,0,13076
+158,2545,553,World Oil-San Joaquin_ LLC,CAL000102751,July - September 2011,Lynne,Loyd,Owner,,259296,0,0,17755,500,0,0,277551,0,2060,0,0,0,0,0,2060,279611,279611,0,279611
+405,2541,553,Worldwide Recovery Systems_ Inc.,CAR000175422,July - September 2011,Lisa,Ulloa,Technical Manager,,158325,0,0,0,0,0,0,158325,0,0,0,0,0,0,0,0,158325,158325,0,158325
+237,2557,552,A&S Metal Recycling,CAD081402407,April - June 2011,Ruy G.,Pena Jr.,Technical Director,,0,0,0,0,0,0,0,0,0,12035,0,0,0,0,0,12035,12035,0,12035,12035
+396,2364,552,Advanced Chemical Transport,CAR000070540,April - June 2011,Stephanie,Alves,Compliance Specialist,,346,782,0,0,0,0,0,1128,385,5881,4600,0,15,0,0,10881,12009,1128,7046,8174
+54,2362,552,Alarcon's_ Mark_ Waste Oil Service,CAD980814446,April - June 2011,Mark ,Alarcon,Owner,,1785,21460,0,490,7450,0,0,31185,0,25265,0,0,150,0,0,25415,56600,31185,25415,56600
+295,2367,552,Alexis Environmental,CAR000130864,April - June 2011,Tina,Vallejos,Office Manager,,0,4205,0,0,0,0,0,4205,0,27344,0,0,0,0,0,27344,31549,4205,27344,31549
+175,2366,552,All Valley Disposal Inc.,CAR000181586,April - June 2011,Marcella,Ramirez,Human Resources Manager,,23867,12995,155,19045,1215,0,0,57277,0,0,0,0,0,0,0,0,57277,57277,0,57277
+135,2365,552,All Valley Environmental,CAL000263169,April - June 2011,Juanita,Schow,Office Manager,,76330,0,0,0,0,0,0,76330,0,0,0,0,0,0,0,0,76330,76330,0,76330
+214,2368,552,Alpha Oil Company,CAL000331370,April - June 2011,Nella,Osadehaya,President,,162980,0,0,0,0,0,0,162980,0,0,0,0,0,0,0,0,162980,162980,0,162980
+256,2369,552,Amberwick Corporation,CAR000172189,April - June 2011,Lynn,McLenon,Office Manager,,0,0,0,0,0,0,0,0,0,5046,0,0,0,0,0,5046,5046,0,5046,5046
+14,2361,552,American Oil Company,CAD981427669,April - June 2011,Rochelle,Gomelsky,Office Manager,,243525,0,0,0,0,0,249611,493136,0,4064,0,0,0,0,0,4064,497200,493186,4064,497250
+162,2360,552,American Valley Waste Oil,CAL000827878,April - June 2011,Julie,Huber,Manager,"Submitted 10/03/2011.[BChan]",95400,25100,0,75828,20000,0,0,216328,6450,16500,0,0,0,0,0,22950,239278,216328,22950,239278
+16,2363,552,Asbury Environmental Services-Compton,CAD028277036,April - June 2011,Rosemary,Domino,Director_ Environmental Affairs,,7557824,465359,30416,138253,6083,60250,3729837,11988022,0,944820,61753,0,12351,0,0,1018924,13006946,0,0,0
+165,2374,552,Bay Valley Environmental_ Inc.,CAL000162034,April - June 2011,Jake,Sagun,Bookkeeper,,36870,0,0,0,0,0,0,36870,1415,0,55,0,0,0,0,1470,38340,36870,1470,38340
+39,2370,552,Bayside Oil II_ Inc.,CAD088838222,April - June 2011,Kim,Glenn,,,91742,0,0,0,0,0,0,91742,0,3950,0,0,0,0,0,3950,95692,91742,3950,95692
+20,2371,552,Black Gold Industries,CAD983609678,April - June 2011,Victor,Villard,President,,0,0,0,0,0,0,0,0,0,0,0,0,9076,0,0,9076,9076,0,9076,9076
+21,2373,552,Black Star Oil Company,CAL912823785,April - June 2011,Irina,Katz,Office Manager,,129691,32423,0,0,0,0,0,162114,0,0,0,0,0,0,0,0,162114,162114,0,162114
+47,2372,552,Butler_ J.W._ Oil_ Inc.,CAD981426539,April - June 2011,Dennis,Butler,Landlord,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+313,2375,552,California Coolant Services,CAR000047167,April - June 2011,Luis,Machado,President,,153086,0,0,0,140,0,0,153226,0,0,0,0,0,0,0,0,153226,153226,0,153226
+352,2376,552,California Environmental & Litho,CAR000009910,April - June 2011,Shannon,Harvey,Bookkeeper,,0,1680,0,0,0,0,0,1680,0,640,0,0,0,0,0,640,2320,1680,640,2320
+317,2377,552,California Pumping_ Inc.,CAL000282383,April - June 2011,Allan,Roston,President,,10973,0,0,0,0,0,0,10973,0,0,0,0,0,0,0,0,10973,10973,0,10973
+233,2378,552,Carrs Waste Oil Service,CAL000280677,April - June 2011,J. Concepcion,Carrera,Manager/Owner,,38786,0,0,0,0,0,0,38786,0,0,0,0,0,0,0,0,38786,38785,0,38785
+307,2381,552,Clean Tech Environmental,CAL000330453,April - June 2011,Robert,Brown,President,,969772,0,0,0,0,0,0,969772,0,0,0,0,0,0,0,0,969772,969772,0,969772
+252,2379,552,Cole's Services_ Inc.,CAL000268462,April - June 2011,Mary,Miller,Office Manager,,75758,0,0,18818,4550,0,50,99176,0,28924,0,0,0,0,0,28924,128100,99176,28924,128100
+155,2380,552,Compliance Environmental Services,CAL000161247,April - June 2011,Patricia,Urbina,Treasurer,,126975,0,0,0,0,0,0,126975,0,0,0,0,0,0,0,0,126975,126975,0,126975
+206,2382,552,Consultant Environmental Operations; C.E.O.,CAL000209884,April - June 2011,Francisco,Arrieta,Owner,,9365,3815,0,0,0,0,0,13180,3225,2380,0,0,0,0,0,5605,18785,13180,5605,18785
+26,2385,552,Crane's Waste Oil_ Inc.,CAD980813950,April - June 2011,Robin,Crane,Supervisor,,115785,78080,0,29950,16410,0,0,240225,0,8560,0,125,0,0,0,8685,248910,237215,8685,245900
+392,2384,552,CVC Environmental,CAR000051169,April - June 2011,Charles,Heard,Dispatcher,,0,0,0,0,0,0,0,0,0,1250,0,0,0,0,0,1250,1250,0,0,0
+169,2386,552,D & R Oil Company,CAL000253903,April - June 2011,Ruben,Hernandez,Owner,,37280,0,0,0,0,0,0,37280,0,0,0,0,0,0,0,0,37280,37280,0,37280
+393,2387,552,EcoLogic Environmental Svcs,CAR000208421,April - June 2011,Monica,Falcon,Manager,,23720,595,35,0,15826,0,0,40176,0,0,0,0,0,0,0,0,40176,80352,0,80352
+137,2388,552,Ecology Control Industries_ Inc.,CAD982030173,April - June 2011,Rod,Cleem,Project Manager,,0,1575,0,0,0,0,0,1575,0,0,0,0,0,0,0,0,1575,0,0,0
+376,2398,552,Edgar's Mobile Lube,CAL000293019,April - June 2011,Edgar,Ocon,Owner,"Did not specify on the hard-copy which portions of used oil were which. Past forms have indicated that this facility is mostly lube/collection station. [BChan 10-12-11]",3395,0,0,0,0,0,0,3395,0,0,0,0,0,0,0,0,3395,3395,0,3395
+184,2389,552,EFR Environmental Services Inc.,CAR000011205,April - June 2011,Thad,Harris,CFO,,0,8125,0,4410,0,0,0,12535,0,0,0,0,0,0,0,0,12535,4410,8125,12535
+321,2391,552,Elite Oil Transport,CAR000190082,April - June 2011,Sonia,Salmeron,Controller,,0,0,0,0,0,0,639046,639046,0,0,0,0,0,0,0,0,639046,639046,0,639046
+308,2390,552,Environmental Logistics,CAR000172460,April - June 2011,Wade,Riddering,Regulatory Compliance Officer,,8484,31972,465,300,9752,0,48450,99423,470,7588,0,0,35,0,6986,15079,114502,99423,15079,114502
+347,2435,552,Espinoza Trucking_ Inc.,CAL000297859,April - June 2011,Mary ,Quintero,Operations Manager,,0,0,0,0,0,59199,914055,973254,0,0,0,0,0,0,0,0,973254,973254,0,973254
+29,2392,552,Evergreen Environmental Services (Newark),CAD982413262,April - June 2011,Albert,Farran,Lab Manager,,4855551,72145,598,81825,185853,12710,0,5208682,1675,37348,0,0,2450,0,0,41473,5250155,5208182,41423,5249605
+30,2393,552,Express Environmental Corp._dba Express Oil,CAL000264806,April - June 2011,Sandra,Jacinto,Manager,,0,103060,0,0,0,0,0,103060,0,58695,0,0,0,0,0,58695,161755,103060,58695,161755
+107,2394,552,Filter Recycling Services_ Inc.,CAD982444481,April - June 2011,Wade,Riddering,Vice President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+402,2399,552,First Team Oil Transport_ Inc.,CAR000217315,April - June 2011,Sonia,Salmeron,Controller,,0,0,0,0,0,0,244580,244580,0,0,0,0,0,0,0,0,244580,244580,0,244580
+257,2400,552,Fremouw Environmental Services,CAR000171017,April - June 2011,Stu,Jordon,Vice President,,284202,16875,4669,18052,16155,0,0,339953,31578,5625,246,4513,850,0,0,42812,382765,339954,42812,382766
+379,2403,552,G & G Transportation,CAL000827858,April - June 2011,Twanya,Gomes,Office Manager,,0,0,0,0,0,0,891,891,0,0,0,0,0,0,0,0,891,7200,0,7200
+304,2401,552,Glyco Environmental Services,CAL000309743,April - June 2011,Luciano,Quintero,Owner/Operator,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+397,2402,552,Golden Eagle Oil Refinery,UTD070534623,April - June 2011,Colleen,Wilson,Office Manager,,0,0,0,0,0,0,278239,278239,0,0,0,0,0,0,0,0,278239,278239,0,278239
+190,2405,552,Haz Mat Trans_ Inc.,CAT080012800,April - June 2011,Deva,McKnight,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+254,2358,552,Hazardous Technologies,CAR000168229,April - June 2011,Danette,Tice,Sales/Office,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+356,2404,552,Hazardous Waste Transportation Services,CAR000129759,April - June 2011,Erin,Winett,EHS Manager,,0,3750,0,0,0,0,0,3750,0,1700,0,0,0,0,0,1700,5450,3750,1700,5450
+357,2406,552,IDR Environmental Services,CAD981377864,April - June 2011,Dawn,DeVroom,Preparer,,0,2075,0,0,0,0,0,2075,0,0,0,0,0,0,0,0,2075,2075,0,2075
+333,2407,552,Industrial Waste Utilization,CAD980585293,April - June 2011,Casey,Franchini,Contract SVCS,,0,0,0,0,0,0,0,0,0,2915,0,0,3365,0,0,6280,6280,0,6280,6280
+43,2408,552,Interstate Pumping Company,CAL000328860,April - June 2011,Gordon,Smith,Owner,,250,0,0,0,0,0,0,250,0,0,0,0,0,0,0,0,250,250,0,250
+111,2409,552,J.B. Trans Services_Inc (dba) All Phase Env.,CAL000253361,April - June 2011,Anna,Calvert,Manager,,409972,0,0,0,0,0,0,409972,0,0,0,0,0,0,0,0,409972,409972,0,409972
+45,2447,552,Jack Stone Drainage Oil Service,CAD080075096,April - June 2011,Frank,Stone,Owner,,146360,11260,9210,0,5900,0,0,172730,0,8175,0,0,0,0,0,8175,180905,172730,8175,180905
+267,2413,552,Jim Knight Drain Oil Company,CAL000078618,April - June 2011,I.,Katz,Office Manager,,56941,24404,0,0,0,0,0,81345,0,0,0,0,0,0,0,0,81345,81345,0,81345
+359,2410,552,Johnson Machinery Company,CAD006910855,April - June 2011,Jerry,Welch,Administrative Assistant,,0,521,0,0,33,0,0,554,0,0,0,0,0,0,0,0,554,554,0,554
+358,2411,552,Johnson Power Systems,CAL000161534,April - June 2011,Jerry,Welch,Administrative Assistant,,0,2116,0,0,1161,0,0,3277,0,0,0,0,0,0,0,0,3277,3277,0,3277
+116,2412,552,JSE Environmental Services,CAL000827857,April - June 2011,Greg,Pasqualetto,President,,12824,0,0,0,0,0,0,12824,0,0,0,0,0,0,0,0,12824,12824,0,12824
+147,2414,552,Kern Oil Filter Recycling,CAL000327867,April - June 2011,Maria,Alvarez,Secretary,,274741,0,0,0,0,0,0,274741,0,0,0,0,0,0,0,0,274741,274741,0,274741
+360,2415,552,KM Industrial,CAL000274783,April - June 2011,Richard,Okuda,Division Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+335,2416,552,Lee's Trucking_ Inc.,ARD981513385,April - June 2011,Greg,Howard,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+225,2417,552,Los Angeles Pumping,CAR000201459,April - June 2011,Nancy,Pena,General Manager,,131630,0,0,0,0,0,0,131630,6310,0,0,0,0,0,0,6310,137940,131630,6310,137940
+167,2419,552,Lowry_ George W._ Inc.,CAR000047019,April - June 2011,Deni,Wright,Officer Manager,,27215,7055,110,10455,7400,0,0,52235,0,12453,0,0,0,0,0,12453,64688,52235,12453,64688
+362,2421,552,Marine Express_ Inc.,CAL000126290,April - June 2011,Troy,Esch,COO,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+160,2420,552,Maximum Oil Service,CAL000188867,April - June 2011,Max,Maxwell,Managing member,,69845,13967,759,2586,2570,0,0,89727,7761,4656,506,1724,286,0,0,14933,104660,88959,15699,104658
+363,2423,552,Melfred Industrial Services,CAL000348567,April - June 2011,Fred,McDonald,President,,25350,8030,0,0,275,0,0,33655,0,0,0,0,0,0,0,0,33655,25350,8030,33380
+364,2424,552,Miles Chemical Co,CAD983613688,April - June 2011,Mark,Glaser,General Manager,,0,0,0,0,0,0,0,0,0,2637,0,0,0,0,0,2637,2637,0,2637,2637
+319,2425,552,Millenium Waste Oil_ Inc.,CAL000327031,April - June 2011,Tina,Pease,Office Manager,,142325,0,0,1600,0,0,0,143925,0,1825,0,0,0,0,0,1825,145750,143925,1825,145750
+141,2426,552,MP Environmental,CAT000624247,April - June 2011,Amanda,Little,Customer Representative,,0,0,0,0,0,0,0,0,0,3000,0,0,0,0,0,3000,3000,0,3000,3000
+314,2427,552,North State Environmental,CAR000206086,April - June 2011,John,Erickson,Operations Manager,,0,1250,0,0,0,0,0,1250,0,0,0,0,0,0,0,0,1250,0,1250,1250
+89,2619,552,North Valley Oil Company,CAL000027759,April - June 2011,Larry,Evans,President,,9377,0,0,0,0,0,0,9377,0,22570,0,0,0,0,0,22570,31947,9377,22570,31947
+82,2422,552,Nottingham_ M.C._ Co. of So. Cal,CAD059240713,April - June 2011,Ginny,Polzin,Secretary,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+340,2428,552,Pan Pacific Petroleum,CAL000142074,April - June 2011,Don,Stewart,Safety Director,,0,0,0,0,0,0,576311,576311,0,0,0,0,0,0,0,0,576311,576311,0,576311
+215,2430,552,Patriot Environmental Services,CAD053866794,April - June 2011,Michael,Sullivan,Vice President,,0,0,0,0,215,0,0,215,0,2774,0,0,0,0,0,2774,2989,215,2774,2989
+24,2432,552,Philip Services Corp.(Philip West Ind Svcs),CAD980584510,April - June 2011,Paul,Dewitt,Manager,,0,0,0,33200,0,0,0,33200,0,0,0,0,0,0,0,0,33200,33200,0,33200
+269,2524,552,Philip West Industrial Services,CAR000177527,April - June 2011,Stephanie,Smith,Safety Manager,,0,0,0,0,0,0,0,0,0,13746,0,0,0,0,0,13746,13746,0,13746,13746
+44,2433,552,PSC Environmental Services of Pomona LP,CAR000053405,April - June 2011,Craig,Erickson,EHS Manager,,0,861,0,0,0,0,0,861,0,317,0,0,0,0,0,317,1178,861,317,1178
+381,2434,552,Quinn Company-Salinas,CAD050513217,April - June 2011,James,Holtz,ECM,,0,0,0,1782,0,0,0,1782,0,0,0,0,0,0,0,0,1782,1782,0,1782
+61,2437,552,RCA Oil Recovery,CAD981385149,April - June 2011,Rosendo ,Arteaga,Owner,,49112,110,0,0,0,0,0,49222,0,0,0,0,0,0,0,0,49222,49112,110,49222
+235,2438,552,Recycle-It Environmental Services,CAL000280060,April - June 2011,Tom,Wooten,President,,123050,0,0,0,0,0,0,123050,0,0,0,0,0,0,0,0,123050,123050,0,123050
+62,2439,552,Reno Drain Oil Service,NVD980893663,April - June 2011,Toni,Ralston,Bookkeeper,,19742,49352,14805,14805,24676,0,0,123380,0,0,0,0,0,0,0,0,123380,0,0,0
+149,2440,552,Rho-Chem Corporation,CAD008364432,April - June 2011,Craig,Erickson,EHS Manager,,0,17252,0,0,0,0,0,17252,0,2357,0,0,0,0,0,2357,19609,17252,2357,19609
+348,2441,552,Rio Express Corporation,CAL000322668,April - June 2011,Joel,Olaguez,President,,0,0,0,0,0,0,1223575,1223575,0,0,0,0,0,0,0,0,1223575,0,1223575,1223575
+105,2443,552,Sacramento Waste Oil,CAL913534912,April - June 2011,Albert,Hernandez,Owner,,227506,7400,4250,20450,0,0,0,259606,5000,2000,1715,1125,0,0,0,9840,269446,259606,9840,269446
+220,2359,552,Safety-Kleen,TXR000050930,April - June 2011,Dan,Appelt,Director_ EHS Compliance,,1350,0,0,0,0,0,0,1350,0,5242,0,0,0,0,0,5242,6592,1350,3890,5240
+395,2446,552,SOS Ecology Management,CAR000111583,April - June 2011,Jose ,Aguilar,Services Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,610,610,610,0,610,610
+70,2442,552,Starlite Reclamation,CAR000148296,April - June 2011,Melissa,Marks,Office Manager,,30571,0,0,0,0,0,0,30571,0,0,0,0,0,0,0,0,30571,0,30571,30571
+349,2448,552,Stress Less Express LLC,CAL000350237,April - June 2011,Danny,Banzet,Manager,,10350,7763,0,0,0,0,0,18113,2588,5175,0,0,0,0,0,7763,25876,12938,12938,25876
+93,2449,552,Swift Oil & Vacuum_ Inc.,CAD982488470,April - June 2011,Richard,Rozuk,President,,49420,17860,0,0,0,0,0,67280,0,12970,0,0,0,0,0,12970,80250,67280,12970,80250
+72,2450,552,Tadeo_ Ricardo D. Waste Oil Service,CAD981634363,April - June 2011,Ricardo,Tadeo,Owner/Operator,,217538,0,0,0,0,0,0,217538,0,1460,0,0,0,0,0,1460,218998,217538,1460,218998
+270,2453,552,Thermo Fluids - Las Vegas,NVR000001032,April - June 2011,Brian ,Haney,Corp. EHS Manager,,200,133541,0,0,0,0,0,133741,0,0,0,0,0,0,0,0,133741,0,0,0
+341,2454,552,Thermo Fluids - Medford,ORQ000007781,April - June 2011,Brian,Haney,Corp. EHS Manager,,42312,2249,0,0,953,0,0,45514,0,0,0,0,0,0,0,0,45514,0,0,0
+188,2451,552,Thermo Fluids - Phoenix,AZR000003681,April - June 2011,Brian,Haney,Corporate EHS Manager,,0,16035,0,0,0,0,0,16035,0,0,0,0,0,0,0,0,16035,16035,0,16035
+305,2452,552,Thermo Fluids - Reno,NVD982510711,April - June 2011,Brian,Haney,Corp. EHS Manager,,0,8010,0,0,0,0,0,8010,0,0,0,0,0,0,0,0,8010,0,0,0
+310,2459,552,UNI WASTE,CAL000317320,April - June 2011,Chales,Seaton,Consultant,,330,0,0,0,0,0,0,330,0,0,0,0,0,0,0,0,330,0,0,0
+142,2455,552,United Pumping,CAD072953771,April - June 2011,Art,Rodriguez,Regulatory Affairs Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+201,2456,552,Universal Waste Oil Company,CAL000183236,April - June 2011,Salvador,Salceda,Owner,,0,0,0,0,0,0,68670,68670,0,0,0,0,0,0,0,0,68670,68670,0,68670
+243,2457,552,Western Environmental Services,CAR000159681,April - June 2011,Eva,Tice,Office Manager,,0,12852,0,0,0,0,0,12852,0,0,0,0,0,0,0,0,12852,12852,0,12852
+158,2445,552,World Oil-San Joaquin_ LLC,CAL000102751,April - June 2011,Lynne,Loyd,Owner,,205675,0,0,24780,4615,0,0,235070,0,1755,0,0,0,0,0,1755,236825,236825,0,236825
+237,2558,551,A&S Metal Recycling,CAD081402407,January - March 2011,Ruy G.,Pena Jr.,Technical Director,,0,0,0,0,0,0,0,0,0,10980,0,0,0,0,0,10980,10980,0,10980,10980
+396,2351,551,Advanced Chemical Transport,CAR000070540,January - March 2011,Stephanie,Alves,Compliance Specialist,,650,105,100,0,165,0,0,1020,0,7812,145,0,55,0,0,8012,9032,1020,8012,9032
+54,2259,551,Alarcon's_ Mark_ Waste Oil Service,CAD980814446,January - March 2011,Mark,Alarcon,Owner,,2715,18100,120,50,4565,0,0,25550,0,21025,110,0,250,0,0,21385,46935,25550,21385,46935
+295,2260,551,Alexis Environmental,CAR000130864,January - March 2011,Tina,Vallejos,Office Mgr,,0,6607,0,0,0,0,0,6607,0,36015,0,0,0,0,0,36015,42622,6079,36543,42622
+175,2261,551,All Valley Disposal Inc.,CAR000181586,January - March 2011,Marcella,Ramirez,HR Mgr,,28842,20404,55,17438,1598,0,0,68337,0,0,0,0,0,0,0,0,68337,68337,0,68337
+135,2458,551,All Valley Environmental,CAL000263169,January - March 2011,Juanita,Schow,Office Manager,,70083,0,0,0,0,0,0,70083,0,0,0,0,0,0,0,0,70083,70083,0,70083
+214,2263,551,Alpha Oil Company,CAL000331370,January - March 2011,Nella,Osaolchaya,President,,158617,0,0,0,0,0,0,158617,0,0,0,0,0,0,0,0,158617,158617,0,158617
+256,2543,551,Amberwick Corporation,CAR000172189,January - March 2011,Lynn,McLenon,Office Manager,,0,0,0,0,0,0,0,0,0,3635,0,0,0,0,0,3635,3635,0,3635,3635
+14,2264,551,American Oil Company,CAD981427669,January - March 2011,Rochelle,Gomelsky,Office Mgr,,246085,0,0,0,0,0,212616,458701,0,4940,0,0,0,0,0,4940,463641,458701,4940,463641
+162,2262,551,American Valley Waste Oil,CAL000827878,January - March 2011,Julie,Huber,Manager,,120500,32600,0,109193,12000,0,0,274293,7500,21600,0,0,0,0,0,29100,303393,274293,29100,303393
+16,2255,551,Asbury Environmental Services-Compton,CAD028277036,January - March 2011,Rosemary,Domino,Enviro Directorq,,7453067,458909,29993,136337,5999,47460,4584744,12716509,0,931724,60897,0,12179,0,0,1004800,13721309,0,0,0
+165,2266,551,Bay Valley Environmental_ Inc.,CAL000162034,January - March 2011,Jake,Sagun,Bookkeeper,,37615,0,0,0,0,0,0,37615,0,3800,0,0,55,0,0,3855,41470,37615,3855,41470
+39,2265,551,Bayside Oil II_ Inc.,CAD088838222,January - March 2011,Kim,Glenn,Contact,,82431,0,0,0,0,0,0,82431,0,200,0,0,0,0,0,200,82631,82431,200,82631
+351,2267,551,Big Sky Environmental Solutions,CAL000346010,January - March 2011,Charles,Seaton,Consultant,,50430,0,0,0,0,0,0,50430,0,160,0,0,0,0,0,160,50590,50430,160,50590
+21,2268,551,Black Star Oil Company,CAL912823785,January - March 2011,I,Katz,Office Mgr,,107205,26801,0,0,0,0,0,134006,0,0,0,0,0,0,0,0,134006,134006,0,134006
+47,2269,551,Butler_ J.W._ Oil_ Inc.,CAD981426539,January - March 2011,Dennis,Butler,Owner,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+313,2274,551,California Coolant Services,CAR000047167,January - March 2011,Luiz,Machado,President,,147168,0,0,0,0,0,0,147168,0,0,0,0,0,0,0,0,147168,147618,0,147618
+352,2278,551,California Environmental & Litho,CAR000009910,January - March 2011,Shannon,Harvey,Bookkeeper,,0,1355,0,0,0,0,0,1355,0,220,0,0,0,0,0,220,1575,1355,220,1575
+233,2275,551,Carrs Waste Oil Service,CAL000280677,January - March 2011,J,Carrera,OManager/Owner,,50306,0,0,0,0,0,0,50306,0,0,0,0,0,0,0,0,50306,50307,0,50307
+148,2277,551,Chain Enterprises,CAL000277184,January - March 2011,Joel,Chain,Office Mgr,None to report,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+307,2272,551,Clean Tech Environmental,CAL000330453,January - March 2011,Robert,Brown,President,,906149,0,0,0,0,0,0,906149,0,0,0,0,0,0,0,0,906149,906149,0,906149
+252,2273,551,Cole's Services_ Inc.,CAL000268462,January - March 2011,Mary,Miller,Office Mgr,,91251,0,0,22691,7087,0,3422,124451,0,27566,0,0,0,0,0,27566,152017,124451,27566,152017
+155,2270,551,Compliance Environmental Services,CAL000161247,January - March 2011,Patricia,Urbina,Treasurer,,128235,0,0,0,0,0,0,128235,0,0,0,0,0,0,0,0,128235,0,0,0
+206,2276,551,Consultant Environmental Operations; C.E.O.,CAL000209884,January - March 2011,Francisco,Arrieta,Owner,,12058,7300,0,0,0,0,0,19358,2290,1400,0,0,0,0,0,3690,23048,19358,3690,23048
+354,2431,551,Copper State Petroleum,AZR000501346,January - March 2011,David,Emmett,Manager,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+26,2271,551,Crane's Waste Oil_ Inc.,CAD980813950,January - March 2011,Robin,Crane,MGT,,121015,84540,0,29330,16700,0,0,251585,0,11375,0,650,0,0,0,12025,263610,249975,12025,262000
+392,2279,551,CVC Environmental,CAR000051169,January - March 2011,Charles,Heard,Dispatcher,,0,4200,0,0,0,0,0,4200,0,0,0,0,0,0,0,0,4200,0,0,0
+169,2280,551,D & R Oil Company,CAL000253903,January - March 2011,Ruben,Hernandez,Owner,,39223,0,0,0,0,0,0,39223,0,0,0,0,0,0,0,0,39223,39223,0,39223
+355,2281,551,DenBeste Transportation,CAD982513632,January - March 2011,Lori,Denbeste,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+268,2282,551,Desert Environmental Services_ Inc.,CAR000074542,January - March 2011,Fernando,Nieves,Project Mgr,,0,19635,0,0,0,0,0,19635,0,1850,0,0,0,0,0,1850,21485,19635,1850,21485
+393,2283,551,EcoLogic Environmental Svcs,CAR000208421,January - March 2011,Tina,Falcon,Assistant,,27346,0,130,0,10025,0,0,37501,0,555,0,0,0,0,0,555,38056,37501,555,38056
+137,2284,551,Ecology Control Industries_ Inc.,CAD982030173,January - March 2011,Rod,Cleem,Project Mgr,,0,1595,0,0,0,0,0,1595,0,0,0,0,0,0,0,0,1595,1595,0,1595
+168,2352,551,Ed Staub & Sons Petroleum_ Inc.,CAL921495383,January - March 2011,Shane,Estes,Plant Mgr,,0,0,0,0,0,0,1000,1000,0,0,0,0,0,0,1000,1000,2000,0,0,0
+376,2285,551,Edgar's Mobile Lube,CAL000293019,January - March 2011,Edgar,,,,3445,0,0,0,0,0,0,3445,0,0,0,0,0,0,0,0,3445,3445,0,3445
+184,2286,551,EFR Environmental Services Inc.,CAR000011205,January - March 2011,Thad,Harry,CFO,,0,8200,0,5400,0,0,0,13600,0,0,0,0,0,0,0,0,13600,13600,0,13600
+321,2288,551,Elite Oil Transport,CAR000190082,January - March 2011,Sonia,Salmeron,Controller,,0,0,0,0,0,0,718047,718047,0,0,0,0,0,0,0,0,718047,718047,0,718047
+308,2287,551,Environmental Logistics,CAR000172460,January - March 2011,Wade,Riddering,VP,,2362,14812,751,800,17425,0,80791,116941,305,4382,1052,0,900,0,10948,17587,134528,117241,98235,215476
+347,2327,551,Espinoza Trucking_ Inc.,CAL000297859,January - March 2011,Mary,Quintero,Contact,,0,0,0,0,0,0,523390,523390,0,0,0,0,0,0,0,0,523390,523390,0,523390
+29,2289,551,Evergreen Environmental Services (Newark),CAD982413262,January - March 2011,Albert,Farran,Lab Mgr,,3912961,54247,75,69048,176227,0,0,4212558,2570,68829,9,200,2570,0,0,74178,4286736,4212558,74619,4287177
+30,2290,551,Express Environmental Corp._dba Express Oil,CAL000264806,January - March 2011,Sandra,Jacinto,Manager,,0,97995,0,0,0,0,0,97995,0,46680,0,0,0,0,0,46680,144675,97995,46680,144675
+107,2292,551,Filter Recycling Services_ Inc.,CAD982444481,January - March 2011,Wade,Riddering,VP,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+257,2291,551,Fremouw Environmental Services,CAR000171017,January - March 2011,Theodore,Fremouw,President,,259373,21585,6398,18372,17371,0,0,323099,28819,7195,337,4593,914,0,0,41858,364957,323099,41858,364957
+379,2293,551,G & G Transportation,CAL000827858,January - March 2011,Tawnya,Gomes,Office Mgr,,0,0,0,0,0,0,284000,284000,0,0,0,0,0,0,0,0,284000,383400,0,383400
+304,2294,551,Glyco Environmental Services,CAL000309743,January - March 2011,Luciano,Quintero,Owner/Operator,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+190,2297,551,Haz Mat Trans_ Inc.,CAT080012800,January - March 2011,Deva,McKnight,President,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+254,2295,551,Hazardous Technologies,CAR000168229,January - March 2011,Danette,Tice,Contact,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+356,2296,551,Hazardous Waste Transportation Services,CAR000129759,January - March 2011,Erin,Winett,EHS Mgr,,0,3900,0,0,0,0,0,3900,0,14508,0,0,0,0,0,14508,18408,3900,14508,18408
+357,2298,551,IDR Environmental Services,CAD981377864,January - March 2011,Dawn,Devroom,Preparer,,0,2300,0,0,0,0,0,2300,0,0,0,0,0,0,0,0,2300,2300,0,2300
+333,2350,551,Industrial Waste Utilization,CAD980585293,January - March 2011,Casey,Franchini,Contract Svcs,,0,0,0,0,0,0,0,0,0,2200,0,0,1240,0,0,3440,3440,0,3440,3440
+43,2299,551,Interstate Pumping Company,CAL000328860,January - March 2011,Gordon,Smith,Owner,,400,0,0,0,0,0,0,400,0,0,0,0,0,0,0,0,400,400,0,400
+111,2300,551,J.B. Trans Services_Inc (dba) All Phase Env.,CAL000253361,January - March 2011,Anna,Calvert,Mgr,,439010,0,0,0,0,0,0,439010,0,0,0,0,0,0,0,0,439010,439010,0,439010
+45,2339,551,Jack Stone Drainage Oil Service,CAD080075096,January - March 2011,Frank,Stone,Owner,,143585,12070,8500,0,5120,0,0,169275,0,7870,0,0,0,0,0,7870,177145,169275,7870,177145
+359,2310,551,Johnson Machinery Company,CAD006910855,January - March 2011,Jery,Welch,Contact,,0,488,0,0,170,0,0,658,0,0,0,0,0,0,0,0,658,658,0,658
+358,2302,551,Johnson Power Systems,CAL000161534,January - March 2011,Jerry,Welch,Admin,,0,1731,0,0,881,0,0,2612,0,0,0,0,0,0,0,0,2612,2612,0,2612
+116,2301,551,JSE Environmental Services,CAL000827857,January - March 2011,Greg,Pasqualetto,President,,15764,0,0,0,0,0,0,15764,0,0,0,0,0,0,0,0,15764,15764,0,15764
+147,2303,551,Kern Oil Filter Recycling,CAL000327867,January - March 2011,Maria,Alvarez,Secretary,,189889,0,0,0,0,0,0,189889,0,0,0,0,0,0,0,0,189889,189889,0,189889
+360,2304,551,KM Industrial,CAL000274783,January - March 2011,Richard,Okuda,Divi Mgr,,0,330,0,0,0,0,0,330,0,0,0,0,0,0,0,0,330,330,0,330
+46,2305,551,Knight_ Jim_ Drain Oil Service,CAL000027718,January - March 2011,I,Katz,Office Mgr,,59163,0,0,0,0,0,0,59163,25355,0,0,0,0,0,0,25355,84518,84518,0,84518
+335,2308,551,Lee's Trucking_ Inc.,ARD981513385,January - March 2011,Ronald,Lane,Safety Dir,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+361,2307,551,Los Angeles Dept of Power & Water (LA DPW),CAD000632992,January - March 2011,Mark,Sedlacek,Director Environmental Affairs,"Submitted revisions 7/20/11. [BChan 10/12/11]",0,0,0,0,11880,0,0,11880,0,0,0,0,100,0,0,100,11980,11880,100,11980
+225,2306,551,Los Angeles Pumping,CAR000201459,January - March 2011,Nancy,Pena,GM,,144560,0,0,0,0,0,0,144560,4645,0,0,0,0,0,0,4645,149205,144560,4645,149205
+167,2309,551,Lowry_ George W._ Inc.,CAR000047019,January - March 2011,Deni,Wright,Office Mgr,,30100,2770,0,13985,7810,0,0,54665,0,7535,0,0,0,0,0,7535,62200,54665,7535,62200
+362,2313,551,Marine Express_ Inc.,CAL000126290,January - March 2011,Troy,Eson,Ops Mgr,,0,0,2750,0,0,0,0,2750,0,0,0,0,0,0,0,0,2750,2750,0,2750
+160,2314,551,Maximum Oil Service,CAL000188867,January - March 2011,Max,Maxwell,Mgr,,78890,11910,234,1569,3767,0,0,96370,8766,3970,156,1046,419,0,0,14357,110727,96368,14357,110725
+363,2315,551,Melfred Industrial Services,CAL000348567,January - March 2011,Fred,McDonald,Owner,,26685,9955,0,0,1120,0,0,37760,0,0,0,0,0,0,0,0,37760,37760,0,37760
+364,2316,551,Miles Chemical Co,CAD983613688,January - March 2011,Mark,Glaser,GM,,0,0,0,0,0,0,0,0,0,3434,0,0,0,0,0,3434,3434,0,3434,3434
+319,2317,551,Millenium Waste Oil_ Inc.,CAL000327031,January - March 2011,Tina,Pease,Office Mgr,,147800,2300,0,1250,0,0,0,151350,0,0,0,0,0,0,0,0,151350,148050,2300,150350
+141,2312,551,MP Environmental,CAT000624247,January - March 2011,Amanda,Little,CSR,,0,0,0,0,0,0,0,0,0,8727,0,0,0,1950,0,10677,10677,0,10677,10677
+314,2318,551,North State Environmental,CAR000206086,January - March 2011,John,Erickson,Ops Mgr,,0,1620,0,0,0,0,0,1620,0,0,0,0,0,0,0,0,1620,1620,0,1620
+89,2319,551,North Valley Oil Company,CAL000027759,January - March 2011,Larry,Evans,President,,5800,0,0,0,0,0,0,5800,0,24249,0,0,0,0,0,24249,30049,30049,0,30049
+82,2311,551,Nottingham_ M.C._ Co. of So. Cal,CAD059240713,January - March 2011,Ginny,Polzin,Board Secretary,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+365,2320,551,Ocean Blue Environmental Services,CAD983608258,January - March 2011,Julio,Gaeta,Dispatch,,0,5273,0,0,312,0,0,5585,0,3636,0,0,0,0,0,3636,9221,5585,3636,9221
+340,2323,551,Pan Pacific Petroleum,CAL000142074,January - March 2011,Don,Stewart,Safety Dir,,0,0,0,0,0,0,848389,848389,0,0,0,0,0,0,0,0,848389,848389,0,848389
+215,2429,551,Patriot Environmental Services,CAD053866794,January - March 2011,Michael,Sullivan,Vice President,,0,0,0,0,0,0,0,0,0,1479,0,0,0,0,0,1479,1479,1479,0,1479
+24,2322,551,Philip Services Corp.(Philip West Ind Svcs),CAD980584510,January - March 2011,Paul,Dewitt,Ops Mgr,,0,0,0,35950,0,0,0,35950,0,0,0,0,0,0,0,0,35950,35950,0,35950
+336,2631,551,Philip West Industrial Services,CAR000190355,January - March 2011,Stephanie,Smith,DOT Admin,,0,750,0,0,0,0,0,750,0,2335,0,0,0,0,0,2335,3085,750,2335,3085
+269,2629,551,Philip West Industrial Services,CAR000177527,January - March 2011,Stephanie,Smith,DOT Admin,,0,750,0,0,0,0,0,750,0,2335,0,0,0,0,0,2335,3085,750,2335,3085
+44,2321,551,PSC Environmental Services of Pomona LP,CAR000053405,January - March 2011,Craig,Erickson,EHS Mgr,,0,658,0,0,0,0,0,658,0,0,0,0,0,0,0,0,658,658,0,658
+389,2257,551,Quinn Company - Oxnard,CAD983668476,January - March 2011,James,Holtz,ECM,,0,0,0,1100,0,0,0,1100,0,0,0,0,0,0,0,0,1100,1100,0,1100
+60,2436,551,Ramos Environmental Services,CAD044003556,January - March 2011,Sally,Welch,Bookkeeper,,77718,23979,0,3903,4906,0,0,110506,25906,27056,740,5117,11320,0,0,70139,180645,110506,70139,180645
+61,2329,551,RCA Oil Recovery,CAD981385149,January - March 2011,Rosendo,Arteaga,Owner,,50743,0,0,0,0,0,0,50743,0,0,0,0,0,0,0,0,50743,50743,0,50743
+232,2324,551,Real Deal Waste Oil Service,CAL000280873,January - March 2011,Charles,Holyfield,Owner/Operator,,46523,0,0,0,0,0,0,46523,0,0,0,0,0,0,0,0,46523,46523,0,46523
+235,2330,551,Recycle-It Environmental Services,CAL000280060,January - March 2011,Tom,Wooten,President,,122930,0,0,0,0,0,0,122930,0,0,0,0,0,0,0,0,122930,122930,0,122930
+62,2326,551,Reno Drain Oil Service,NVD980893663,January - March 2011,Toni,Ralston,Bookkeeper,,11175,27937,8381,8381,0,0,0,55874,0,0,0,13968,0,0,0,13968,69842,0,0,0
+149,2325,551,Rho-Chem Corporation,CAD008364432,January - March 2011,Craig,Erickson,EHS Mgr,,0,8439,0,0,0,0,0,8439,0,10080,0,0,0,0,0,10080,18519,8439,10080,18519
+348,2328,551,Rio Express Corporation,CAL000322668,January - March 2011,Joel,Olaguez,President,,0,0,0,0,0,0,861819,861819,0,0,0,0,0,0,0,0,861819,146356,0,146356
+105,2336,551,Sacramento Waste Oil,CAL913534912,January - March 2011,Albert,Hernandez,Owner,,199134,2150,421,9950,0,0,0,211655,789,500,40,975,0,0,0,2304,213959,211655,2254,213909
+220,2334,551,Safety-Kleen,TXR000050930,January - March 2011,Dan,Appelt,EHS Director,"Revised report submitted 10/03/2011[BChan]",1428,0,0,0,0,0,0,1428,0,13373,0,0,0,0,0,13373,14801,0,0,0
+253,2335,551,San Fernando Oil,CAL000301304,January - March 2011,Jesus,Hernandez,Owner,,0,0,0,0,0,107045,2240,109285,0,0,0,0,0,0,0,0,109285,109285,0,109285
+395,2332,551,SOS Ecology Management,CAR000111583,January - March 2011,Virginia,Alajandrez,Enviro Specialist,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,165,165,0,165,165
+70,2333,551,Starlite Reclamation,CAR000148296,January - March 2011,Melissa,Marks,Office Mgr,,34306,0,0,0,0,0,0,34306,0,0,0,0,0,0,0,0,34306,34306,0,34306
+349,2331,551,Stress Less Express LLC,CAL000350237,January - March 2011,Danny,Banzet,Manager,,11770,8827,0,0,0,0,0,20597,2942,5885,0,0,0,0,0,8827,29424,21761,7663,29424
+93,2338,551,Swift Oil & Vacuum_ Inc.,CAD982488470,January - March 2011,Richard,Rozuk,President,,53115,32660,0,0,0,0,0,85775,0,9820,0,0,0,0,0,9820,95595,85775,9820,95595
+72,2340,551,Tadeo_ Ricardo D. Waste Oil Service,CAD981634363,January - March 2011,Ricardo,Tadeo,Owner/Operator,,218930,0,0,0,0,0,0,218930,0,1860,0,0,0,0,0,1860,220790,218930,1860,220790
+270,2343,551,Thermo Fluids - Las Vegas,NVR000001032,January - March 2011,Brian,Haney,EHS Manager,,0,48412,0,0,0,0,0,48412,0,0,0,0,0,0,0,0,48412,48412,0,48412
+341,2341,551,Thermo Fluids - Medford,ORQ000007781,January - March 2011,Brian,Haney,EHS Manager,,0,38813,0,0,0,0,0,38813,0,0,0,0,0,0,0,0,38813,35813,0,35813
+188,2344,551,Thermo Fluids - Phoenix,AZR000003681,January - March 2011,Brian,Haney,EHS Mgr,,0,16290,0,0,0,0,0,16290,0,0,0,0,0,0,0,0,16290,16290,0,16290
+305,2342,551,Thermo Fluids - Reno,NVD982510711,January - March 2011,Brian,Haney,EHS Mgr,,0,2845,0,0,0,0,0,2845,0,0,0,0,0,0,0,0,2845,2845,0,2845
+310,2346,551,UNI WASTE,CAL000317320,January - March 2011,Charles,Seaton,Consultant,,52915,0,0,0,10100,0,0,63015,0,13955,0,0,0,0,0,13955,76970,63015,13955,76970
+142,2345,551,United Pumping,CAD072953771,January - March 2011,Art,Rodriguez,Regulatory Affairs Mgr,,0,50,0,0,0,0,0,50,0,0,0,0,0,0,0,0,50,0,0,0
+201,2347,551,Universal Waste Oil Company,CAL000183236,January - March 2011,Salvador,Salceda,Owner,,0,0,0,0,0,0,73450,73450,0,0,0,0,0,0,0,0,73450,73450,0,73450
+373,2348,551,Waste Recovery Systems,CAR000208520,January - March 2011,Tina,Falcon,Owner/Operator,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+243,2349,551,Western Environmental Services,CAR000159681,January - March 2011,Eva,Tice,Office Mgr,,0,14567,0,0,0,0,0,14567,0,0,0,0,0,0,0,0,14567,14567,0,14567
+158,2337,551,World Oil-San Joaquin_ LLC,CAL000102751,January - March 2011,Lynne,Loyd,Owner,,201860,0,0,21870,3445,0,0,227175,0,850,0,0,0,0,0,850,228025,228025,0,228025
