@@ -62,7 +62,21 @@ end
 % arg handling
 FN=fieldnames(D);
 if length(Cols)<length(FN)
-  Cols=[Cols repmat('d',1,length(FN)-length(Cols))];
+  for k=length(Cols)+1:length(FN)
+    ind=1;
+    while ind<length(D)
+      if ~isempty(D(ind).(FN{k}))
+        if isnumeric(D(ind).(FN{k}))
+          Cols(k)='a';
+        else
+          Cols(k)='d';
+        end
+        break
+      end
+      ind=ind+1;
+    end
+  end
+  %Cols=[Cols repmat('d',1,length(FN)-length(Cols))];
 end
 
 tic;
@@ -115,6 +129,7 @@ else
   for i=2:length(MatchCols)
     j=1;
     while isempty(D(j).(FN{MatchCols(i)}))
+      if j==length(D) break; end
       j=j+1;
     end
     if isnumeric(D(j).(FN{MatchCols(i)}))
