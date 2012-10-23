@@ -51,9 +51,13 @@ if nargin<1
 end
 
 fid=fopen(filename);
+numlines=0;
+while(fgetl(fid)~=-1)
+  numlines=numlines+1;
+end
+fclose(fid);
 
-F={};
-
+fid=fopen(filename);
 L=fgetl(fid);
 
 if isempty(L)
@@ -75,7 +79,11 @@ end
 FN=[FieldNames;FieldNames];
 
 F=struct(FN{:});
+% reserve memory
+F(numlines)=F(1);
+
 NumRecords=0;
+NRA=0;
 
 L=fgetl(fid);
 while isempty(L) L=fgetl(fid); end
@@ -165,15 +173,17 @@ while L~=-1
     % end
     
     if ~isempty(filter(Ft,filt))
-      F(end+1)=Ft;
+      NRA=NRA+1;
+      F(NRA+1)=Ft;
     end
   else
-    F(end+1)=Ft;
+    NRA=NRA+1;
+    F(NRA+1)=Ft;
   end
   
   if mod(NumRecords,1000)==0
     disp([num2str(NumRecords) ' records Processed ; ' ...
-          num2str(length(F)-1) ' records Accepted ... '])
+          num2str(NRA) ' records Accepted ... '])
   end
 
 %  if NumRecords==4000 break; end
@@ -181,7 +191,7 @@ while L~=-1
   L=fgetl(fid);
 end
 
-F=F(2:end); % get rid of header entry
+F=F(2:NRA+1); % get rid of header entry
 
 disp([num2str(NumRecords) ' records Processed ; ' ...
       num2str(length(F)) ' records Accepted.'])
