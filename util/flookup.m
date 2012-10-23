@@ -37,6 +37,7 @@ function [D,M]=flookup(D,KeyField,varargin)
 % 'inplace' as 4th arg works to replace the key field.
 
 inplace=false;
+blank=0;
 
 if nargin==1
   if isfield(D,'EPAID')
@@ -59,6 +60,8 @@ while ~isempty(varargin)
     switch varargin{1}(1:3)
       case 'inp'
         inplace=1;
+      case 'bla'
+        blank=1;
       otherwise
         ReturnField=varargin{1};
     end
@@ -97,7 +100,9 @@ else
   RtnData=repmat({''},length(N),1);
   %  keyboard
   [RtnData{find(N)}]=Facilities(N(find(N))).(ReturnField);
-  [RtnData{find(N==0)}]=D(find(N==0)).(KeyField);
+  if blank==0
+    [RtnData{find(N==0)}]=D(find(N==0)).(KeyField);
+  end % else leave blank
 end
 [D(:).(DestField)]=RtnData{:};
 M=logical(zeros(size(D)));
