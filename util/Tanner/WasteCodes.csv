@@ -1,0 +1,82 @@
+CAT_CODE,CAT_DESC
+   ,Blank or unknown
+***,Invalid waste code
+121,Alkaline solution (pH >= 12.5) with metals
+122,Alkaline solution without metals pH >= 12.5
+123,Unspecified alkaline solution
+131,Aqueous solution (2 < pH < 12.5) containing reactive anions ...
+132,Aqueous solution with metals (< restricted levels and see 121)
+133,Aqueous solution with total organic residues 10 percent or more
+134,Aqueous solution with total organic residues less than 10 percent
+135,Unspecified aqueous solution
+141,Off-specification_ aged or surplus inorganics
+151,Asbestos containing waste
+161,Fluid Catalytic Cracker waste
+162,Other spent catalyst
+171,Metal sludge (see 121)
+172,Metal dust (see 121) and machining waste
+181,Other inorganic solid waste
+211,Halogenated solvents (chloroforms_ methyl chloride_ perchloroethylene_ etc)
+212,Oxygenated solvents (acetone_ butanol_ ethyl acetate_ etc.)
+213,Hydrocarbon solvents (benzene_ hexane_ Stoddard_ Etc.)
+214,Unspecified solvent mixture
+221,Waste oil and mixed oil
+222,Oil/water separation sludge
+223,Unspecified oil-containing waste
+231,Pesticide rinse water
+232,Pesticides and other waste associated with pesticide production
+241,Tank bottom waste
+251,Still bottoms with halogenated organics
+252,Other still bottom waste
+261,Polychlorinated biphenyls and material containing PCBs
+271,Organic monomer waste (includes unreacted resins)
+272,Polymeric resin waste
+281,Adhesives
+291,Latex waste
+311,Pharmaceutical waste
+321,Sewage sludge
+322,Biological waste other than sewage sludge
+331,Off-specification_ aged or surplus organics
+341,Organic liquids (nonsolvents) with halogens
+342,Organic liquids with metals (see 121)
+343,Unspecified organic liquid mixture
+351,Organic solids with halogens
+352,Other organic solids
+411,Alum and gypsum sludge
+421,Lime sludge
+431,Phosphate sludge
+441,Sulfur sludge
+451,Degreasing sludge
+461,Paint sludge
+471,Paper sludge/pulp
+481,Tetraethyl lead sludge
+491,Unspecified sludge waste
+511,Empty pesticide containers 30 gallons or more
+512,Other empty containers 30 gallons or more
+513,Empty containers less than 30 gallons
+521,Drilling mud
+531,Chemical toilet waste
+541,Photochemicals/photoprocessing waste
+551,Laboratory waste chemicals
+561,Detergent waste chemicals
+571,Fly ash_ bottom ash and retort ash
+581,Gas scrubber waste
+591,Baghouse waste
+611,Contaminated soil from site clean-up
+612,Household waste
+613,Auto shredder waste
+711,Liquids with cyanides >= 1000 Mg./L
+721,Liquids with arsenic >= 500 Mg./L
+722,Liquids with cadmium >= 100 Mg./L
+723,Liquids with chromium (VI) >= 500 Mg./L
+724,Liquids with lead >= 500 Mg./L
+725,Liquids with mercury >= 20 Mg./L
+726,Liquids with nickel >= 134 Mg./L
+727,Liquids with selenium >= 100 Mg./L
+728,Liquids with thalium >= 130 Mg./L
+731,Liquids with polychloronated biphenyls >= 50 Mg./L
+741,Liquids with halogenated organic compounds >= 1000 Mg./L
+751,Solids or sludges with halogenated organic compounds >= 1000 Mg./L
+791,Liquids with pH <= 2
+792,Liquids with pH <= 2 with metals
+801,Waste potentially containing Dioxins

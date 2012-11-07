@@ -1,0 +1,61 @@
+CNTY_CODE,COUNTY_CODE,CNTY_NAME
+0,00,Unknown
+1,01,Alameda
+2,02,Alpine
+3,03,Amador
+4,04,Butte
+5,05,Calaveras
+6,06,Colusa
+7,07,Contra Costa
+8,08,Del Norte
+9,09,El Dorado
+10,10,Fresno
+11,11,Glenn
+12,12,Humboldt
+13,13,Imperial
+14,14,Inyo
+15,15,Kern
+16,16,Kings
+17,17,Lake
+18,18,Lassen
+19,19,Los Angeles
+20,20,Madera
+21,21,Marin
+22,22,Mariposa
+23,23,Mendocino
+24,24,Merced
+25,25,Modoc
+26,26,Mono
+27,27,Monterey
+28,28,Napa
+29,29,Nevada
+30,30,Orange
+31,31,Placer
+32,32,Plumas
+33,33,Riverside
+34,34,Sacramento
+35,35,San Benito
+36,36,San Bernardino
+37,37,San Diego
+38,38,San Francisco
+39,39,San Joaquin
+40,40,San Luis Obispo
+41,41,San Mateo
+42,42,Santa Barbara
+43,43,Santa Clara
+44,44,Santa Cruz
+45,45,Shasta
+46,46,Sierra
+47,47,Siskiyou
+48,48,Solano
+49,49,Sonoma
+50,50,Stanislaus
+51,51,Sutter
+52,52,Tehama
+53,53,Trinity
+54,54,Tulare
+55,55,Tuolumne
+56,56,Ventura
+57,57,Yolo
+58,58,Yuba
+99,99,Unknown

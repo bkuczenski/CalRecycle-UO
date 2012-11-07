@@ -1,0 +1,14 @@
+CONTAINER_TYPE,CONTAINER_DESC
+BA,Burlap_ cloth_ paper_ or plastic bags
+CF,Fiber or plastic boxes_ cartons_ cases
+CM,Metal boxes_ cartons_ cases (including roll-offs)
+CW,Wooden boxes_ cartons_ cases
+CY,Cylinders
+DF,Fiberboard or plastic drums_ barrels_ kegs
+DM,Metal drums_ barrels_ kegs
+DT,Dump Truck
+DW,Wooden drums_ barrels_ kegs
+HG,Hopper or Gondola Cars
+TC,Tank Cars
+TP,Portable Tanks
+TT,Cargo Tanks (Tank Trucks)
