@@ -79,8 +79,6 @@ if length(Cols)<length(FN)
   %Cols=[Cols repmat('d',1,length(FN)-length(Cols))];
 end
 
-tic;
-  
 % first- drop all nonrequired fields to reduce memory requirements
 D=rmfield(D,FN(find(Cols=='d')));
 Cols(find(Cols=='d'))='';
@@ -200,15 +198,15 @@ if nc>0
   C(:,ConcatCols)=Ct;
 end
 
-toc;
-tic;
 for i=1:size(C,1)
   % perform the accumulation
-  %nn=find(strcmp(C{i,end},d(:,1)),1);
   n=bisect_find(C{i,end},d(:,1));
-  %if n~=nn
-  %  keyboard
-  %end
+  % nslow=find(strcmp(C{i,end},d(:,1)),1);
+  % if n~=nslow
+  %   n=bisect_find(C{i,end},d(:,1),1);
+  %   fprintf('bisect: %d slow: %d\n',n,nslow)
+  %   keyboard
+  % end
   if ~isempty(AccumCols)
     if any(isnan([C{i,AccumCols}]))
       keyboard
@@ -221,8 +219,6 @@ for i=1:size(C,1)
   d{n,end}=d{n,end}+1;
   if mod(i,1000)==0
     disp([num2str(i) ' records Processed '])
-  toc;
-  tic;
   end
 end
 
@@ -232,7 +228,9 @@ if isempty(MatchCols)
   d=d(:,2:end);
   NewFN=NewFN(2:end);
 else
-  dd=regexp(d(:,1),'++','split');  
+  d_fix=regexprep(d(:,1),'\+{4}','++ ++');
+  d_fix=regexprep(d_fix,'\+{4}','++ ++');
+  dd=regexp(d_fix,'++','split');  
   try
     d=[reshape([dd{:}],length(MatchCols),size(dd,1))' d(:,2:end)];
   catch
@@ -246,5 +244,12 @@ else
   end
 end
 
+
+counts=find(strcmp(NewFN,'Count')); 
+if length(counts)>1
+  for i=2:length(counts)
+    NewFN{counts(i)}=[NewFN{counts(i)} num2str(i-1)];
+  end
+end
 Da=cell2struct(d,NewFN,2);
 
