@@ -41,7 +41,7 @@ function [Rnode,MAN,Rin]=cr_node(CRData,year,varargin)
 %%
 %%%% ==================================================
 
-do_sanity_check=true;
+do_sanity_check=false;
 printcsv=false;
 
 while ~isempty(varargin)
@@ -107,13 +107,17 @@ E=accum(cell2struct({H.EPAIDNumber P.EPAIDNumber T.SrcEPAID T.DestEPAID},'EPAID'
 % E is geolookup because geo context is Facilities
 
 %% SELECT
-Ha=accum(filter(H,'Year',{@eq},year),'dmdmddddddadddddddadadda','');
+Ha=accum(filter(H,'Year',{@eq},year),'dmdmdddddaaddddddaaaadda','');
 Pa=accum(filter(P,'Year',{@eq},year),'dmdmddddddddaddaaaaaaaaaddda','');
 Ta=accum(filter(T,'Year',{@eq},year),'mmdmaaadd','');
 
 % add together 'other haulers'
-Ha=fieldop(Ha,'LubOtherHaulersGallons',...
+Ha=fieldop(Ha,'OtherHaulersGallons',...
           '#LubOtherHaulersGallons + #IndOtherHaulersGallons');
+% add together 'out of state'
+Ha=fieldop(Ha,'OutOfStateGallons',...
+          '#LubOutOfStateGallons + #IndOutOfStateGallons');
+Ha=rmfield(Ha,{'LubOutOfStateGallons','LubOtherHaulersGallons','IndOutOfStateGallons','IndOtherHaulersGallons'})
 
 % detect self-transfers
 % S is like a complement to R
@@ -137,7 +141,8 @@ M=logical(zeros(size(R)));
 
 [R,M]=elookup(R,M,Ha,'EPAIDNumber','GrandTotalGallons','H_Total');
 
-[R,M]=elookup(R,M,Ha,'EPAIDNumber','LubOtherHaulersGallons','H_Consol');
+[R,M]=elookup(R,M,Ha,'EPAIDNumber','OtherHaulersGallons','H_Consol');
+[R,M]=elookup(R,M,Ha,'EPAIDNumber','OutOfStateGallons','H_Import');
 % based on the comparison to other fields, it looks like H_TxIn is not redundant to
 % CR transfers- rather, it looks like it describes consolidation.  In most cases
 % where H_Consol is nonzero, H_Total = TxOut (or at least the H_Consol amount is far
@@ -151,7 +156,7 @@ M=logical(zeros(size(R)));
 
 [R,M]=elookup(R,M,Pa,'EPAIDNumber','GrandTotalOilReceivedGallons','P_Total');
 
-R=orderfields(R,[2 3 4 5 1]);
+R=orderfields(R,[2 3 4 5 6 1]);
 
 [R,M]=elookup(R,M,Pa,'EPAIDNumber','RecycledOilTotalGallons','P_RFO');
 [R,M]=elookup(R,M,Pa,'EPAIDNumber','ResidualMaterialTotalGallons','P_Waste');
@@ -208,7 +213,7 @@ R=rmfield(R,'H_TxOut');  % this was observed to be inconsistent- see h_t compare
 %% transfers , which are stored as Manifests
 
 MAN=struct('GEN_EPA_ID',{},'TSDF_EPA_ID',{},...
-           'METH_CODE',{},'GALLONS',[]);
+           'METH_CODE',{},'GALLONS',[],'fINDUSTRIAL',[],'fIMPORT',[]);
 
 %% now accumulate 
 %
@@ -242,9 +247,19 @@ for i=1:length(S) % self-txfrs
   MAN(L).GALLONS=S(i).Total;
   src=find(strcmp({R(:).EPAID},S(i).SrcEPAID));
   
+  MAN(L).METH_CODE='C142'; % self-transfer
+
+  if S(i).Total>0
+    MAN(L).fINDUSTRIAL=S(i).IndOil/S(i).Total;
+    MAN(L).fIMPORT=R(src).H_Import/R(src).H_Total;
+  else
+    MAN(L).fINDUSTRIAL=0;
+    MAN(L).fIMPORT=0;
+  end
+  
   R(src).SelfTxfr = R(src).SelfTxfr - S(i).Total;
   R(src).H_Total = R(src).H_Total - S(i).Total;
-  MAN(L).METH_CODE='C142'; % self-transfer
+  R(src).H_Import = R(src).H_Import - MAN(L).fIMPORT*S(i).Total;
 end
 
 Ta=sort(Ta,'Total','ascend');
@@ -263,11 +278,28 @@ for i=1:length(Ta) % self-txfrs already removed
   %   keyboard
   % end
   R(src).Tx_Out=R(src).Tx_Out - Ta(i).Total;
+  src_h=find(strcmp({Ha(:).EPAIDNumber},Ta(i).SrcEPAID));
+  if year>2009 | isempty(src_h)
+    MAN(L).fINDUSTRIAL=Ta(i).IndOil/Ta(i).Total
+  else
+    if year==2009
+      MAN(L).fINDUSTRIAL=max([Ta(i).IndOil/Ta(i).Total,...
+                        Ha(src_h).IndTotalGallons/Ha(src_h).GrandTotalGallons]);
+    else
+      MAN(L).fINDUSTRIAL=Ha(src_h).IndTotalGallons/Ha(src_h).GrandTotalGallons;
+    end
+  end
   if MP(src) % it's a processor -- take it "off the top".  ignore P_TxOut
     R(src).P_Total=R(src).P_Total - Ta(i).Total;
     %R(src).P_TxOut=R(src).P_TxOut - Ta(i).Total;
+    MAN(L).fIMPORT=0;
   else % it's a hauler or intermediate. Either way, it had to come from somewhere 
+    MAN(L).fIMPORT=R(src).H_Import/R(src).H_Total;
     R(src).H_Total=R(src).H_Total - Ta(i).Total;
+    if MAN(L).fIMPORT > 1 
+      keyboard
+    end
+    R(src).H_Import = R(src).H_Import - MAN(L).fIMPORT*Ta(i).Total;
   end
   
   R(dest).Tx_In=R(dest).Tx_In - Ta(i).Total;
@@ -302,6 +334,8 @@ if isfield(CRData,'Do_Txfr_Corr') & CRData.Do_Txfr_Corr==true
       MAN(L).TSDF_EPA_ID=Tc(i).DestEPAID;
       MAN(L).GALLONS=corr_gal;
       MAN(L).METH_CODE='Y039';
+      MAN(L).fINDUSTRIAL=0;
+      MAN(L).fIMPORT=0;
       % need to correct Rin
       src=find(strcmp({R(:).EPAID},Tc(i).SrcEPAID));
       dest=find(strcmp({R(:).EPAID},Tc(i).DestEPAID));
@@ -326,6 +360,8 @@ for i=1:length(R)
       MAN(L).TSDF_EPA_ID=R(i).EPAID;
       MAN(L).GALLONS=R(i).H_Total;
       MAN(L).METH_CODE='C039';
+      MAN(L).fINDUSTRIAL=0;
+      MAN(L).fIMPORT=0;
       R(i).P_Total = R(i).P_Total - R(i).H_Total;
     else % hauler or intermediate
       if R(i).H_Total > 0 % hauler reports more incoming than outgoing
@@ -347,19 +383,23 @@ for i=1:length(R)
           % need to correct Rin
           disp(['Adding hauler outbound correction for ' R(i).EPAID ' to ' ...
                 MAN(L).TSDF_EPA_ID ': ' num2str(R(i).H_Total) ' gal'])
-          src=i;
-          Rin(src).Tx_Out=Rin(src).Tx_Out+R(i).H_Total;
+          Rin(i).Tx_Out=Rin(i).Tx_Out+R(i).H_Total;
         else % out-of-state: treat as self-transfer
           MAN(L).GEN_EPA_ID=R(i).EPAID;
           MAN(L).TSDF_EPA_ID=R(i).EPAID;
           MAN(L).GALLONS=R(i).H_Total;
           MAN(L).METH_CODE='C142';
         end
+        src=find(strcmp({Ha(:).EPAIDNumber},R(i).EPAID));
+        MAN(L).fINDUSTRIAL=Ha(src).IndTotalGallons/Ha(src).GrandTotalGallons;
+        MAN(L).fIMPORT=Ha(src).OutOfStateGallons/Ha(src).GrandTotalGallons;
       else % more outgoing than incoming: source unknown
         MAN(L).GEN_EPA_ID=EPAID_SRC_UNKNOWN;
         MAN(L).TSDF_EPA_ID=R(i).EPAID;
         MAN(L).GALLONS= -R(i).H_Total;
         MAN(L).METH_CODE='C144';
+        MAN(L).fINDUSTRIAL=0;
+        MAN(L).fIMPORT=0;
       end
     end
     
@@ -386,20 +426,27 @@ end
 
 % at this point, it's all done-- just do county lookup
 [MAN(:).WASTE_STATE_CODE]=deal('221');
-MAN=flookup(MAN,'GEN_EPA_ID','FAC_CNTY');
+MAN=flookup(MAN,'GEN_EPA_ID','FAC_CNTY','bla');
 MAN=mvfield(MAN,'FAC_CNTY','GEN_CNTY');
-MAN=flookup(MAN,'TSDF_EPA_ID','FAC_CNTY');
+MAN=flookup(MAN,'TSDF_EPA_ID','FAC_CNTY','bla');
 MAN=mvfield(MAN,'FAC_CNTY','TSDF_CNTY');
-MAN=orderfields(MAN,[1 6 2 7 5 3 4 ]);
+MAN=orderfields(MAN,[1 8 2 9 7 3 4 5 6]);
 
 % Now build mass balance matrix.
 
-TSDs = accum(MAN,'ddmddma','');
+TSDs = accum(MAN,'ddmddmadd','');
+%TSDs = accum(MAN,'dmmaddd','');
+
+MAN_f=fieldop(MAN,'IND_GAL','floor(#GALLONS .* #fINDUSTRIAL)');
+MAN_f=rmfield(MAN_f,'fINDUSTRIAL');
+MAN_f=fieldop(MAN_f,'Imp_GAL','floor(#GALLONS .* #fIMPORT)');
+MAN_f=rmfield(MAN_f,'fIMPORT');
 
 % leave out processor-reported balancing quantity
-Rn = accum(filter(MAN,'METH_CODE',{@strcmp},'C139',1),'ddmdmda','Dest');
+Rn = accum(filter(MAN,'METH_CODE',{@strcmp},'C139',1),'ddmdmdaaa','Dest');
+%Rn = accum(filter(MAN,'METH_CODE',{@strcmp},'C139',1),'dmdaddm','Dest');
 Rn = rmfield(Rn,'Count');
-Rn = orderfields(Rn, [2 1 3]);
+Rn = orderfields(Rn, [2 1 3 4 5]);
 
 % inputs: hauling, Tx_In, Src unknown
 
@@ -443,7 +490,7 @@ Rn = fieldop(Rn,'balance','#H_Total + #DestGALLONS - #C142 - #Tx_Out');%...
 %                    ' #NonHaz + #Haz )']);
 
 nf=length(fieldnames(Rn));
-Rn = orderfields(Rn,[ 1 3 4 5 6 7 8 nf 2 9:(nf-1)]);
+Rn = orderfields(Rn,[ 1 3 4 5 6 7 8 9 10 nf 2 11:(nf-1)]);
 
 
 Rout=R;  
@@ -463,7 +510,8 @@ save([varname '.mat'],varname)
 
 disp('pulling meth_code totals')
 
-ByMeth=sort(accum(MAN,'dddddma',''),2,'descend');
+ByMeth=sort(accum(MAN_f,'dddddma',''),2,'descend');
+%ByMeth=sort(accum(MAN,'ddmaddd',''),2,'descend');
 ByMeth=filter(ByMeth,'METH_CODE',{@regexp},'[A-Z]');
 ByMeth=meth_lookup(ByMeth);
 show(ByMeth)
