@@ -24,9 +24,8 @@ catch
   disp(EPAID)
   keyboard
 end
-if FACILITIES{t_id}==EPAID
+if FACILITIES{t_id}==EPAID % only assign output if exact match is found
   id=t_id;
 end
 
 
-  
