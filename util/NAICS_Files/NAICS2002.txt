@@ -272,7 +272,9 @@ NAICS2002	NAICSTitle2002
 238910	Site Preparation Contractors
 23899	All Other Specialty Trade Contractors
 238990	All Other Specialty Trade Contractors
-31-33	Manufacturing
+31	31 Manufacturing
+32	32 Manufacturing
+33	33 Manufacturing
 311	Food Manufacturing
 3111	Animal Food Manufacturing
 31111	Animal Food Manufacturing
@@ -1202,7 +1204,8 @@ NAICS2002	NAICSTitle2002
 425110	Business to Business Electronic Markets
 42512	Wholesale Trade Agents and Brokers
 425120	Wholesale Trade Agents and Brokers
-44-45	Retail Trade
+44	44 Retail Trade
+45	45 Retail Trade
 441	Motor Vehicle and Parts Dealers
 4411	Automobile Dealers
 44111	New Car Dealers
@@ -1378,7 +1381,8 @@ NAICS2002	NAICSTitle2002
 454319	Other Fuel Dealers
 45439	Other Direct Selling Establishments
 454390	Other Direct Selling Establishments
-48-49	Transportation and Warehousing
+48	48 Transportation and Warehousing
+49	49 Transportation and Warehousing
 481	Air Transportation
 4811	Scheduled Air Transportation
 48111	Scheduled Air Transportation

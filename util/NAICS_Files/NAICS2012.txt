@@ -276,7 +276,9 @@ Seq	NAICS2012	NAICSTitle2012
 275	238910	Site Preparation Contractors
 276	23899	All Other Specialty Trade Contractors
 277	238990	All Other Specialty Trade Contractors
-278	31-33	Manufacturing
+278	31	31 Manufacturing
+278	32	32 Manufacturing
+278	33	33 Manufacturing
 279	311	Food Manufacturing
 280	3111	Animal Food Manufacturing
 281	31111	Animal Food Manufacturing
@@ -1093,7 +1095,8 @@ Seq	NAICS2012	NAICSTitle2012
 1092	425110	Business to Business Electronic Markets 
 1093	42512	Wholesale Trade Agents and Brokers 
 1094	425120	Wholesale Trade Agents and Brokers 
-1095	44-45	Retail Trade
+1095	44	44 Retail Trade
+1095	45	45 Retail Trade
 1096	441	Motor Vehicle and Parts Dealers 
 1097	4411	Automobile Dealers 
 1098	44111	New Car Dealers 
@@ -1260,7 +1263,8 @@ Seq	NAICS2012	NAICSTitle2012
 1259	454310	Fuel Dealers 
 1260	45439	Other Direct Selling Establishments 
 1261	454390	Other Direct Selling Establishments 
-1262	48-49	Transportation and Warehousing
+1262	48	48 Transportation and Warehousing
+1262	49	49 Transportation and Warehousing
 1263	481	Air Transportation
 1264	4811	Scheduled Air Transportation
 1265	48111	Scheduled Air Transportation

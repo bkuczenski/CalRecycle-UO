@@ -1,0 +1,301 @@
+NAICS1997	NAICSTitle1997	NAICS2002	NAICSTitle2002	PARTS
+213112	Support Activities for Oil and Gas Operations	237120	Oil and Gas Pipeline and Related Structures Construction (pt)	Construction of Field Gathering Lines On A Contract Basis
+213112	Support Activities for Oil and Gas Operations	238910	Site Preparation Contractors (pt)	Site Preparation and Related Construction Activities On A Contract Basis
+213113	Support Activities for Coal Mining 	238910	Site Preparation Contractors (pt)	Site Preparation and Related Construction Activities On A Contract Basis
+213114	Support Activities for Metal Mining	238910	Site Preparation Contractors (pt)	Site Preparation and Related Construction Activities On A Contract Basis
+213115	Support Activities for Nonmetallic Minerals (except Fuels)	238910	Site Preparation Contractors (pt)	Site Preparation and Related Construction Activities On A Contract Basis
+233110	Land Subdivision and Land Development	237210	Land Subdivision	
+233210	Single Family Housing Construction	236115	New Single-Family Housing Construction (except Operative Builders)	General Contractors
+233210	Single Family Housing Construction	236117	New Housing Operative Builders (pt)	Operative Builders
+233210	Single Family Housing Construction	236118	Residential Remodelers (pt)	Remodeling Contractors
+233220	Multifamily Housing Construction	236116	New Multifamily Housing Construction (except Operative Builders)	General Contractors
+233220	Multifamily Housing Construction	236117	New Housing Operative Builders (pt)	Operative Builders
+233220	Multifamily Housing Construction	236118	Residential Remodelers (pt)	Remodeling Contractors
+233220	Multifamily Housing Construction	236220	Commercial and Institutional Building Construction (pt)	Barrack and Dormitory Construction
+233310	Manufacturing and Industrial Building Construction	236210	Industrial Building Construction (pt)	Except Grain Elevators_ Dry Cleaning Plants_ and Manufacturing and Industrial Warehouses
+233310	Manufacturing and Industrial Building Construction	236220	Commercial and Institutional Building Construction (pt)	Grain Elevators_ Dry Cleaning Plants_ and Manufacturing and Industrial Warehouses
+233320	Commercial and Institutional Building Construction	236220	Commercial and Institutional Building Construction (pt)	
+234110	Highway and Street Construction	237310	Highway_ Street_ and Bridge Construction (pt)	
+234120	Bridge and Tunnel Construction 	237310	Highway_ Street_ and Bridge Construction (pt)	Bridge Construction
+234120	Bridge and Tunnel Construction 	237990	Other Heavy and Civil Engineering Construction (pt)	Tunnel Construction
+234910	Water_ Sewer_ and Pipeline Construction	237110	Water and Sewer Line and Related Structures Construction (pt)	Water/Sewer Pumping Stations_ Sewage Collection and Disposal Lines_ Storm Sewers_ Sewer/Water Mains and Lines_ and Water Storage Tanks and Towers_ and Construction Management of these Projects
+234910	Water_ Sewer_ and Pipeline Construction	237120	Oil and Gas Pipeline and Related Structures Construction (pt)	Gas and Oil Pumping Stations_ Gas and Oil Pipeline Construction_ Gas Mains_ Gas and Oil Storage Tank Construction_ and Construction Management of these Projects
+234920	Power and Communication Transmission Line Construction	237130	Power and Communication Line and Related Structures Construction (pt)	
+234930	Industrial Nonbuilding Structure Construction	236210	Industrial Building Construction (pt)	Process Batch Plants_ Incinerators_ Industrial Furnaces and Kilns_ Mining Appurtenance_ and Construction Management of these Projects
+234930	Industrial Nonbuilding Structure Construction	237120	Oil and Gas Pipeline and Related Structures Construction (pt)	Petrochemical Plants_ Refineries_ and Construction Management of these Projects
+234930	Industrial Nonbuilding Structure Construction	237130	Power and Communication Line and Related Structures Construction (pt)	Power Generation Plants (excluding Hydroelectric Dams)_  Transmission and Distribution Transformer Stations_ and Construction Management of these Projects
+234990	All Other Heavy Construction 	236210	Industrial Building Construction (pt)	Waste Disposal Plant Construction
+234990	All Other Heavy Construction 	237110	Water and Sewer Line and Related Structures Construction (pt)	Irrigation Systems_ Sewage Treatment and Water Treatment Plants_ Construction Management of these Projects
+234990	All Other Heavy Construction 	237990	Other Heavy and Civil Engineering Construction (pt)	Except Waste Disposal Plant Construction_ Irrigation Systems_ Sewage Treatment and Water Treatment Plants_ Right-of-Way Clearing and Line Slashing_ Blasting_ Trenching_ and Equipment Rental with Operator
+234990	All Other Heavy Construction 	238910	Site Preparation Contractors (pt)	Right-of-Way Clearing and Line Slashing_ Blasting_ Trenching_ and Equipment Rental (except cranes) with Operator
+234990	All Other Heavy Construction 	238990	All Other Specialty Trade Contractors (pt)	Crane Rental with Operator
+235110	Plumbing_ Heating_ and Air-Conditioning Contractors	238210	Electrical Contractors (pt)	Environmental Controls Installation Contractors
+235110	Plumbing_ Heating_ and Air-Conditioning Contractors	238220	Plumbing_ Heating_ and Air-Conditioning Contractors (pt)	Except Environmental Controls Installation Contractors and Septic Tank_ Cesspool_ and Dry Well Construction Contractors
+235110	Plumbing_ Heating_ and Air-Conditioning Contractors	238910	Site Preparation Contractors (pt)	Septic Tank_ Cesspool_ and Dry Well Construction Contractors
+235210	Painting and Wall Covering Contractors	237310	Highway_ Street_ and Bridge Construction (pt)	Highway and Traffic Line Painting
+235210	Painting and Wall Covering Contractors	238320	Painting and Wall Covering Contractors	Except Highway and Traffic Line Painting
+235310	Electrical Contractors	238210	Electrical Contractors (pt)	
+235410	Masonry and Stone Contractors 	238140	Masonry Contractors (pt)	
+235420	Drywall_ Plastering_ Acoustical_ and Insulation Contractors 	238140	Masonry Contractors (pt)	Stucco Contractors
+235420	Drywall_ Plastering_ Acoustical_ and Insulation Contractors 	238310	Drywall and Insulation Contractors	Except Stucco Contractors
+235430	Tile_ Marble_ Terrazzo_ and Mosaic Contractors	238340	Tile and Terrazzo Contractors	
+235510	Carpentry Contractors 	238130	Framing Contractors	Framing Carpentry
+235510	Carpentry Contractors 	238350	Finish Carpentry Contractors	Finish Carpentry
+235520	Floor Laying and Other Floor Contractors	238330	Flooring Contractors	
+235610	Roofing_ Siding_ and Sheet Metal Contractors 	238160	Roofing Contractors	Roofing Contractors
+235610	Roofing_ Siding_ and Sheet Metal Contractors 	238170	Siding Contractors	Siding Contractors
+235610	Roofing_ Siding_ and Sheet Metal Contractors 	238390	Other Building Finishing Contractors (pt)	Metal Ceiling_ Panel_ and Shelving Installation
+235710	Concrete Contractors	238110	Poured Concrete Foundation and Structure Contractors	Except Residential and Commercial Asphalt_ Brick_ and Concrete Paving
+235710	Concrete Contractors	238990	All Other Specialty Trade Contractors (pt)	Residential and Commercial Asphalt_ Brick_ and Concrete Paving
+235810	Water Well Drilling Contractors	237110	Water and Sewer Line and Related Structures Construction (pt)	
+235910	Structural Steel Erection Contractors	238120	Structural Steel and Precast Concrete Contractors	Except Curtain Walls_ Metal Furring Installation_ and Cooling Tower Installation
+235910	Structural Steel Erection Contractors	238190	Other Foundation_ Structure_ and Building Exterior Contractors (pt)	Curtain Walls and Metal Furring Installation
+235910	Structural Steel Erection Contractors	238220	Plumbing_ Heating_ and Air-Conditioning Contractors (pt)	Cooling Tower Installation
+235920	Glass and Glazing Contractors	238150	Glass and Glazing Contractors	
+235930	Excavation Contractors	238910	Site Preparation Contractors (pt)	
+235940	Wrecking and Demolition Contractors	238910	Site Preparation Contractors (pt)	
+235950	Building Equipment and Other Machinery Installation Contractors 	238220	Plumbing_ Heating_ and Air-Conditioning Contractors (pt)	Scrubber_ Dust Collection_ and Other Industrial Ventilation Installation
+235950	Building Equipment and Other Machinery Installation Contractors 	238290	Other Building Equipment Contractors (pt)	Except Scrubber_ Dust Collection_ and Other Industrial Ventilation Installation
+235990	All Other Special Trade Contractors	236220	Commercial and Institutional Building Construction (pt)	Indoor Swimming Pool Contractors
+235990	All Other Special Trade Contractors	237990	Other Heavy and Civil Engineering Construction (pt)	Anchored Earth Retention Contractors
+235990	All Other Special Trade Contractors	238190	Other Foundation_ Structure_ and Building Exterior Contractors (pt)	Forming Contractors
+235990	All Other Special Trade Contractors	238290	Other Building Equipment Contractors (pt)	Service Station Equipment Installation Contractors; Boiler_ Duct_ and Pipe Insulation; Lightning Rod Installation; Bowling Alley Installation; Household-Type Antenna Installation; Church Bell Installation; and Tower Clock Installation
+235990	All Other Special Trade Contractors	238390	Other Building Finishing Contractors (pt)	Weather Stripping and Damp-Proofing_ Modular Furniture Installation_ Bathtub Refinishing_ Window Covering Fixture Installation_ Trade Show Exhibit Installation and Dismantling_ and Spectator Seating Installation
+235990	All Other Special Trade Contractors	238910	Site Preparation Contractors (pt)	Dewatering Contractors_ Core Drilling For Construction_ and Test Boring for Construction
+235990	All Other Special Trade Contractors	238990	All Other Specialty Trade Contractors (pt)	Except Indoor Swimming Pools_ Earth Retention Contractors_ Forming Contractors_ Ornamental Metal Work_ Building Equipment Contractors_ Building Finishing Contractors_ Dewatering Contractors_ Test Boring For Construction_ and Core Drilling For Construction
+421110	Automobile and Other Motor Vehicle Wholesalers	423110	Automobile and Other Motor Vehicle Merchant Wholesalers	Merchant Wholesalers
+421110	Automobile and Other Motor Vehicle Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421110	Automobile and Other Motor Vehicle Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421120	Motor Vehicle Supplies and New Parts Wholesalers	423120	Motor Vehicle Supplies and New Parts Merchant Wholesalers	Merchant Wholesalers
+421120	Motor Vehicle Supplies and New Parts Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421120	Motor Vehicle Supplies and New Parts Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421130	Tire and Tube Wholesalers	423130	Tire and Tube Merchant Wholesalers	Merchant Wholesalers
+421130	Tire and Tube Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421130	Tire and Tube Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421140	Motor Vehicle Parts (Used) Wholesalers	423140	Motor Vehicle Parts (Used) Merchant Wholesalers	Merchant Wholesalers
+421140	Motor Vehicle Parts (Used) Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421140	Motor Vehicle Parts (Used) Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421210	Furniture Wholesalers	423210	Furniture Merchant Wholesalers	Merchant Wholesalers
+421210	Furniture Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421210	Furniture Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421220	Home Furnishing Wholesalers	423220	Home Furnishing Merchant Wholesalers	Merchant Wholesalers
+421220	Home Furnishing Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421220	Home Furnishing Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421310	Lumber_ Plywood_ Millwork_ and Wood Panel Wholesalers	423310	Lumber_ Plywood_ Millwork_ and Wood Panel Merchant Wholesalers	Merchant Wholesalers
+421310	Lumber_ Plywood_ Millwork_ and Wood Panel Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421310	Lumber_ Plywood_ Millwork_ and Wood Panel Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421320	Brick_ Stone_ and Related Construction Material Wholesalers	423320	Brick_ Stone_ and Related Construction Material Merchant Wholesalers	Merchant Wholesalers
+421320	Brick_ Stone_ and Related Construction Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421320	Brick_ Stone_ and Related Construction Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421330	Roofing_ Siding_ and Insulation Material Wholesalers	423330	Roofing_ Siding_ and Insulation Material Merchant Wholesalers	Merchant Wholesalers
+421330	Roofing_ Siding_ and Insulation Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421330	Roofing_ Siding_ and Insulation Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421390	Other Construction Material Wholesalers	423390	Other Construction Material Merchant Wholesalers	Merchant Wholesalers
+421390	Other Construction Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421390	Other Construction Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421410	Photographic Equipment and Supplies Wholesalers	423410	Photographic Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421410	Photographic Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421410	Photographic Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421420	Office Equipment Wholesalers	423420	Office Equipment Merchant Wholesalers	Merchant Wholesalers
+421420	Office Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421420	Office Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421430	Computer and Computer Peripheral Equipment and Software Wholesalers	423430	Computer and Computer Peripheral Equipment and Software Merchant Wholesalers	Merchant Wholesalers
+421430	Computer and Computer Peripheral Equipment and Software Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421430	Computer and Computer Peripheral Equipment and Software Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421440	Other Commercial Equipment Wholesalers	423440	Other Commercial Equipment Merchant Wholesalers	Merchant Wholesalers
+421440	Other Commercial Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421440	Other Commercial Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421450	Medical_ Dental_ and Hospital Equipment and Supplies Wholesalers	423450	Medical_ Dental_ and Hospital Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421450	Medical_ Dental_ and Hospital Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421450	Medical_ Dental_ and Hospital Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421460	Ophthalmic Goods Wholesalers	423460	Ophthalmic Goods Merchant  Wholesalers	Merchant Wholesalers
+421460	Ophthalmic Goods Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421460	Ophthalmic Goods Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421490	Other Professional Equipment and Supplies Wholesalers	423490	Other Professional Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421490	Other Professional Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421490	Other Professional Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421510	Metal Service Centers and Offices	423510	Metal Service Centers and Other Metal Merchant Wholesalers	Merchant Wholesalers
+421510	Metal Service Centers and Offices	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421510	Metal Service Centers and Offices	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421520	Coal and Other Mineral and Ore Wholesalers	423520	Coal and Other Mineral and Ore Merchant Wholesalers	Merchant Wholesalers
+421520	Coal and Other Mineral and Ore Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421520	Coal and Other Mineral and Ore Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421610	Electrical Apparatus and Equipment_ Wiring Supplies_ and Construction Material Wholesalers	423610	Electrical Apparatus and Equipment_ Wiring Supplies_ and Related Equipment Merchant Wholesalers	Merchant Wholesalers
+421610	Electrical Apparatus and Equipment_ Wiring Supplies_ and Construction Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421610	Electrical Apparatus and Equipment_ Wiring Supplies_ and Construction Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421620	Electrical Appliance_ Television_ and Radio Set Wholesalers	423620	Electrical and Electronic Appliance_ Television_ and Radio Set Merchant Wholesalers	Merchant Wholesalers
+421620	Electrical Appliance_ Television_ and Radio Set Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421620	Electrical Appliance_ Television_ and Radio Set Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421690	Other Electronic Parts and Equipment Wholesalers	423690	Other Electronic Parts and Equipment Merchant Wholesalers	Merchant Wholesalers
+421690	Other Electronic Parts and Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421690	Other Electronic Parts and Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421710	Hardware Wholesalers	423710	Hardware Merchant Wholesalers	Merchant Wholesalers
+421710	Hardware Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421710	Hardware Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421720	Plumbing and Heating Equipment and Supplies (Hydronics) Wholesalers	423720	Plumbing and Heating Equipment and Supplies (Hydronics) Merchant Wholesalers	Merchant Wholesalers
+421720	Plumbing and Heating Equipment and Supplies (Hydronics) Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421720	Plumbing and Heating Equipment and Supplies (Hydronics) Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421730	Warm Air Heating and Air-Conditioning Equipment and Supplies Wholesalers	423730	Warm Air Heating and Air-Conditioning Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421730	Warm Air Heating and Air-Conditioning Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421730	Warm Air Heating and Air-Conditioning Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421740	Refrigeration Equipment and Supplies Wholesalers	423740	Refrigeration Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421740	Refrigeration Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421740	Refrigeration Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421810	Construction and Mining (except Oil Well) Machinery and Equipment Wholesalers	423810	Construction and Mining (except Oil Well) Machinery and Equipment Merchant Wholesalers	Merchant Wholesalers
+421810	Construction and Mining (except Oil Well) Machinery and Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421810	Construction and Mining (except Oil Well) Machinery and Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421820	Farm and Garden Machinery and Equipment Wholesalers	423820	Farm and Garden Machinery and Equipment Merchant Wholesalers	Merchant Wholesalers
+421820	Farm and Garden Machinery and Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421820	Farm and Garden Machinery and Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421830	Industrial Machinery and Equipment Wholesalers	423830	Industrial Machinery and Equipment Merchant Wholesalers	Merchant Wholesalers
+421830	Industrial Machinery and Equipment Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421830	Industrial Machinery and Equipment Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421840	Industrial Supplies Wholesalers	423840	Industrial Supplies Merchant Wholesalers	Merchant Wholesalers
+421840	Industrial Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421840	Industrial Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421850	Service Establishment Equipment and Supplies Wholesalers	423850	Service Establishment Equipment and Supplies Merchant Wholesalers	Merchant Wholesalers
+421850	Service Establishment Equipment and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421850	Service Establishment Equipment and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	423860	Transportation Equipment and Supplies (except Motor Vehicle) Merchant Wholesalers	Merchant Wholesalers
+421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421910	Sporting and Recreational Goods and Supplies Wholesalers	423910	Sporting and Recreational Goods and Supplies Merchant Wholesalers	Merchant Wholesalers
+421910	Sporting and Recreational Goods and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421910	Sporting and Recreational Goods and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421920	 Toy and Hobby Goods and Supplies Wholesalers	423920	 Toy and Hobby Goods and Supplies Merchant Wholesalers	Merchant Wholesalers
+421920	 Toy and Hobby Goods and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421920	 Toy and Hobby Goods and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421930	Recyclable Material Wholesalers	423930	Recyclable Material Merchant Wholesalers	Merchant Wholesalers
+421930	Recyclable Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421930	Recyclable Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421940	Jewelry_ Watch_ Precious Stone_ and Precious Metal Wholesalers	423940	Jewelry_ Watch_ Precious Stone_ and Precious Metal Merchant Wholesalers	Merchant Wholesalers
+421940	Jewelry_ Watch_ Precious Stone_ and Precious Metal Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421940	Jewelry_ Watch_ Precious Stone_ and Precious Metal Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421990	Other Miscellaneous Durable Goods Wholesalers	423990	Other Miscellaneous Durable Goods Merchant Wholesalers	Merchant Wholesalers
+421990	Other Miscellaneous Durable Goods Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421990	Other Miscellaneous Durable Goods Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422110	Printing and Writing Paper Wholesalers	424110	Printing and Writing Paper Merchant Wholesalers	Merchant Wholesalers
+422110	Printing and Writing Paper Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422110	Printing and Writing Paper Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422120	Stationary and Office Supplies Wholesalers	424120	Stationary and Office Supplies Merchant Wholesalers	Merchant Wholesalers
+422120	Stationary and Office Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422120	Stationary and Office Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422130	Industrial and Personal Service Paper Wholesalers	424130	Industrial and Personal Service Paper Merchant Wholesalers	Merchant Wholesalers
+422130	Industrial and Personal Service Paper Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422130	Industrial and Personal Service Paper Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422210	Drugs and Druggists' Sundries Wholesalers	424210	Drugs and Druggists' Sundries Merchant Wholesalers	Merchant Wholesalers
+422210	Drugs and Druggists' Sundries Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422210	Drugs and Druggists' Sundries Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422310	Piece Goods_ Notions_ and Other Dry Goods Wholesalers	424310	Piece Goods_ Notions_ and Other Dry Goods Merchant Wholesalers	Merchant Wholesalers
+422310	Piece Goods_ Notions_ and Other Dry Goods Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422310	Piece Goods_ Notions_ and Other Dry Goods Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422320	Men's and Boys' Clothing and Furnishings Wholesalers	424320	Men's and Boys' Clothing and Furnishings Merchant Wholesalers	Merchant Wholesalers
+422320	Men's and Boys' Clothing and Furnishings Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422320	Men's and Boys' Clothing and Furnishings Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422330	Women's_ Children's_ and Infants' Clothing and Accessories Wholesalers	424330	Women's_ Children's_ and Infants' Clothing and Accessories Merchant Wholesalers	Merchant Wholesalers
+422330	Women's_ Children's_ and Infants' Clothing and Accessories Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422330	Women's_ Children's_ and Infants' Clothing and Accessories Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422340	Footwear Wholesalers	424340	Footwear Merchant Wholesalers	Merchant Wholesalers
+422340	Footwear Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422340	Footwear Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422410	General Line Grocery Wholesalers	424410	General Line Grocery Merchant Wholesalers	Merchant Wholesalers
+422410	General Line Grocery Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422410	General Line Grocery Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422420	Packaged Frozen Food Wholesalers	424420	Packaged Frozen Food Merchant Wholesalers	Merchant Wholesalers
+422420	Packaged Frozen Food Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422420	Packaged Frozen Food Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422430	Dairy Product (except Dried or Canned) Wholesalers	424430	Dairy Product (except Dried or Canned) Merchant Wholesalers	Merchant Wholesalers
+422430	Dairy Product (except Dried or Canned) Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422430	Dairy Product (except Dried or Canned) Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422440	Poultry and Poultry Product Wholesalers	424440	Poultry and Poultry Product Merchant Wholesalers	Merchant Wholesalers
+422440	Poultry and Poultry Product Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422440	Poultry and Poultry Product Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422450	Confectionery Wholesalers	424450	Confectionery Merchant Wholesalers	Merchant Wholesalers
+422450	Confectionery Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422450	Confectionery Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422460	Fish and Seafood Wholesalers	424460	Fish and Seafood Merchant Wholesalers	Merchant Wholesalers
+422460	Fish and Seafood Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422460	Fish and Seafood Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422470	Meat and Meat Product Wholesalers	424470	Meat and Meat Product Merchant Wholesalers	Merchant Wholesalers
+422470	Meat and Meat Product Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422470	Meat and Meat Product Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422480	Fresh Fruit and Vegetable Wholesalers	424480	Fresh Fruit and Vegetable Merchant Wholesalers	Merchant Wholesalers
+422480	Fresh Fruit and Vegetable Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422480	Fresh Fruit and Vegetable Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422490	Other Grocery and Related Products Wholesalers	424490	Other Grocery and Related Products Merchant Wholesalers	Merchant Wholesalers
+422490	Other Grocery and Related Products Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422490	Other Grocery and Related Products Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422510	Grain and Field Bean Wholesalers	424510	Grain and Field Bean Merchant Wholesalers	Merchant Wholesalers
+422510	Grain and Field Bean Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422510	Grain and Field Bean Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422520	Livestock Wholesalers	424520	Livestock Merchant Wholesalers	Merchant Wholesalers
+422520	Livestock Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422520	Livestock Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422590	Other Farm Product Raw Material Wholesalers	424590	Other Farm Product Raw Material Merchant Wholesalers	Merchant Wholesalers
+422590	Other Farm Product Raw Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422590	Other Farm Product Raw Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422610	Plastics Materials and Basic Forms and Shapes Wholesalers	424610	Plastics Materials and Basic Forms and Shapes Merchant Wholesalers	Merchant Wholesalers
+422610	Plastics Materials and Basic Forms and Shapes Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422610	Plastics Materials and Basic Forms and Shapes Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422690	Other Chemical and Allied Products Wholesalers	424690	Other Chemical and Allied Products Merchant Wholesalers	Merchant Wholesalers
+422690	Other Chemical and Allied Products Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422690	Other Chemical and Allied Products Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422710	Petroleum Bulk Stations and Terminals	424710	Petroleum Bulk Stations and Terminals	Merchant Wholesalers
+422720	Petroleum and Petroleum Products Wholesalers (except Bulk Stations and Terminals)	424720	Petroleum and Petroleum Products Merchant Wholesalers (except Bulk Stations and Terminals)	Merchant Wholesalers
+422720	Petroleum and Petroleum Products Wholesalers (except Bulk Stations and Terminals)	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422720	Petroleum and Petroleum Products Wholesalers (except Bulk Stations and Terminals)	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422810	Beer and Ale Wholesalers	424810	Beer and Ale Merchant Wholesalers	Merchant Wholesalers
+422810	Beer and Ale Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422810	Beer and Ale Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422820	Wine and Distilled Alcoholic Beverage Wholesalers	424820	Wine and Distilled Alcoholic Beverage Merchant Wholesalers	Merchant Wholesalers
+422820	Wine and Distilled Alcoholic Beverage Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422820	Wine and Distilled Alcoholic Beverage Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422910	Farm Supplies Wholesalers	424910	Farm Supplies Merchant Wholesalers	Merchant Wholesalers
+422910	Farm Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422910	Farm Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422920	Book_ Periodical_ and Newspaper Wholesalers	424920	Book_ Periodical_ and Newspaper Merchant Wholesalers	Merchant Wholesalers
+422920	Book_ Periodical_ and Newspaper Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422920	Book_ Periodical_ and Newspaper Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422930	Flower_ Nursery Stock_ and Florists' Supplies Wholesalers	424930	Flower_ Nursery Stock_ and Florists' Supplies Merchant Wholesalers	Merchant Wholesalers
+422930	Flower_ Nursery Stock_ and Florists' Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422930	Flower_ Nursery Stock_ and Florists' Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422940	Tobacco and Tobacco Product Wholesalers	424940	Tobacco and Tobacco Product Merchant Wholesalers	Merchant Wholesalers
+422940	Tobacco and Tobacco Product Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422940	Tobacco and Tobacco Product Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422950	Paint_ Varnish_ and Supplies Wholesalers	424950	Paint_ Varnish_ and Supplies Merchant Wholesalers	Merchant Wholesalers
+422950	Paint_ Varnish_ and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422950	Paint_ Varnish_ and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+422990	Other Miscellaneous Nondurable Goods Wholesalers	424990	Other Miscellaneous Nondurable Goods Merchant Wholesalers	Merchant Wholesalers
+422990	Other Miscellaneous Nondurable Goods Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+422990	Other Miscellaneous Nondurable Goods Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+452110	Department Stores	452111	Department Stores (except Discount Department Stores)	Department Stores (except Discount Department Stores)
+452110	Department Stores	452112	Discount Department Stores	Discount Department Stores
+454110	Electronic Shopping and Mail-Order Houses	454111	Electronic Shopping	Electronic Shopping
+454110	Electronic Shopping and Mail-Order Houses	454112	Electronic Auctions	Electronic Auctions
+454110	Electronic Shopping and Mail-Order Houses	454113	Mail-Order Houses	Mail-Order Houses
+511110	Newspaper Publishers	516110	Internet Publishing and Broadcasting (pt.)	Internet Newspaper Publishers
+511120	Periodical Publishers	516110	Internet Publishing and Broadcasting (pt.)	Internet Periodical Publishers
+511130	Book Publishers	516110	Internet Publishing and Broadcasting (pt.)	Internet Book Publishers
+511140	Database and Directory Publishers	516110	Internet Publishing and Broadcasting (pt.)	Internet Database and Directory Publishers
+511191	Greeting Card Publishers	516110	Internet Publishing and Broadcasting (pt.)	Internet Greeting Card Publishers
+511199	All Other Publishers	511130	Book Publishers	Atlas and Map Publishers (except Internet Publishers)
+511199	All Other Publishers	516110	Internet Publishing and Broadcasting (pt.)	All Other Internet Publishers
+513111	Radio Networks	515111	Radio Networks 	
+513112	Radio Stations	515112	Radio Stations	
+513120	Television Broadcasting	515120	Television Broadcasting	
+513210	Cable Networks	515210	Cable and Other Subscription Programming	
+513220	Cable and Other Program Distribution	517510	Cable and Other Program Distribution	
+513310	Wired Telecommunications Carriers	517110	Wired Telecommunications Carriers	
+513321	Paging	517211	Paging	
+513322	Cellular and Other Wireless Telecommunications	517212	Cellular and Other Wireless Telecommunications	
+513330	Telecommunications Resellers	517310	Telecommunications Resellers	
+513340	Satellite Telecommunications	517410	Satellite Telecommunications	
+513390	Other Telecommunications	517910	Other Telecommunications	
+514110	News Syndicates	519110	News Syndicates	
+514120	Libraries and Archives	519120	Libraries and Archives	
+514191	On-Line Information Services	518111	Internet Service Providers	
+514199	All Other Information Services	516110	Internet Publishing and Broadcasting (pt.)	Internet Broadcasting
+514199	All Other Information Services	518112	Web Search Portals	Web Search Portals
+514199	All Other Information Services	519190	All Other Information Services	All Other Information Services
+514210	Data Processing Services	518210	Data Processing_ Hosting_ and Related Services	
+561720	Janitorial Services	238990	All Other Specialty Trade Contractors (pt)	Cleaning Buildings During and Immediately After Construction
