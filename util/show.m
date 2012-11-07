@@ -18,7 +18,8 @@ function show(D,fmt,filename,delim,tit,com)
 % continual writes to a file:  
 % 0 - default behavior
 % 1 - header block (suppress totals and trailing newline); 
-% 2 - data block (suppress column heading).
+% 2 - data block (suppress column heading)
+% 3 - data chunk (suppress column heading, totals and trailing newline);
 % 
 % The third entry {'filename',0,true} indicates whether to overwrite or append.  
 % true - overwrite (remove existing file)
@@ -37,6 +38,9 @@ elseif islogical(tit)
   forcetbl=tit;
 end
 if nargin<4 || isempty(delim) delim='\t'; end
+if strcmp( delim, ',*' )
+  cont=1; % can still be overridden
+end
 if nargin<3 || isempty(filename) nofile=true; 
 else 
   nofile=false; 
@@ -102,7 +106,7 @@ if any(cellfun(@isstruct,struct2cell(D)))
   fmt={'%_b'};
 end
 
-if length(D)==1 & ~forcetbl
+if length(D)==1 & ~forcetbl & cont==0
   shortprint(D(1),fmt,delim,fid);
   if ~nofile fclose(fid); end
   return
@@ -195,7 +199,7 @@ delim{end}='';
 myfmt=[fmt;delim];
 myhdr=[hdr_fmt;delim];
 
-if cont<2
+if bitand(cont,2)==0
   fprintf(fid,[myhdr{:} NEWLINE],FN{:});
 end
 if nofile
@@ -207,7 +211,7 @@ for i=1:length(D)
   mydat=struct2cell(D(i));
   fprintf(fid,[myfmt{:} NEWLINE],mydat{:});
 end
-if length(D)>50 & cont~=1
+if length(D)>40 & bitand(cont,1)==0
   % print another header line at the bottom
   if nofile
     total_width=sum(width)+length(FN)-1;
@@ -216,7 +220,7 @@ if length(D)>50 & cont~=1
   fprintf(fid,NEWLINE);
   fprintf(fid,[myhdr{:} NEWLINE],FN{:});
 end
-if length(D)>1 & cont~=1
+if length(D)>1 & bitand(cont,1)==0
   % also add total row
   fprintf(fid,['%s' NEWLINE],'TOTAL');
   sumtotal=struct2cell(accum(D,accumfmt));
