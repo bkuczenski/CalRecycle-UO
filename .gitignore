@@ -1,5 +1,2 @@
 *.mat
-*.xls*
 !util/*.mat
-!util/*.xls
-Geostatistics_Toolbox
