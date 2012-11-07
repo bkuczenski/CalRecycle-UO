@@ -17,7 +17,7 @@ do_computation=true;
 do_MD=false;
 force_MD=false;
 do_csv=false;
-years=2011;
+years=2007:2011;
 wc=221:223;
 
 
