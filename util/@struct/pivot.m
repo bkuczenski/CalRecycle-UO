@@ -18,8 +18,8 @@ function P=pivot(S,R,C,D,varargin)
 % element is taken to be the function (instead of regexp); the second argument the
 % pattern; the third argument the inversion specifier.
 %
-% Pretty prints the result using dispData-inspired fprintf, with some tricks for
-% when D is an array.
+% if nargout==0, pretty prints the result using dispData-inspired fprintf, with some
+% tricks for when D is an array.
 
 % now add in 6-arg case
 if nargin>4
@@ -65,53 +65,56 @@ for k=1:length(D)
   dm{k}=max(sum(data{k}));
 end
 
-% determine max field widths
-FW=max([15,5+ceil(log10(max([dm{:}])))]); % 13
-HW=max(cellfun(@length,[Rows R])); % 15
+if nargout==0
+  %full display 
 
-%full display 
-fprintf('%*s: ',HW,C)
-for i=1:length(Cols)  fprintf('%*s ',FW-1,Cols{i}) ; end
-fprintf('\n');
-fprintf('%-*s +',HW,R)
-for i=1:length(Cols) fprintf('%s',repmat('-',1,FW)) ; end
-fprintf('\n');
-for j=1:length(Rows)
-  for k=1:length(D)
-    if k==1
-      fprintf('%*s |',HW,Rows{j})
-    else
-      fprintf('%*s |',HW,'')
-    end
-    for i=1:length(Cols)  fprintf('%*.*g  ',FW-2,FW-2,data{k}(j,i)) ; end
-    %fprintf('%s\n',rName{I(j)});
-    fprintf('%s\n',D{k});
-  end
-  if k>1
-    % print separator
-    fprintf('%-*s +',HW,'')
-    for i=1:length(Cols) fprintf('%*s',FW,'') ; end
-    fprintf('\n');
-  end
-end
-% if num<DB.NumRows % display remainder
-%   fprintf('    %-10s |','')
-%   for i=1:DB.NumCols  fprintf('%9g  ',sum(cData(I(num+1:end),i))) ; end
-%   fprintf('%s\n','Remainder');
-% end
+  % determine max field widths
+  FW=max([15,5+ceil(log10(max([dm{:}])))]); % 13
+  HW=max(cellfun(@length,[Rows R])); % 15
 
-if length(Rows)>1
-  fprintf('Totals:\n');
-  fprintf('%-*s +',HW,'')
+  fprintf('%*s: ',HW,C)
+  for i=1:length(Cols)  fprintf('%*s ',FW-1,Cols{i}) ; end
+  fprintf('\n');
+  fprintf('%-*s +',HW,R)
   for i=1:length(Cols) fprintf('%s',repmat('-',1,FW)) ; end
   fprintf('\n');
-  for k=1:length(D)
-    fprintf('%-*s |',HW,D{k})
-    for i=1:length(Cols) fprintf('%*.*g  ',FW-2,FW-2,sum(data{k}(:,i))) ; end
-    fprintf('\n');
+  for j=1:length(Rows)
+    for k=1:length(D)
+      if k==1
+        fprintf('%*s |',HW,Rows{j})
+      else
+        fprintf('%*s |',HW,'')
+      end
+      for i=1:length(Cols)  fprintf('%*.*g  ',FW-2,FW-2,data{k}(j,i)) ; end
+      %fprintf('%s\n',rName{I(j)});
+      fprintf('%s\n',D{k});
+    end
+    if k>1
+      % print separator
+      fprintf('%-*s +',HW,'')
+      for i=1:length(Cols) fprintf('%*s',FW,'') ; end
+      fprintf('\n');
+    end
   end
-end
-
+  % if num<DB.NumRows % display remainder
+  %   fprintf('    %-10s |','')
+  %   for i=1:DB.NumCols  fprintf('%9g  ',sum(cData(I(num+1:end),i))) ; end
+  %   fprintf('%s\n','Remainder');
+  % end
+  
+  if length(Rows)>1
+    fprintf('Totals:\n');
+    fprintf('%-*s +',HW,'')
+    for i=1:length(Cols) fprintf('%s',repmat('-',1,FW)) ; end
+    fprintf('\n');
+    for k=1:length(D)
+      fprintf('%-*s |',HW,D{k})
+      for i=1:length(Cols) fprintf('%*.*g  ',FW-2,FW-2,sum(data{k}(:,i))) ; end
+      fprintf('\n');
+    end
+  end
+end % if nargout ==0
+  
 P.Rows=Rows;
 P.Cols=Cols;
 P.Data=data;
@@ -181,5 +184,5 @@ while k<=length(D)
       break
     end
   end
-  ind=ind+1;
+  k=k+1;
 end
