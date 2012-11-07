@@ -19,7 +19,7 @@ function [D,M]=vlookup(D,KeyField,RefTbl,RefField,varargin)
 %  instead of adding it into a new field.
 %
 %  'inexact' - like excel's not_exact_match arg; if no exact match is found,
-%  return the nearest value that is less than the key value.  
+%  return the nearest value that is less than the key value
 %
 %  'strdist' - for string KeyField values, return the result with the shortest
 %  Levenshtein distance from the key value.  uses strnearest.m. 'first' implicit.
@@ -48,26 +48,32 @@ match='exact';
 
 while ~isempty(varargin)
   if ischar(varargin{1})
-    switch varargin{1}(1:3)
-      case 'inp'
-        inplace=1;
-      case 'ine'
-        match='inexact';
-      case 'str'
-        match='strdist';
-        if ~isempty(regexp(varargin{1},'strdist[0-9]+'))
-          shortest_arg=str2num(strrep(varargin{1},'strdist',''));
-        else
-          shortest_arg=[];
-        end
-      case 'old'
-        match='oldstrdist';
-      case 'bla'
-        blank=1;
-      case {'zer','spa'}
-        blank=2;
-      otherwise
-        ReturnField=varargin{1};
+    if length(varargin{1})<3
+      ReturnField=varargin{1};
+    else
+      switch varargin{1}(1:3)
+        case 'exa'
+          match='exact';
+        case 'inp'
+          inplace=1;
+        case 'ine'
+          match='inexact';
+        case 'str'
+          match='strdist';
+          if ~isempty(regexp(varargin{1},'strdist[0-9]+'))
+            shortest_arg=str2num(strrep(varargin{1},'strdist',''));
+          else
+            shortest_arg=[];
+          end
+        case 'old'
+          match='oldstrdist';
+        case 'bla'
+          blank=1;
+        case {'zer','spa'}
+          blank=2;
+        otherwise
+          ReturnField=varargin{1};
+      end
     end
   else
     disp('Don''t understand argument:')
@@ -129,23 +135,31 @@ switch class(D(1).(KeyField))
 
     result=nan(size(KeyData));
 
-
     % unfortunately- no bsxfun for cells
     switch match
-      case 'exact'
-        celleq=cellfun(@strcmp,KeyData,repmat({RefData'},size(KeyData,1), ...
-                                              size(KeyData,2)),'UniformOutput',0);
-        [matches,keys]=find([celleq{:}]);
-        result(keys)=matches;
+      case {'exact','inexact'}
+        %   celleq=cellfun(@strcmp,KeyData,repmat({RefData'},size(KeyData,1), ...
+        %                                         size(KeyData,2)),'UniformOutput',0);
+        %   [matches,keys]=find([celleq{:}]);
+        %   result(keys)=matches;
         
-      case 'inexact'
-        warning('Not really inexact match- just for-loop version')
-        %error('Not implemented!')
-        
+        % case {'loop','inexact'}
+        %   %error('Not implemented!')
+        multi=[];
         for i=1:length(KeyData)
-          result(i)=find(strcmp(KeyData{i},RefData)); % if empty, empty.
+          r=bisect_find(KeyData{i},RefData); % finds nearest index
+          if length(r)>1
+            disp(['  ambiguous match on KeyData ' KeyData{i}])
+            multi=[multi i];
+            r=r(1);
+          end
+          if strcmp(match(1:2),'in') | strcmp(RefData(r),KeyData{i})
+            result(i)=r(1);
+          end
+          if mod(i,1000)==0 fprintf(1,'%d records processed\n',i); end
         end
-        
+        keys=find(~isnan(result));
+        keys=setdiff(keys,multi);
       case 'strdist'
 
         %disp('Not implemented yet!')
