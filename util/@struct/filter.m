@@ -50,7 +50,12 @@ for i=1:length(D)
     if isnan(mydata)
       result=false;
     elseif isempty(filt(f).Pattern)
-      result=feval(filt(f).Test,mydata);
+      try
+        result=feval(filt(f).Test,mydata);
+      catch
+        disp('trycatch: filter feval empty pattern')
+        keyboard
+      end
     else
       try
         result=feval(filt(f).Test,mydata,filt(f).Pattern);
@@ -70,12 +75,12 @@ for i=1:length(D)
         end
       end
     end
-    try
-      isempty(result) || ~result;
-    catch
-      keyboard
-    end
-    if  isempty(result) || ~result
+    % try
+    %   isempty(result) | ~result;
+    % catch
+    %   keyboard
+    % end
+    if  isempty(result) | ~result
       filt_pass=0;
       break;
     end
