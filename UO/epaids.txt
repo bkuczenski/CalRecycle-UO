@@ -1,0 +1,64 @@
+==========
+Thu Nov 01 11:11:14 -0700 2012
+
+Correcting remaining erroneous EPAIDs... a multi-pronged strategy
+
+There are 102 unique EPAIDs that do not lookup in the FacilitiesUO
+database.  Of these, exactly 2 are present in the broader Facilities
+database: AZD980886121 and ILD098642424
+
+intersect({NMUO.TSDF_EPA_ID},{Mbroad.TSDF_EPA_ID})
+
+
+We also want to add in the following that show up as bad input EPAIDs in
+EPAID.Corr but do lookup positively in the broader db:
+
+    CAD982446262 HERTZ EQUIPMENT RENTAL      
+    CAL000161748 SAV ON DRUG 9637            
+    CAL000161749 SAV ON DRUG 9733            
+    CAL000170816 MARK TSUEI                  
+    CAL000190316 KAISER PERMANENTE           
+    CAL000190418 LAIDLAW EDUCATION SERVICES  
+    CAL000190819 PAUL'S AUTO & DETAIL SERVICE
+
+(*) special cases:
+    CAD002657451 --> corrects to CAC002657451 but neither exist.
+    Candidates:
+      1x match 2.57451: CAC002557451 City of Ontario
+      6x match 26.7451: CAC002607451 Town of Portola Valley- Public works
+      	       		CAC002617451 Turnberry Lansing LT
+      	       		CAC002627451 Prime Inc
+      	       		CAC002647451 The Bishop Gooden Ctr
+      	       		CAC002667451 Jason Ryas
+      	       		CAC002677451 Caroline Henry & Mickey Mandelbaum
+      1x match 265.451: CAC002655451 Wayne Falcon
+      1x match 2657.51: CAC002657251 Miller & Desatnik Mgmt
+      1x match 26574.1: CAC002657491 Judicial Counsel state of CA
+      All 10 candidates are CAC002.  Anyway, who cares?
+
+I've come to the conclusion that this is now a waste of time.  Except for
+ILD098642424
+
+And I'm omitting the following because they don't seem valid TSDFs and the
+correction is probably superior to the [false] positive lookup:
+
+CAL000161748,0,0,SAV ON DRUG 9637,367 N CITRUS AVE,,AZUSA,19,CA,917020000,,,,
+CAL000161749,0,0,SAV ON DRUG 9733,435 ARROW HWY,,GLENDORA,19,CA,917400000,,,,
+both correct to: CAL000161743 Clearwater env mgt
+
+CAL000170816,0,0,MARK TSUEI,1704 MIRAMONTE AVE,,MOUNTAIN VIEW,43,CA,940400000,,,,
+CAL000190316,0,0,KAISER PERMANENTE,3501 STOCKDALE HWY,,BAKERSFIELD,15,CA,933090000,,,,
+CAL000190819,0,0,PAUL'S AUTO & DETAIL SERVICE,245 EL CAMINO REAL,,GREENFIELD,27,CA,939270000,,,,
+all correct to: CAL000190816, Riverbank Oil Transfer
+
+Left in because strdist = 2:
+CAD982446262,0,0,HERTZ EQUIPMENT RENTAL,6701 ROSEDALE HWY,,BAKERSFIELD,15,CA,933085827,,,,
+(was corrected to CAD982446882 Evergreen Fresno)
+
+CAL000190418,0,0,LAIDLAW EDUCATION SERVICES,117 FERN ST,,SANTA CRUZ,44,CA,950600000,,,,
+(was corrected to CAL000190816, Riverbank Oil Transfer)
+
+Well, that was a lot of work for a very marginal improvement.  with the
+exception of Onyx environmental svcs.
+
+
