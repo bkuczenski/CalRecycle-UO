@@ -6,6 +6,13 @@ function D=meth_code(C,Desc)
 % always blank for new codes.
 
 P=pwd;
+if nargin<1
+  % display all method codes
+  S=load('Tanner.mat');
+  show(select(S.Methods,{'METH_CODE','METH_DESC'}))
+  return
+end
+
 if nargin<2 Desc=''; end
 
 if iscell(C)
