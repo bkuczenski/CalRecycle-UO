@@ -8,11 +8,15 @@ function S=fieldop(S,target,expr)
 % S is any structure array.  
 %
 % 'expr' should be a matlab expression, referring to fields in S using the hash
-% symbol, followed by the field name, like #FieldName.  The function assumes
-% fields will evaluate as numeric arrays (square brackets & num2cell are used). 
+% symbol, followed by the field name, followed by a non-word character like a space,
+% for example '#FieldName.'  The function assumes fields will evaluate as numeric
+% arrays (square brackets & num2cell are used).
 %
-% e.g. if a is an nx1 structure with fields 'Bort' and 'Slimy', then 
-% fields(a,'#Bort + #Slimy','Bort') will set Bort equal to the sum of Bort and
+% The expression should be written to accommodate horizontal (e.g. 1 x length(S) )
+% arrays.
+%
+% Example: if a is an nx1 structure with fields 'Bort' and 'Slimy', then 
+% fieldop(a,'Bort','#Bort + #Slimy') will set Bort equal to the sum of Bort and
 % Slimy for each of the n elements of a.
 
 Fs=strrep(regexp(expr,'#\w+','match'),'#','');
