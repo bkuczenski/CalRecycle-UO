@@ -17,8 +17,8 @@
 YEARS=2007:2011;
 WCs=221:223;
 
-READ_FACILITIES = true;
-READ_NAICS      = true;
+READ_FACILITIES = false;
+READ_NAICS      = false;
 LOAD_MD_NODE    = false;
 GEN_MD          = true;
 UNITCONV_MD     = false;
@@ -110,7 +110,7 @@ GAL_PER_TON='2000/7.5';
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if READ_FACILITIES
+if READ_FACILITIES | ~exist('FacilitiesUO.mat','file')
   fprintf(1,'Reading facilities database: %.1f sec \n',toc)
   global Facilities FACILITIES GEO_CONTEXT GEO_REGION UNIT_CONV
   Facilities = read_dat([FACILITIES_PREFIX FACILITIES_FILE],',', ...
@@ -164,7 +164,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if READ_NAICS
+if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
   fprintf(1,'Adding NAICS codes to Facilities (this is SLOW): %.1f sec\n',toc)
   fprintf(1,'Reading NAICS database:\n')
   FN=read_dat([FACILITIES_PREFIX NAICS_FILE],',',{'s','s','',''},...
