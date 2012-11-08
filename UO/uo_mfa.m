@@ -17,16 +17,16 @@
 YEARS=2007:2011;
 WCs=221:223;
 
-READ_FACILITIES = false;
-READ_NAICS      = false;
+READ_FACILITIES = true;
+READ_NAICS      = true;
 LOAD_MD_NODE    = false;
-GEN_MD          = false;
+GEN_MD          = true;
 UNITCONV_MD     = false;
 RE_CORR_METH    = false;
-GEN_NODE        = false;
-GEN_NODE_FORCE  = false;
-LOAD_CR_PROC    = false;
-GEN_NODE_PIVOT  = false;
+GEN_NODE        = true;
+GEN_NODE_FORCE  = true;
+LOAD_CR_PROC    = true;
+GEN_NODE_PIVOT  = true;
 PUBLISH_DATA    = true;
 APPLY_FAC_DATA  = true;
 FORCE_FAC_DATA  = true;
@@ -35,13 +35,15 @@ COMPUTE_ACTIVITY = true;
 %% INPUT FILES
 %% Location of facility description data in csv format
 % modified to include DESTINATION_UNKNOWN, SOURCE_UNKNOWN, and custom additions
-FACILITIES_FILE='FacilityData/HWTS_FACILITIES_2007_2011.csv'; 
-NAICS_FILE='FacilityData/HWTS_FACILITIES_NAICS.csv';
+FACILITIES_FILE='HWTS_FACILITIES_2007_2011.csv'; 
+NAICS_FILE='HWTS_FACILITIES_NAICS.csv';
 
-TANNER_PREFIX='../HWTS/'; % path to Tanner report data - each year in 'TannerYYYY'
+FACILITIES_PREFIX='../FacilityData/';
+
+TANNER_PREFIX='../TannerData/'; % path to Tanner report data - each year in 'TannerYYYY'
                           % subdir - list of manifest files is hardcoded into
                           % uo_load (based on downloadable data)
-CALRECYCLE_PREFIX='../CalRecycle/'; %% path to CalRecycle data - need
+CALRECYCLE_PREFIX='../CalRecycleData/'; %% path to CalRecycle data - need
                                     % CR-processor.csv
 
 
@@ -111,7 +113,7 @@ GAL_PER_TON='2000/7.5';
 if READ_FACILITIES
   fprintf(1,'Reading facilities database: %.1f sec \n',toc)
   global Facilities FACILITIES GEO_CONTEXT GEO_REGION UNIT_CONV
-  Facilities = read_dat(FACILITIES_FILE,',', ...
+  Facilities = read_dat([FACILITIES_PREFIX FACILITIES_FILE],',', ...
                         {'s','n','n','s','s','','s','s','s','s','s','','s',''}, ...
                         struct('Field',{'FAC_NAME'},'Test',{@isempty}, ...
                                'Pattern',{''},'Inv',{1}));
@@ -165,7 +167,7 @@ end
 if READ_NAICS
   fprintf(1,'Adding NAICS codes to Facilities (this is SLOW): %.1f sec\n',toc)
   fprintf(1,'Reading NAICS database:\n')
-  FN=read_dat(NAICS_FILE,',',{'s','s','',''},...
+  FN=read_dat([FACILITIES_PREFIX NAICS_FILE],',',{'s','s','',''},...
               struct('Field',{'NAICS_CODE'},'Test',{@isempty}, ...
                     'Pattern',{''},'Inv',{1}));
   FN=sort(FN,'GEN_EPA_ID');
