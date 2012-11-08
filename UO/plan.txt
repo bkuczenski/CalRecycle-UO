@@ -1,0 +1,62 @@
+==========
+Sun Oct 21 22:46:26 PDT 2012
+
+I-- Facility List
+
+    introduce NAICS data into facility list- create a new dataset from Ken
+    Brdshaw's data- forget about my enormous, 18-year facilities database
+    as it is not relevant. -- DONE
+
+    Once we do that, need to re-save it; write a new load_geo for UO; give
+    it the same name. - DONE ; load_geo is NASC to change context
+
+    Need to check to see what fraction of CR EPAIDs are listed in Ken's
+    data (can always send him a new request -- but we should see most of
+    them, right?) -- there are some (61) missing. 44 are present in my
+    broader facility database (of course, without NAICS data).  
+    Anyway, request sent.
+
+II-- Facility Mass Balance
+
+    For a given manifest file (use CR-node output for CR), compute the mass
+    balance for each facility which receives a transfer.  The fields:
+    Gen, Import, TxIn (inclusive), Disp, TxOut.  For CR, can make an
+    "industrial fraction" estimate. but not from manifest data.
+
+    should rewrite cr_node to store industrial fraction and import fraction
+    in each manifest. -- Done and Done
+
+    also need to incorporate the 223 original-units data (and for that
+    matter, need to reconcile his 223 data with my 223 data)
+
+    need to estimate a likely "% used oil" based on 223 units and/or
+    originating NAICS code
+
+III-- Data Reporting.
+
+    This is going to take the form of carefully enumerated-- manually
+    enumerated-- and then populated.  Hmm, this was done in mfa_extract
+    before.  All it did, at root, was a sequence of accums and then some
+    field-moving-around. 
+
+So-- a query is performed on a set of manifest data.  first we group the
+manifests by receiving facility.  What I really need to do is a way to
+create a new collection of manifests on the fly that can be demonstrated to
+have equivalent mass to an existing collection.
+
+preserving mass is the point of the mass balance.  
+
+so I need to derive rules that may be used to demonstrate that two
+flows have the same mass.  easy: same amount of generation; same amount of
+disposition.  same total magnitude (which is just the straight sum of all
+manifests).
+
+that's what the mean value theorem is for- to reduce the collection of
+complicated flows to a single mean flow.  that is the computation- then all
+I do is select the scope differently for each computation, then compute the
+mean flow over the scope.
+
+sample queries:
+ - fraction of industrial oil
+ - NAICS sector distribution
+ - Method Codes
