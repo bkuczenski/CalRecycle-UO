@@ -20,14 +20,14 @@ WCs=221:223;
 READ_FACILITIES = false;
 READ_NAICS      = false;
 LOAD_MD_NODE    = false;
-GEN_MD          = true;
+GEN_MD          = false;
 UNITCONV_MD     = false;
 RE_CORR_METH    = false;
-GEN_NODE        = true;
-GEN_NODE_FORCE  = true;
-LOAD_CR_PROC    = true;
-GEN_NODE_PIVOT  = true;
-PUBLISH_DATA    = true;
+GEN_NODE        = false;
+GEN_NODE_FORCE  = false;
+LOAD_CR_PROC    = false;
+GEN_NODE_PIVOT  = false;
+PUBLISH_DATA    = false;
 APPLY_FAC_DATA  = true;
 FORCE_FAC_DATA  = true;
 COMPUTE_ACTIVITY = true;
@@ -65,7 +65,10 @@ TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132',
 % The rest are just not worth considering.
 
 %% Output Files
-FILE_EXCHANGE='../../research.bren/CalRecycle-Oil/Working Documents/Data Collection/MFA/';
+% BK
+ FILE_EXCHANGE='../../research.bren/CalRecycle-Oil/Working Documents/Data Collection/MFA/';
+% TZ
+% FILE_EXCHANGE='C:\tzink\Dropbox\School\PhD\Research\Projects & Papers\CalRecycle Used Oil LCA\Working Documents\Data Collection\MFA\';
 NODE_PIVOT_PREFIX='UO_facilities';
 ACTIVITY_FILE_PREFIX='UO_activity';
 
