@@ -60,7 +60,7 @@ CALRECYCLE_PREFIX='../CalRecycleData/'; %% path to CalRecycle data - need
 NODE_PIVOT_PREFIX='UO_facilities';
 ACTIVITY_FILE_PREFIX='UO_activity';
 
-FAC_DATA_FILE=[FILE_EXCHANGE 'Facilities.xlsx'];
+FAC_DATA_FILE='Facilities.xlsx';
 FAC_DATA_SHEET='Activities';
 
 

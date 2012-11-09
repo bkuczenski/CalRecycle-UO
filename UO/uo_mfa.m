@@ -397,7 +397,7 @@ if APPLY_FAC_DATA
   if ~isfield(Node,'FacData') | FORCE_FAC_DATA
     fprintf('%s ... %.1f sec\n','Reading Facility Method-to-Activity spreadsheet',toc)
     
-    Fac=xls2struct(FAC_DATA_FILE,FAC_DATA_SHEET,{'n','s','s','s','s','n','s'});
+    Fac=xls2struct([FILE_EXCHANGE FAC_DATA_FILE],FAC_DATA_SHEET,{'n','s','s','s','s','n','s'});
     [Fac(isnan([Fac.FRACTION])).FRACTION]=deal(1);
     Node.FacData=Fac;
     FN=fieldnames(Node);
