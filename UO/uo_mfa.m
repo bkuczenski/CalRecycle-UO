@@ -284,7 +284,7 @@ if GEN_NODE | GEN_NODE_FORCE
         fprintf('%s exists: nothing to do.\n',nodename)
       else
         fprintf('Computing node balance: %s\n',nodename)
-        Rn=uo_node(MD.(manname),TANNER_TERMINAL,TANNER_DISP);
+        Rn=uo_node(MD.(manname),TANNER_TERMINAL,TANNER_DISP,TANNER_CUTOFF);
         [Rn(1:end).Year]=deal(YEARS(i));
         [Rn(1:end).WASTE_STATE_CODE]=deal(wc);
         nf=length(fieldnames(Rn));

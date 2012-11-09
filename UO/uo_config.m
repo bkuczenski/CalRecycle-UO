@@ -67,7 +67,8 @@ FAC_DATA_SHEET='Activities';
 
 %% Management Method Codes we're interested in
 METH_REGEXP='^H[0-9]{3}';  % regexp to match all method codes
-TANNER_DISP='H039';  % net flows into a facility are given this code
+TANNER_DISP={'H900','H901'};  % net flows into a facility are given this code
+TANNER_CUTOFF=-0.1; % cutoff between disp codes
 TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132', ...
                  'H135'}; % these codes are considered "terminal" & do not add to
                           % the quantity of oil to TANNER_DISP 

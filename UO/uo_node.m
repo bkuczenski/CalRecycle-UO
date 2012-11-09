@@ -1,4 +1,4 @@
-function Rn = uo_node(Q,T,RC)
+function Rn = uo_node(Q,T,varargin)
 % function Rn = uo_node(Q,T,RC)
 %
 % Turns a manifest record Q into a node mass balance Rn.  Q should have the
@@ -18,6 +18,17 @@ function Rn = uo_node(Q,T,RC)
 %
 % RC is the method code assigned to nonterminal flows that meet disposition at the
 % facility.  Default: H999 
+%
+% function Rn = uo_node(Q,T,RC,Fc)
+%
+% Implements a tiered disposition heuristic depending on the value of 'f' for each
+% facility (computed as described below).  'RC' should be a k-element cell array of
+% method codes and 'Fc' should be a k-1-element vector of monotonically increasing
+% values for 'f' between -1 and 0.  The facility's disposition is assigned RC{1} for
+% 'f' values between -1 and Fc(1); RC{2} for 'f' values between Fc(1) and Fc(2); and
+% so on, up to RC{k} for 'f' values between Fc(k-1) and 0.
+%
+% FUNCTION OPERATION
 %
 % A facility list is constructed based on the set of destination facilities.
 %
@@ -71,8 +82,37 @@ global GEO_REGION
 FN=fieldnames(Q);
 QTY=FN{7};
 
-if nargin<3
-  RC='H999';
+if nargin<4
+  Fc=[];
+  if nargin==2
+    RC={'H999'};
+  else
+    RC=varargin{1};
+    if iscell(RC) 
+      if length(RC)>1
+        warning(['Only the first disposition code ' RC{1} ' is being used'])
+        RC=RC(1);
+      end
+    else
+      RC={RC};
+    end
+  end
+else % nargin==4
+  RC=varargin{1};
+  if ~iscell(RC)
+    RC={RC};
+  end
+  Fc=varargin{2};
+  if length(Fc)<length(RC)-1
+    warning(['Insufficient Fc specification.  Only the first ' num2str(length(Fc)+1) ...
+             ' disposition code(s) used'])
+    RC=RC(1:length(Fc)+1);
+  end
+  if length(Fc)>length(RC)-1
+    warning(['Too many values for Fc.  Only the first ' num2str(length(RC)-1)  ...
+                        ' are used.'])
+    Fc=Fc(1:length(RC)-1);
+  end
 end
 
 %% PART 1
@@ -128,10 +168,20 @@ Rn = fieldop(Rn,'Osum',[' #O' QTY ' + #Ox' QTY ]);
 Rn = fieldop(Rn,'Isum',[' #Ia' QTY ' + #Im' QTY ' + #Ig' QTY ' + #It' QTY ]);
 Rn = fieldop(Rn,'b',[' #Osum + #T' QTY ' - #Isum' ]);
 Rn = fieldop(Rn,'f','#b ./ max([ #Osum; #Isum])');
-Rn = fieldop(Rn,[RC QTY],' abs( - min([ #b ; zeros(size(#b))]))');
-Rn = fieldop(Rn,['D' QTY],[' #T' QTY ' + #' RC QTY]);
+Rn = fieldop(Rn,'RC',' abs( - min([ #b ; zeros(size(#b))]))');
+Rn = fieldop(Rn,['D' QTY],[' #T' QTY ' + #RC']);
 Rn = fieldop(Rn,['G' QTY],[' #Ia' QTY ' + max([ #b ; zeros(size(#b))])']);
+% deal with tiered RC codes
+Fc=[-1;Fc(:);0];
+for i=1:length(RC) % initialize fields
+  [Rn.([RC{i} QTY])]=deal(0);
+end
 
+for i=1:length(RC)
+  [~,M]=filter(Rn,'f',{@ge,@lt},{Fc(i),Fc(i+1)});
+  newval=num2cell([Rn(M(:,end)).([RC{i} QTY])]+[Rn(M(:,end)).RC]);
+  [Rn(M(:,end)).([RC{i} QTY])]=deal(newval{:});
+end
 
 %% PART 5
 %% METH_CODE Totals
@@ -154,7 +204,9 @@ if any(isterminal)
 else
   TQTY={};
 end
+RCQTY=strcat(unique(RC),QTY);
 %  G, Ig, It, Im, O, Ox, D, f, RC, {T}
+
 Rn=select(Rn,{'TSDF_EPA_ID',['G' QTY],['Ig' QTY],['Im' QTY],['It' QTY],...
-              ['O' QTY],['Ox' QTY],['D' QTY],'f',[RC QTY],TQTY{:}});
+              ['O' QTY],['Ox' QTY],['D' QTY],'f',RCQTY{:},TQTY{:}});
 
