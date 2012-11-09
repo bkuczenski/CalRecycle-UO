@@ -142,7 +142,8 @@ F.Ig = accum(Q(~isself & ~isimport & ~istx),'ddmddda','Ig');
 F.It = accum(Q(~isself & ~isimport & istx),'ddmddda','It');
 
 % terminal flows are a subset- accum over destination facilities
-F.T  = accum(Q(isterminal),'ddmddda','T');
+% mod to exclude imports from the mass balance
+F.T  = accum(Q(isterminal & ~isimport),'ddmddda','T');
 
 % outflows only include flows from facilities in Ts, excl self tx
 F.O  = accum(Q(istx & ~isimport & ~isexport & ~isself),'mddddda','O');
@@ -165,7 +166,8 @@ Rn = vlookup(Rn,'TSDF_EPA_ID',F.T,'TSDF_EPA_ID',['T' QTY],'zero');
 %% Derived Measurements
 
 Rn = fieldop(Rn,'Osum',[' #O' QTY ' + #Ox' QTY ]);
-Rn = fieldop(Rn,'Isum',[' #Ia' QTY ' + #Im' QTY ' + #Ig' QTY ' + #It' QTY ]);
+Rn = fieldop(Rn,'Isum',[' #Ia' QTY ' + #Ig' QTY ' + #It' QTY ]); % + #Im' QTY ' %
+                                                                 % exclude imports
 Rn = fieldop(Rn,'b',[' #Osum + #T' QTY ' - #Isum' ]);
 Rn = fieldop(Rn,'f','#b ./ max([ #Osum; #Isum])');
 Rn = fieldop(Rn,'RC',' abs( - min([ #b ; zeros(size(#b))]))');
