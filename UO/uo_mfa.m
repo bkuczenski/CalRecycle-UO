@@ -516,3 +516,5 @@ if COMPUTE_ACTIVITY
     copyfile(ACTIVITY_FILE,FILE_EXCHANGE)
   end
 end
+
+fprintf ('DONE \n')

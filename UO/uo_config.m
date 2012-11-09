@@ -34,9 +34,9 @@ GEN_MD          = false;
 UNITCONV_MD     = false;
 RE_CORR_METH    = false;
 GEN_NODE        = false;
-GEN_NODE_FORCE  = true;
+GEN_NODE_FORCE  = false;
 LOAD_CR_PROC    = false;
-GEN_NODE_PIVOT  = true;
+GEN_NODE_PIVOT  = false;
 PUBLISH_DATA    = true;
 APPLY_FAC_DATA  = true;
 FORCE_FAC_DATA  = true;
@@ -87,16 +87,16 @@ TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132',
 switch USER
   case 'BK'
     %% Output Files
-    FILE_EXCHANGE=['../../../../Dropbox/research.bren/CalRecycle-Oil/Working Documents/'...
-                   'Data Collection/MFA/'];
+    FILE_EXCHANGE_PREFIX=['../../../../Dropbox/research.bren/CalRecycle-Oil/'];
   case 'TZ'
-    FILE_EXCHANGE='C:\tzink\Dropbox\School\PhD\Research\Projects & Papers\CalRecycle Used Oil LCA\Working Documents\Data Collection\MFA\';
+    FILE_EXCHANGE_PREFIX='C:\tzink\Dropbox\School\PhD\Research\Projects & Papers\CalRecycle Used Oil LCA\';
   case 'AH'
     
   otherwise
     error(['Invalid user ' USER])
 end
 
+FILE_EXCHANGE=[FILE_EXCHANGE_PREFIX 'Working Documents/Data Collection/MFA/'];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
