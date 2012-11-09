@@ -89,7 +89,7 @@ switch USER
     %% Output Files
     FILE_EXCHANGE_PREFIX=['../../../../Dropbox/research.bren/CalRecycle-Oil/'];
   case 'TZ'
-    FILE_EXCHANGE_PREFIX='C:\tzink\Dropbox\School\PhD\Research\Projects & Papers\CalRecycle Used Oil LCA\';
+    FILE_EXCHANGE_PREFIX='C:/tzink/Dropbox/School/PhD/Research/Projects & Papers/CalRecycle Used Oil LCA/';
   case 'AH'
     
   otherwise
