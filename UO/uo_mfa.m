@@ -113,7 +113,7 @@ if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
           'exact');
   [Facilities(~Mf).NAICS_CODE]=deal('');
   Facilities=moddata(Facilities,'NAICS_CODE',@deblank);
-  save FacilitiesUO FACILITIES Facilities
+  save FacilitiesUO FACILITIES Facilities GEO_CONTEXT GEO_REGION UNIT_CONV
 end
 
 %% okay, so we read in the facility data
@@ -309,9 +309,18 @@ if LOAD_CR_PROC
     Node=union(Node,uo_load('CR',CALRECYCLE_PREFIX));
   end
   for i=1:length(YEARS)
+
     yy=num2str(YEARS(i));
     nodename=['Rn_' yy '_221'];
     crname=['CR_' yy];
+
+    % cleanup
+    if isfield(Node.(nodename),'CR_inGAL')
+      Node.(nodename)=rmfield(Node.(nodename),{'CR_inGAL','CR_prodGAL', ...
+                          'CR_resGAL'});
+      Node=rmfield(Node,crname); % reload to get ind fraction
+    end
+    
     if isfield(Node,crname)
       fprintf('%s exists: nothing to do.\n',crname)
       CRa=Node.(crname);
@@ -319,23 +328,31 @@ if LOAD_CR_PROC
       fprintf('Computing CR totals: %s\n',crname)
       CRa=select(accum(filter(Node.CR_Proc,'Year',{@eq},YEARS(i)),'dmdm',''),...
                  {'Year','EPAIDNumber','GrandTotalOilReceivedGallons', ...
-                  'RecycledOilTotalGallons','ResidualMaterialTotalGallons'});
+                  'RecycledOilTotalGallons','ResidualMaterialTotalGallons',...
+                  'TotalIndGallons'});
       % transfers column just makes NO consistent sense
       CRa=mvfield(CRa,'EPAIDNumber','CR_EPA_ID');
-      CRa=mvfield(CRa,'GrandTotalOilReceivedGallons','CR_inGAL');
+      CRa=mvfield(CRa,'GrandTotalOilReceivedGallons','CR_GAL');
       CRa=mvfield(CRa,'RecycledOilTotalGallons','CR_prodGAL');
-      CRa=mvfield(CRa,'ResidualMaterialTotalGallons','CR_resGAL');
+      CRa=mvfield(CRa,'ResidualMaterialTotalGallons','CR_residGAL');
+      CRa=mvfield(CRa,'TotalIndGallons','CR_indGAL');
       Node.(crname)=CRa;
     end
     fprintf('Appending to %s \n',nodename)
-    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_inGAL', ...
+    FN=fieldnames(Node.(nodename));
+    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_GAL', ...
                           'zer');
     Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_prodGAL', ...
                           'zer');
-    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_resGAL', ...
+    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_residGAL', ...
                           'zer');
-    nf=length(fieldnames(Node.(nodename)));
-    Node.(nodename)=orderfields(Node.(nodename),[1:11 nf-2 nf nf-1 12:nf-3]);
+    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_indGAL', ...
+                          'zer');
+    
+    Node.(nodename)=select(Node.(nodename),{FN{1:11},...
+                        'CR_GAL','CR_indGAL','CR_prodGAL','CR_residGAL',...
+                        FN{12:end}});
+    %[1:11 nf-2 nf nf-1 12:nf-3]);
   end
   save Node Node
 end
