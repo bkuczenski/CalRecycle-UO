@@ -10,8 +10,14 @@ function S=expand(S,EF,delim,DF)
 % datafield is partitioned equally over all records.  datafield can be a cell
 % array of fields, in which case each field is partitioned independently.
 
+transp=false;
+
 if nargin<3   DF={}; end
 if ~iscell(DF) DF={DF}; end
+if size(S,2)<size(S,1)
+  S=S';
+  transp=true;
+end
 
 for i=length(S):-1:1
   % since we're adding records, we go backwards
@@ -30,3 +36,4 @@ for i=length(S):-1:1
   end
 end
 
+if transp S=S'; end
