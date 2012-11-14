@@ -303,7 +303,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-if FORCE_CR_PROC
+if FORCE_CR_PROC & isfield(Node,'CR_Proc') 
   Node=rmfield(Node,'CR_Proc');
 end
 
