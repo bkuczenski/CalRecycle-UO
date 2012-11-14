@@ -159,6 +159,15 @@ switch dbase
     
     D.(savevars{1})=CR;
     
+
+  case 'RCRA'
+    src_file=[prefix '/RCRA-W206-BR-2003-2009.csv'];
+    
+    RCRA=read_dat(src_file,',',{'n','s','s','s','','','s','s','n','s','s','s','s','s','s'});
+
+    for i=1:length(year)
+      D.(['RCRA_' num2str(year(i))])=filter(RCRA,'Year',{@eq},year(i));
+    end
     
   otherwise
     error(['Unknown database prefix ' dbase])

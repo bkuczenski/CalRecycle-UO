@@ -26,6 +26,7 @@ fprintf('Loading config for user %s\n',USER);
 %% Select which parts of the MFA to run
 YEARS=2007:2011;
 WCs=221:223;
+RCRA_YEARS=[2007 2009];
 
 READ_FACILITIES = false;
 READ_NAICS      = false;
@@ -36,7 +37,8 @@ RE_CORR_METH    = false;
 GEN_NODE        = false;
 FORCE_GEN_NODE  = false;
 LOAD_CR_PROC    = false;
-FORCE_CR_PROC   = true;
+FORCE_CR_PROC   = false;
+GEN_RCRA        = true;
 GEN_NODE_PIVOT  = true;
 PUBLISH_DATA    = true;
 APPLY_FAC_DATA  = true;
