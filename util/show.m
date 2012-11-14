@@ -117,7 +117,9 @@ width=zeros(size(FN));
 % first, establish field widths
 accumfmt=repmat('d',1,length(FN));
 for i=1:length(FN)
+  %% FIRST- determine column formats from specification or inspection
   myfmt=fmt{min([length(fmt),i])};
+  myhwidth=length(FN{i});
   if isempty(regexp(myfmt,'^%')) myfmt=['%' myfmt]; end
   % regex for fprintf format string is: '%0?[+-]?[0-9\.]*[bcdeEfgGiostuxX]{1,2}'
   fpf='^%([#0\ +-_]*)([0-9\.]*)([bcdeEfgGiostuxX]{1,2})';
@@ -137,7 +139,7 @@ for i=1:length(FN)
     if isnumeric(firstlook)
       secondlook=D(max([1 min(find([D.(FN{i})]>0))])).(FN{i});
       
-      if fix(secondlook)==secondlook %&firstlook>0 
+      if fix(secondlook)==secondlook & fix(firstlook)==firstlook %&firstlook>0 
         t_fmt{1}{3}='d';
       else t_fmt{1}{3}='f';
       end
@@ -149,18 +151,20 @@ for i=1:length(FN)
   %if ~nofile
   %  hdr_fmt{i}='%-s';
   %else
+  % SECOND- determine field widths (skip for csv files)
   if strcmp( delim, ',*' )
     width=0;
     hdr_fmt{i}='%s';
   elseif isempty(t_fmt{1}{2}) % no field width supplied - figure it out ourselves
     switch t_fmt{1}{3}(1)
       case {'b','d','i','o','t','u','x','X'} % integer
-        maxsize=max([8,1+ceil(log10(max(abs([D(:).(FN{i})]))))]);
+        maxsize=max([myhwidth,1+ceil(log10(max(abs([D(:).(FN{i})]))))]);
         width(i)=maxsize;
         t_fmt{1}{2}=num2str(maxsize);
         hdr_fmt{i}=['%-' num2str(maxsize) 's'];
         accumfmt(i)='a';
       case {'e','E','f','g','G'} % float
+        % TODO- figure out how to incorporate myhwidth
         t_fmt{1}{2}='12.4';
         width(i)=12;
         hdr_fmt{i}='%-12s';
@@ -170,7 +174,7 @@ for i=1:length(FN)
 %           t_fmt{1}{2}='';
 %           hdr_fmt{i}='%s';
 %         else
-          s_width=max(cellfun(@length,[{D.(FN{i})}])); % check out those parens
+          s_width=max([myhwidth cellfun(@length,[{D.(FN{i})}])]); % check out those parens
           t_fmt{1}{2}=[num2str(s_width) '.' num2str(s_width)]; 
           
           width(i)=s_width;
