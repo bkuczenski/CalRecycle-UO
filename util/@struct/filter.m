@@ -1,4 +1,4 @@
-function [Ds,M]=filter(D,Field,Test,Pattern,Inv)
+function [Ds,M]=filter(D,Field,Test,Pattern,Inv,Or)
 % Ds=filter(D,Field,Test,Pattern)
 % 
 % D is a table structure.  'Field', 'Test',
@@ -32,9 +32,11 @@ FN=fieldnames(D);
 if nargin==2
   filt=Field;
   if ~isfield(filt,'Inv') filt.Inv=0; end
+  if ~isfield(filt,'Or') filt.Or=0; end
 else
   if nargin<5 Inv=0; end
-  filt=struct('Field',Field,'Test',Test,'Pattern',Pattern,'Inv',Inv);
+  if nargin<6 Or=0; end
+  filt=struct('Field',Field,'Test',Test,'Pattern',Pattern,'Inv',Inv,'Or',Or);
 end
 
 M=logical(zeros(length(D),length(filt)));
@@ -80,11 +82,17 @@ for i=1:length(D)
     % catch
     %   keyboard
     % end
-    if  isempty(result) | ~result
-      filt_pass=0;
-      break;
+    if  isempty(result) | ~result 
+      if ~filt(f).Or
+        filt_pass=0;
+        break;
+      end
+    else
+      M(i,f)=true;
     end
-    M(i,f)=true;
+  end
+  if filt(f).Or
+    filt_pass=any(M(i,:));
   end
   if filt_pass
     if isempty(Ds)
