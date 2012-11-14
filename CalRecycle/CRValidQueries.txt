@@ -1,0 +1,502 @@
+Queries                       
+
+CRHaulingAgr                  
+CRHaulingCC                   
+CRHaulingConsol               
+CRHaulingGov                  
+CRHaulingImport               
+CRHaulingIndAgr               
+CRHaulingIndCC                
+CRHaulingIndConsol            
+CRHaulingIndGov               
+CRHaulingIndImport            
+CRHaulingIndInds              
+CRHaulingIndMar               
+CRHaulingIndTotal             
+CRHaulingInds                 
+CRHaulingLubAgr               
+CRHaulingLubCC                
+CRHaulingLubConsol            
+CRHaulingLubGov               
+CRHaulingLubImport            
+CRHaulingLubInds              
+CRHaulingLubMar               
+CRHaulingLubTotal             
+CRHaulingMar                  
+CRHaulingTotal                
+CRProcessedExports            
+CRProcessedReportedRcvd       
+CRProcessedTotal              
+CRProductsAsphalt             
+CRProductsBaseOil             
+CRProductsLightFuels          
+CRProductsRFO                 
+CRProductsTotal               
+CRSalesInd                    
+CRSalesLub                    
+CRSalesTotal                  
+CRUnits                       
+MDDispositionD99              
+MDDispositionH010             
+MDDispositionH020             
+MDDispositionH037             
+MDDispositionH039             
+MDDispositionH040             
+MDDispositionH041             
+MDDispositionH050             
+MDDispositionH061             
+MDDispositionH077             
+MDDispositionH080             
+MDDispositionH081             
+MDDispositionH101             
+MDDispositionH103             
+MDDispositionH111             
+MDDispositionH122             
+MDDispositionH123             
+MDDispositionH129             
+MDDispositionH13              
+MDDispositionH131             
+MDDispositionH132             
+MDDispositionH134             
+MDDispositionH135             
+MDDispositionH138             
+MDDispositionH139             
+MDDispositionH141             
+MDDispositionH213             
+MDDispositionH650             
+MDDispositionOtherUnknown     
+MDDispositionT68              
+MDDispositionTotal            
+MDDispositionWC221H010        
+MDDispositionWC221H020        
+MDDispositionWC221H037        
+MDDispositionWC221H039        
+MDDispositionWC221H040        
+MDDispositionWC221H050        
+MDDispositionWC221H061        
+MDDispositionWC221H080        
+MDDispositionWC221H081        
+MDDispositionWC221H129        
+MDDispositionWC221H131        
+MDDispositionWC221H132        
+MDDispositionWC221H134        
+MDDispositionWC221H135        
+MDDispositionWC221H141        
+MDDispositionWC221OtherUnknown
+MDDispositionWC221Total       
+MDDispositionWC222H020        
+MDDispositionWC222H039        
+MDDispositionWC222H040        
+MDDispositionWC222H050        
+MDDispositionWC222H061        
+MDDispositionWC222H077        
+MDDispositionWC222H081        
+MDDispositionWC222H111        
+MDDispositionWC222H123        
+MDDispositionWC222H129        
+MDDispositionWC222H131        
+MDDispositionWC222H132        
+MDDispositionWC222H135        
+MDDispositionWC222H141        
+MDDispositionWC222OtherUnknown
+MDDispositionWC222Total       
+MDDispositionWC222Y141        
+MDDispositionWC223D99         
+MDDispositionWC223H010        
+MDDispositionWC223H020        
+MDDispositionWC223H039        
+MDDispositionWC223H040        
+MDDispositionWC223H041        
+MDDispositionWC223H050        
+MDDispositionWC223H061        
+MDDispositionWC223H077        
+MDDispositionWC223H081        
+MDDispositionWC223H101        
+MDDispositionWC223H103        
+MDDispositionWC223H111        
+MDDispositionWC223H122        
+MDDispositionWC223H123        
+MDDispositionWC223H129        
+MDDispositionWC223H13         
+MDDispositionWC223H132        
+MDDispositionWC223H135        
+MDDispositionWC223H138        
+MDDispositionWC223H139        
+MDDispositionWC223H141        
+MDDispositionWC223H213        
+MDDispositionWC223H650        
+MDDispositionWC223OtherUnknown
+MDDispositionWC223T68         
+MDDispositionWC223Total       
+MDDispositionWC223Y141        
+MDDispositionY141             
+MDGeogExports                 
+MDGeogTotal                   
+MDGeogWC221ex                 
+MDGeogWC222ex                 
+MDGeogWC223ex                 
+MDHaulingDirect               
+MDHaulingTotal                
+MDHaulingTxLosses             
+MDHaulingTxStation            
+MDHaulingWC221Direct          
+MDHaulingWC221TxLosses        
+MDHaulingWC221TxStation       
+MDHaulingWC222Direct          
+MDHaulingWC222TxLosses        
+MDHaulingWC222TxStation       
+MDHaulingWC223Direct          
+MDHaulingWC223TxLosses        
+MDHaulingWC223TxStation       
+MDProductsAsphalt             
+MDProductsBaseOil             
+MDProductsLightFuels          
+MDProductsRFO                 
+MDProductsTotal               
+MDUOGenTotal                  
+MDUOGenWC221                  
+MDUOGenWC222                  
+MDUOGenWC223                  
+MDUnits                       
+Year                          
+
+Queries                       
+TOTAL
+                              
+
+Query                         
+
+                  CRHaulingAgr
+                   CRHaulingCC
+               CRHaulingConsol
+                  CRHaulingGov
+               CRHaulingImport
+               CRHaulingIndAgr
+                CRHaulingIndCC
+            CRHaulingIndConsol
+               CRHaulingIndGov
+            CRHaulingIndImport
+              CRHaulingIndInds
+               CRHaulingIndMar
+             CRHaulingIndTotal
+                 CRHaulingInds
+               CRHaulingLubAgr
+                CRHaulingLubCC
+            CRHaulingLubConsol
+               CRHaulingLubGov
+            CRHaulingLubImport
+              CRHaulingLubInds
+               CRHaulingLubMar
+             CRHaulingLubTotal
+                  CRHaulingMar
+                CRHaulingTotal
+            CRProcessedExports
+       CRProcessedReportedRcvd
+              CRProcessedTotal
+             CRProductsAsphalt
+             CRProductsBaseOil
+          CRProductsLightFuels
+                 CRProductsRFO
+               CRProductsTotal
+                    CRSalesInd
+                    CRSalesLub
+                  CRSalesTotal
+                       CRUnits
+              MDDispositionD99
+             MDDispositionH010
+             MDDispositionH020
+             MDDispositionH037
+             MDDispositionH039
+             MDDispositionH040
+             MDDispositionH041
+             MDDispositionH050
+             MDDispositionH061
+             MDDispositionH077
+             MDDispositionH080
+             MDDispositionH081
+             MDDispositionH101
+             MDDispositionH103
+             MDDispositionH111
+             MDDispositionH122
+             MDDispositionH123
+             MDDispositionH129
+              MDDispositionH13
+             MDDispositionH131
+             MDDispositionH132
+             MDDispositionH134
+             MDDispositionH135
+             MDDispositionH138
+             MDDispositionH139
+             MDDispositionH141
+             MDDispositionH213
+             MDDispositionH650
+     MDDispositionOtherUnknown
+              MDDispositionT68
+            MDDispositionTotal
+        MDDispositionWC221H010
+        MDDispositionWC221H020
+        MDDispositionWC221H037
+        MDDispositionWC221H039
+        MDDispositionWC221H040
+        MDDispositionWC221H050
+        MDDispositionWC221H061
+        MDDispositionWC221H080
+        MDDispositionWC221H081
+        MDDispositionWC221H129
+        MDDispositionWC221H131
+        MDDispositionWC221H132
+        MDDispositionWC221H134
+        MDDispositionWC221H135
+        MDDispositionWC221H141
+MDDispositionWC221OtherUnknown
+       MDDispositionWC221Total
+        MDDispositionWC222H020
+        MDDispositionWC222H039
+        MDDispositionWC222H040
+        MDDispositionWC222H050
+        MDDispositionWC222H061
+        MDDispositionWC222H077
+        MDDispositionWC222H081
+        MDDispositionWC222H111
+        MDDispositionWC222H123
+        MDDispositionWC222H129
+        MDDispositionWC222H131
+        MDDispositionWC222H132
+        MDDispositionWC222H135
+        MDDispositionWC222H141
+MDDispositionWC222OtherUnknown
+       MDDispositionWC222Total
+        MDDispositionWC222Y141
+         MDDispositionWC223D99
+        MDDispositionWC223H010
+        MDDispositionWC223H020
+        MDDispositionWC223H039
+        MDDispositionWC223H040
+        MDDispositionWC223H041
+        MDDispositionWC223H050
+        MDDispositionWC223H061
+        MDDispositionWC223H077
+        MDDispositionWC223H081
+        MDDispositionWC223H101
+        MDDispositionWC223H103
+        MDDispositionWC223H111
+        MDDispositionWC223H122
+        MDDispositionWC223H123
+        MDDispositionWC223H129
+         MDDispositionWC223H13
+        MDDispositionWC223H132
+        MDDispositionWC223H135
+        MDDispositionWC223H138
+        MDDispositionWC223H139
+        MDDispositionWC223H141
+        MDDispositionWC223H213
+        MDDispositionWC223H650
+MDDispositionWC223OtherUnknown
+         MDDispositionWC223T68
+       MDDispositionWC223Total
+        MDDispositionWC223Y141
+             MDDispositionY141
+                 MDGeogExports
+                   MDGeogTotal
+                 MDGeogWC221ex
+                 MDGeogWC222ex
+                 MDGeogWC223ex
+               MDHaulingDirect
+                MDHaulingTotal
+             MDHaulingTxLosses
+            MDHaulingTxStation
+          MDHaulingWC221Direct
+        MDHaulingWC221TxLosses
+       MDHaulingWC221TxStation
+          MDHaulingWC222Direct
+        MDHaulingWC222TxLosses
+       MDHaulingWC222TxStation
+          MDHaulingWC223Direct
+        MDHaulingWC223TxLosses
+       MDHaulingWC223TxStation
+             MDProductsAsphalt
+             MDProductsBaseOil
+          MDProductsLightFuels
+                 MDProductsRFO
+               MDProductsTotal
+                  MDUOGenTotal
+                  MDUOGenWC221
+                  MDUOGenWC222
+                  MDUOGenWC223
+                       MDUnits
+                          Year
+                       YearNum
+
+Query                         
+TOTAL
+                              
+
+Query                         
+                  CRHaulingAgr
+                   CRHaulingCC
+               CRHaulingConsol
+                  CRHaulingGov
+               CRHaulingImport
+               CRHaulingIndAgr
+                CRHaulingIndCC
+            CRHaulingIndConsol
+               CRHaulingIndGov
+            CRHaulingIndImport
+              CRHaulingIndInds
+               CRHaulingIndMar
+             CRHaulingIndTotal
+      CRHaulingIndTotalInState
+                 CRHaulingInds
+               CRHaulingLubAgr
+                CRHaulingLubCC
+            CRHaulingLubConsol
+               CRHaulingLubGov
+            CRHaulingLubImport
+              CRHaulingLubInds
+               CRHaulingLubMar
+             CRHaulingLubTotal
+      CRHaulingLubTotalInState
+                  CRHaulingMar
+                CRHaulingTotal
+         CRHaulingTotalInState
+            CRProcessedExports
+       CRProcessedReportedRcvd
+              CRProcessedTotal
+             CRProductsAsphalt
+             CRProductsBaseOil
+          CRProductsLightFuels
+                 CRProductsRFO
+               CRProductsTotal
+                    CRSalesInd
+                    CRSalesLub
+                  CRSalesTotal
+                       CRUnits
+              MDDispositionD99
+             MDDispositionH010
+             MDDispositionH020
+             MDDispositionH037
+             MDDispositionH039
+             MDDispositionH040
+             MDDispositionH041
+             MDDispositionH050
+             MDDispositionH061
+             MDDispositionH077
+             MDDispositionH080
+             MDDispositionH081
+             MDDispositionH101
+             MDDispositionH103
+             MDDispositionH111
+             MDDispositionH122
+             MDDispositionH123
+             MDDispositionH129
+              MDDispositionH13
+             MDDispositionH131
+             MDDispositionH132
+             MDDispositionH134
+             MDDispositionH135
+             MDDispositionH138
+             MDDispositionH139
+             MDDispositionH141
+             MDDispositionH213
+             MDDispositionH650
+     MDDispositionOtherUnknown
+              MDDispositionT68
+            MDDispositionTotal
+        MDDispositionWC221H010
+        MDDispositionWC221H020
+        MDDispositionWC221H037
+        MDDispositionWC221H039
+        MDDispositionWC221H040
+        MDDispositionWC221H050
+        MDDispositionWC221H061
+        MDDispositionWC221H080
+        MDDispositionWC221H081
+        MDDispositionWC221H129
+        MDDispositionWC221H131
+        MDDispositionWC221H132
+        MDDispositionWC221H134
+        MDDispositionWC221H135
+        MDDispositionWC221H141
+MDDispositionWC221OtherUnknown
+       MDDispositionWC221Total
+        MDDispositionWC222H020
+        MDDispositionWC222H039
+        MDDispositionWC222H040
+        MDDispositionWC222H050
+        MDDispositionWC222H061
+        MDDispositionWC222H077
+        MDDispositionWC222H081
+        MDDispositionWC222H111
+        MDDispositionWC222H123
+        MDDispositionWC222H129
+        MDDispositionWC222H131
+        MDDispositionWC222H132
+        MDDispositionWC222H135
+        MDDispositionWC222H141
+MDDispositionWC222OtherUnknown
+       MDDispositionWC222Total
+        MDDispositionWC222Y141
+         MDDispositionWC223D99
+        MDDispositionWC223H010
+        MDDispositionWC223H020
+        MDDispositionWC223H039
+        MDDispositionWC223H040
+        MDDispositionWC223H041
+        MDDispositionWC223H050
+        MDDispositionWC223H061
+        MDDispositionWC223H077
+        MDDispositionWC223H081
+        MDDispositionWC223H101
+        MDDispositionWC223H103
+        MDDispositionWC223H111
+        MDDispositionWC223H122
+        MDDispositionWC223H123
+        MDDispositionWC223H129
+         MDDispositionWC223H13
+        MDDispositionWC223H132
+        MDDispositionWC223H135
+        MDDispositionWC223H138
+        MDDispositionWC223H139
+        MDDispositionWC223H141
+        MDDispositionWC223H213
+        MDDispositionWC223H650
+MDDispositionWC223OtherUnknown
+         MDDispositionWC223T68
+       MDDispositionWC223Total
+        MDDispositionWC223Y141
+             MDDispositionY141
+                 MDGeogExports
+                   MDGeogTotal
+                 MDGeogWC221ex
+                 MDGeogWC222ex
+                 MDGeogWC223ex
+               MDHaulingDirect
+                MDHaulingTotal
+             MDHaulingTxLosses
+            MDHaulingTxStation
+          MDHaulingWC221Direct
+        MDHaulingWC221TxLosses
+       MDHaulingWC221TxStation
+          MDHaulingWC222Direct
+        MDHaulingWC222TxLosses
+       MDHaulingWC222TxStation
+          MDHaulingWC223Direct
+        MDHaulingWC223TxLosses
+       MDHaulingWC223TxStation
+             MDProductsAsphalt
+             MDProductsBaseOil
+          MDProductsLightFuels
+                 MDProductsRFO
+               MDProductsTotal
+                  MDUOGenTotal
+                  MDUOGenWC221
+                  MDUOGenWC222
+                  MDUOGenWC223
+                       MDUnits
+                          Year
+                       YearNum
+
+Query                         
+TOTAL
+                              
+

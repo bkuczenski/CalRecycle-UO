@@ -1,0 +1,122 @@
+
+###
+##
+## Used Oil MFA Data
+## CR = CalRecycle dataset  MD = DTSC Manifest data
+## Product Outputs are loose estimates
+##
+D.CR:
+.Hauling:
+.Lub:
+CC,Ind,Mar,Agr,Gov,Import,Consol,Total
+
+69.570848,7.280109,0.287416,2.106627,1.601062,0.263704,14.208439,95.318205
+
+Ind:
+CC,Ind,Mar,Agr,Gov,Import,Consol,Total
+
+0.408860,5.603702,0.250839,0.057735,0.106742,0.009166,0.006841,6.443885
+
+Total
+
+101.762090
+
+Processed:
+Total,Exports,ReportedRcvd
+
+101.993744,4.348718,112.521885
+
+Products:
+BaseOil,LightFuels,RFO,Asphalt,Total
+
+14.384070,33.821772,24.761064,15.474393,88.441299
+
+Units
+
+Mgal
+
+MD:
+.UOGen:
+WC_221,WC_222,WC_223,Total
+
+109.493953,6.027087,15.322141,130.843181
+
+Geog:
+Total,WC_221_ex,WC_222_ex,WC_223_ex
+
+130.843181,13.822237,0.990104,3.631261
+
+Hauling:
+.WC_221:
+TxStation,TxLosses,Direct
+
+53.334518,2.404714,53.754721
+
+WC_222:
+TxStation,TxLosses,Direct
+
+0.111627,0.096085,5.819375
+
+WC_223:
+TxStation,TxLosses,Direct
+
+3.761071,1.705352,9.855718
+
+Total,Direct,TxStation,TxLosses
+
+130.843181,69.429814,57.207216,4.206151
+
+Disposition:
+.WC_221:
+Total,H039,H061,H050,H020,H135,H141,H132,H010,H129,H040,H037,OtherUnknown
+
+107.089239,87.590427,5.818711,4.072914,3.226169,1.114101,0.992993,0.458695,0.155599,0.131787,0.084144,0.011237,3.432462
+
+WC_222:
+Total,H039,H081,H132,H135,H141,H040,H061,H111,H050,OtherUnknown
+
+5.931002,3.796760,0.588217,0.403784,0.364307,0.198409,0.168772,0.120758,0.004132,0.001694,0.284169
+
+WC_223:
+Total,H039,H132,H135,H141,H061,H040,H010,H129,H101,T68,H020,H050,H111,H213,OtherUnknown
+
+13.616789,5.964452,3.600169,2.176694,0.681358,0.324661,0.077989,0.056285,0.051360,0.029592,0.026720,0.018483,0.008610,0.007467,0.000513,0.592436
+
+Total,H039,H061,H050,H020,H135,H141,H132,H010,H129,H040,H037,OtherUnknown,H081,H111,H101,T68,H213
+
+126.637030,97.351639,6.264130,4.083218,3.244652,3.655102,1.872760,4.462648,0.211884,0.183147,0.330905,0.011237,4.309067,0.588217,0.011599,0.029592,0.026720,0.000513
+
+Products:
+BaseOil,LightFuels,RFO,Asphalt,Total
+
+9.625606,28.538226,20.585838,13.053517,71.803187
+
+Units
+
+Mgal
+
+,*Year ,*2008
+
+METH_CODE,METH_DESC
+
+Total,Total
+H039,Other Recovery for reuse
+H061,Off-Site Energy Recovery
+H050,On-Site Energy Recovery
+H020,Solvents Recovery
+H135,Discharge to Sewer/POTW or NPDES
+H141,Storage_ Bulking_ and/or Transfer Off-site
+H132,Landfill or Surface Impoundment
+H010,Metals Recovery
+H129,Other Treatment
+H040,Incineration
+H037,H037
+OtherUnknown,OtherUnknown
+H081,Biological Treatment
+H111,Stabilization_ Off-site Disposal
+H101,Sludge Treatment / Dewatering
+T68,T68
+H213,H213
+TOTAL
+ , 
+

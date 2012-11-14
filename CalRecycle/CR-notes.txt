@@ -1,0 +1,377 @@
+==========
+Thu Aug 09 16:25:51 PDT 2012
+
+Two ideas to pursue:
+
+1- list all 'transfers' data columns and compare them, side by side;
+started this yesterday and made some general findings, including that
+human-detectable data entry errors abound (4 read as 9; industrial oil
+added twice; etc) but the strategy of manually cleaning the entire corpus
+is not acceptable.
+
+2- write a quick function to profile a given EPAID across all 4 data sets
+2.5- track specific packets of oil among EPAIDs
+
+the problem with this is that the EPAIDs don't have the consistent meanings
+that they have in the manifest data.  how could the thermofluids facility
+we toured in AZ meaningfully be a "hauler"?  How could it transfer oil to
+itself?
+
+so I think the best solution is just to select problematic columns of data
+to ignore.
+
+In pursuit of that, here is a list of all the data columns, which I will
+group by significance and then cull to eliminate redundancy.  Also--
+determined yesterday that the CR-recycler data set is entirely redundant,
+being a subset of CR-processor (except for 2011 data which is solely in
+Recycler, but unevenly reported and incomplete anyway).  So there are only
+3 data sets:
+
+key for below:
+x- non-relevant
+*- unique ID
+S- column is sum of other columns
+u- column significance is ambiguous
+ - column is significant
+
+x Hauler | Quarter,
+x Hauler | Year,
+x Hauler | FacilityName,
+* Hauler | EPAIDNumber,
+  Hauler | LubCollectionStationsGallons,
+  Hauler | LubIndustrialGallons,
+  Hauler | LubMarineGallons,
+  Hauler | LubAgriculturalGallons,
+  Hauler | LubGovernmentGallons,
+  Hauler | LubOutOfStateGallons,
+  Hauler | LubOtherHaulersGallons,
+S Hauler | LubTotalGallons,
+  Hauler | IndCollectionStationsGallons,
+  Hauler | IndIndustrialGallons,
+  Hauler | IndMarineGallons,
+  Hauler | IndAgriculturalGallons,
+  Hauler | IndGovernmentGallons,
+  Hauler | IndOutOfStateGallons,
+  Hauler | IndOtherHaulersGallons,
+S Hauler | IndTotalGallons,
+S Hauler | GrandTotalGallons,
+  Hauler | TotalLubTransferedGallons,
+  Hauler | TotalIndTransferedGallons,
+S Hauler | TotalTransferedGallons
+  
+x Proc | Quarter,
+x Proc | Year,
+x Proc | FacilityName,
+* Proc | EPAIDNumber,
+  Proc | LubOilInCAGallons,
+  Proc | IndOilInCAGallons,
+S Proc | TotalOilInCAGallons,
+  Proc | LubOilOutsideCAGallons,
+  Proc | IndOilOutsideCAGallons,
+S Proc | TotalOilOutsideCAGallons,
+S Proc | TotalLubGallons,
+S Proc | TotalIndGallons,
+S Proc | GrandTotalOilReceivedGallons,
+  Proc | LubOilStateCountry,
+  Proc | IndOilStateCountry,
+  Proc | RecycledOilNeutralBaseStockGallons,
+  Proc | RecycledOilIndustrialOilGallons,
+  Proc | RecycledOilFuelOilGallons,
+  Proc | RecycledOilAsphaltGallons,
+  Proc | RecycledOilConsumedGallons,
+S Proc | RecycledOilTotalGallons,
+  Proc | ResidualMaterialNonhazardousGallons,
+  Proc | ResidualMaterialHazardousGallons,
+S Proc | ResidualMaterialTotalGallons,
+S Proc | ProducedByFacilityGrandTotalGallons,
+  Proc | TotalLubTransferedGallons,
+  Proc | TotalIndTransferedGallons,
+S Proc | TotalTransferedGallons
+  
+x Transfer | SourceName,
+u Transfer | RptSrc,
+* Transfer | SrcEPAID,
+x Transfer | DestinationName,
+u Transfer | DestType,
+* Transfer | DestEPAID,
+x Transfer | Quarter,
+x Transfer | Year,
+  Transfer | LubeOil,
+  Transfer | IndOil,
+  Transfer | Total * Not 'S' column: some records have blank Lub / Ind
+
+  
+Re-copying the fields and grouping them, ignoring (x) and (S) columns:
+
+* Hauler | EPAIDNumber,
+* Proc | EPAIDNumber,
+* Transfer | SrcEPAID,
+* Transfer | DestEPAID,
+
+u Transfer | RptSrc,
+u Transfer | DestType,
+
+If a transfer record is thought of as a vertex of a directed graph, the
+following vertices exist for RptSrc and DestType fields:
+
+RptSrc:
+H -> H, R, r, T
+R -> R, r
+
+RptSrc means who filed the report- was it the hauler or the recycler?
+
+
+
+S Hauler | LubTotalGallons,
+S Proc | TotalLubGallons,
+
+S Hauler | IndTotalGallons,
+S Proc | TotalIndGallons,
+
+  Hauler | LubOutOfStateGallons,
+  Proc | LubOilOutsideCAGallons,
+  Proc | LubOilStateCountry,
+
+  Hauler | IndOutOfStateGallons,
+  Proc | IndOilOutsideCAGallons,
+  Proc | IndOilStateCountry,
+
+  Proc | RecycledOilNeutralBaseStockGallons,
+  Proc | RecycledOilIndustrialOilGallons,
+  Proc | RecycledOilFuelOilGallons,
+  Proc | RecycledOilAsphaltGallons,
+  Proc | RecycledOilConsumedGallons,
+
+  Proc | ResidualMaterialNonhazardousGallons,
+  Proc | ResidualMaterialHazardousGallons,
+
+  Hauler | TotalLubTransferedGallons,
+  Hauler | TotalIndTransferedGallons,
+  Proc | TotalLubTransferedGallons,
+  Proc | TotalIndTransferedGallons,
+  
+  Transfer | LubeOil,
+  Transfer | IndOil,
+  Transfer | Total * Not 'S' column: some records have blank Lub / Ind
+
+
+
+
+  Hauler | LubCollectionStationsGallons,
+  Hauler | LubIndustrialGallons,
+  Hauler | LubMarineGallons,
+  Hauler | LubAgriculturalGallons,
+  Hauler | LubGovernmentGallons,
+  Hauler | LubOtherHaulersGallons,
+
+  Hauler | IndCollectionStationsGallons,
+  Hauler | IndIndustrialGallons,
+  Hauler | IndMarineGallons,
+  Hauler | IndAgriculturalGallons,
+  Hauler | IndGovernmentGallons,
+  Hauler | IndOtherHaulersGallons,
+
+
+
+
+
+
+
+Thu 08-09 17:15:54
+
+Hmm, this is not exactly going well.
+
+I think I do need to create a master list of EPAIDs to put everything in
+the same place.  What will it describe:
+
+Two lists.  One: each EPAID, inbound
+    	    Two: each EPAID, outbound (transfers)
+
+Inbound flows are recorded
+
+
+There are problems in the general lack of correspondence between Hauler and
+Proc.  Example: 2004
+
+Haulers report 93.1 Mgal Lub (3.1M oos) + 5.6 Mgal Ind, and total transfers
+of ...
+
+just spent some time investigating the transfers column on the Haulers
+dataset.. after 6 investigations I've concluded that deficiencies between
+oil received and oil transferred are all omission errors: an EPAID which
+had 15 quarters' worth of data would have 13 records where transfers =
+received, and 2 quarters where transfers = 0.  This seems like entry error.
+
+So: write a function to go through all EPAIDs in haulers and find records
+where 
+
+Thu 08-09 21:48:14
+
+Anyway, see cr_h_check_xfer.m and CR_Hauler_investigation.mat the gist is:
+the Hauler|transfer fields are useless without manual reconciliation. so:
+ignore them.
+
+Fri 08-10 00:39:42
+
+Ind Oil is only reported on CR_Hauler|Txfr for 2009-2010
+
+So.. Hauler and Processor don't line up.  Transfer fields in Hauler do not
+reconcile with collection fields.  And haulers in Hauler do not appear to
+be haulers, or at least not haulers exclusively.
+
+Question: does Hauler and Transfer reconcile?  are they consistent?
+
+have to check hauler EPAID against Transfer Source EPAID and separately
+against Transfer Dest EPAID to see what falls out.
+
+cr_h_t_check.m
+
+observations:
+for 2004, there is perfect correspondence between Hauler transfers and
+Transfer Srcs, and incomplete correspondence with Transfer Dests- the Dests
+all match up with self-transfers only.
+
+exceptions: 
+2004: 1 CAL000331370 off by 6350 gallons
+2005: 1 CAL000331370 off by 5000 gallons
+
+2006: 7, mostly significant
+EPAIDNumber  ATotalTransferedGallons ATotalSrc
+==============================
+CAD983615501   215245   147685
+CAL000331370   401765   396415
+CAL000827879   108332   108327 x
+CAL912823785   860941   860641 x
+CAR000162701   271968   223939
+CAR000171017   525917   517217
+CAR000177527   304695   165330
+
+2007: 9, all significant
+EPAIDNumber  ATotalTransferedGallons ATotalSrc
+==============================
+AZR000003681   369171    36617
+CAD981694722   490554   457654
+CAL000280677   234086   155052
+CAL000309743    80040    78720
+CAL000331370   550128   546428
+CAR000159681    11648    11228 
+CAR000171017   892035   853490
+CAR000172189    49064    48789 
+CAR000177527   439645   439590 
+
+2008: 2, not bad
+EPAIDNumber  ATotalTransferedGallons ATotalSrc
+==============================
+CAL000309743    75480    74240
+CAL000331370   427589   397501
+
+2009: 9, bad
+EPAIDNumber  ATotalTransferedGallons ATotalSrc
+==============================
+CAD028277036 17830739 17710909
+CAD980584510   174850   142450
+CAD980585293    35835    35655
+CAD982030173     3939     6394
+CAL000268462   421207   317754
+CAL000338673        0   394198
+CAR000190082  2377259  3098121
+CAT080012800    11246     8392
+MAD039322250   464763  1008202
+
+2010: 15, pretty bad
+EPAIDNumber  ATotalTransferedGallons ATotalSrc
+==============================
+CAD028277036        0 19248561
+CAD053866794     4151     9476
+CAD072953771     1225     1625
+CAD088838222   311612   400567
+CAD980694103   383968  1080079
+CAD982030173     2620     7475
+CAL000253903   117210   159935
+CAL000263169   174829   228001
+CAL000268462   339741   432963
+CAL000297859  1747972  2048094
+CAL000322668  1271300  1908445
+CAL000338673   223194   308429
+CAL000827857    27162    56056
+CAR000148296   119505   159151
+CAR000190082   515360  3446023
+
+
+So.. Transfer seems to match the transfers described in Hauler, except that
+the Hauler | transfers fields seem to be filled with errors.  cr_h_t_check
+demonstrates that:
+
+ * in most cases, there is equivalence between H | Transfers and Tx:Src | Total
+
+ * H | Transfers seems to err on the side of abundant zero-entries
+
+ * In non-equivalent cases with non-zero H|Transfers, in many cases
+ Tx:Src|Transfers < H|Transfers by small amounts around 1-10% of magnitude
+
+ * After 2009 (inclusive), Tx:Src|Total is much greater than H|Transfers
+
+Implication: Ignore H|Transfers.  Tx has richer lube / industrial data
+anyway.
+
+
+
+
+Fri 08-10 13:16:05 -0700
+
+OK, we are going to articulate the directed graph implied in the CalRecycle
+data.  Each EPAID is a node with inflows and outflows.  Inflows include:
+
+Hauler | TotalLube, TotalInd, (LubOOS, IndOOS)
+Proc   | TotalLube, TotalInd, (LubOOS, IndOOS)
+Txfr_DC| Dest: LubeOil, IndOil, Total
+
+Outflows include:
+
+Hauler | TotalTransfered
+Proc   | RecycledOil, ResidualMaterial, TotalTransfered 
+(TotalIndtransfered = 0)
+Txfr_DC| Src: LubeOil, IndOIl, Total
+
+Mon 08-13 16:57:25
+
+Here is the plan:
+
+ * start with cr_node.m - this gives us three chunks of information:
+
+   - Haulers: EPAIDs with 0 TxIN (excluding facilities with self-transfers)
+   - Processors: EPAIDs with nonzero P_Total
+   - Intermediates: EPAIDs with TxIN but no proc data (incl self-transfers)
+
+   - Favor Tx_Out over H_TxOut because of observed problems with hauler
+     txfr data: rmfield R|H_TxOut
+   
+ * taking these chunks, rewrite them, conserving mass.  Use the Manifest
+   structure where each EPAID can function as both Generator and TSDF.
+
+   Haulers are interpreted as consolidated generators.  
+
+   - Each Txfr row can be converted directly into a manifest.  
+
+   - Each time a manifest is generated, subtract it from Tx_Out and a
+      generator column: 
+        H_Total for Haulers + intermediates (zeros out HH)
+      	P_TxOut for Processors
+
+   - if destination is in PP, subtract it from Tx_In and P_Total. Use
+     MethCode C039
+
+   - else, destination is in TT: subtract it from Tx_In. Use MethCode C141
+
+   - Handle self-transfers using new method code C142
+
+   - Lastly, processors with hauler entries 
+
+   Then go through and clean up non-zeroed entries:
+
+   - Use C143 for mass deficiencies (nonzero H_Total>0 remainder):
+     destination unknown
+
+   - Use C144 for mass surpluses (nonzero H_Total<0 remainder): 
+     source unknown
+

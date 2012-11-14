@@ -1,0 +1,151 @@
+==========
+Tue Sep 04 13:51:28 -0700 2012
+
+ACTIVITY LEVELS:
+DK: MDO; asphalt flux, RFO, other light fuels
+Ev: Re-re; asphalt flux, RFO, light fuels
+SK: some direct, plus time-varying fraction of RFO-ex: Re-re; RFO
+ORRCO: re-re "on the cheap", plus RFO, asphalt flux and ???
+RFO-CA: hybrid of RFO, DK, and RFO-ex to be determined as a balancing factor
+RFO-ex
+
+
+
+
+
+
+Notes on TSDF facilities
+
+beginning with facilities which dispose over 30k gal
+
+2004 reference:
+DispGAL   TSDF_EPA_ID  FAC_NAME                                 
+================================================================
+ 51757947 CAT080013352                           DEMENNO/KERDOON
+ 22342560 CAD099452708             INDUSTRIAL SERVICE OIL CO INC
+ 17602273 CAD980887418                         EVERGREEN OIL INC
+ 13612330 CAT080025711                ADVANCED ENVIRONMENTAL INC
+  5333927 NVD982358483   CLEARWATER ENVIRONMENTAL MANAGEMENT INC
+  3457782 AZR000003038                          LIQUID TITAN LLC
+just like thermofluids; primary market is "transmix" mixture of gasoline 
+and diesel; used oil seems to be a side line.  
+
+  3140789 ORD980980775                        INDUSTRIAL OIL INC ORRCO
+ORRCO imprint
+
+  2621357 AZR000030452 LIQUID ENVIRONMENTAL SOLUTIONS OF ARIZONA WWT
+Entire input for 2004 comes from Evergreen
+
+  1998815 ORQ000001974                             THERMO FLUIDS
+tx station to TF Phoenix; or RFO processor? assume Tx
+
+  1866141 ORD180761934                       CASCADE GENERAL INC
+Shipyard services; ballast waste water treatmet; used oil recyc
+The plant, built in 1979 for cleaning tanker ships, manages wastewater and 
+petroleum captured from the ships visiting our yard for repairs, meeting 
+current EPA toxic water quality standards (WQS) in all methods. The plant 
+processes used oil and resells it, reducing demand for new petroleum 
+products by recycling 1-1.5 million gallons a year.
+
+  1155107 UTC093012201              EAST CARBON DEVELOPMENT CORP
+Landfill;  100% of inbound in 2004 comes from CAD982444481 Filter Recyc Svc
+No Meth code; default presumption is RFO, but H132 seems likely
+
+  1081450 ILD000646780                              ILD000646780
+   681500 UTD070534623             GOLDEN EAGLE OIL REFINERY INC
+   490830 UTD981552177               CLEAN HARBORS ARAGONITE LLC
+   300008 COR000008524                         THERMO FLUIDS INC
+   297692 UTR000000786                         THERMO FLUIDS INC
+   301790 AZD983481813     BUTTERFIELD STATION REGIONAL FACILITY
+   281294 NVD980893663                    RENO DRAIN OIL SERVICE
+   250276 AZR000033381                              MESE OIL INC
+   246235 TXR000050013                COWHOUSE PARTNERS USED OIL
+   210254 CAD008302903         VEOLIA ES TECHNICAL SOLUTIONS LLC
+   206226 CA9999999999                       DESTINATION UNKNOWN
+   206636 CA7170090016            NAVAL AIR STATION NORTH ISLAND
+   263277 KSD981506025                     CLEAN HARBORS PPM LLC
+   dielectrics 
+
+
+    78526 CAD059494310                CLEAN HARBORS SAN JOSE LLC
+    75307 IAD984591032                              IAD984591032
+    73051 AZR000035915                  DOME ROCK INDUSTRIES INC
+    82721 AZ0000337360         VEOLIA ES TECHNICAL SOLUTIONS LLC
+    55608 AZR000500587                            TRANSTITAN LLC 
+
+
+    44121 CAD044429835              CLEAN HARBORS WILMINGTON LLC (TSDF) RFO-CA
+Waste management activities at the Wilmington facility include storage and
+transfer of containerized wastes, treatment of waste, which cannot be 
+reclaimed or reused, and transfer of materials, which cannot be further 
+treated. Processes at the facility include lab pack handling, consolidation 
+of solids and liquids, solidification, fuel blending and neutralization.
+
+    47846 KYD053348108                  SAFETY-KLEEN SYSTEMS INC SK
+Assume delivery to SK
+
+    35409 AZR000003681                         THERMO FLUIDS INC RFO-ex (rail)
+RFO
+
+    31168 KSD980633259         SYSTECH ENVIRONMENTAL CORPORATION RFO-ex (->cement; rail)
+Systech Environmental Corporation is the leading provider of byproduct 
+co-processing services in North America, with co-processing locations 
+throughout the U.S., Canada, and Mexico.
+
+As a wholly-owned subsidiary of Lafarge, the leading cement and 
+construction materials manufacturer in the world, Systech is dedicated to 
+providing customers with innovative services to manage byproducts, 
+primarily by recovering energy or mineral content during the cement 
+manufacturing process.
+
+
+   830720                                                       
+TOTAL
+131060973                                                       
+
+
+
+
+==========
+Fri Sep 07 12:08:37 -0700 2012
+
+Need a reliable heuristic algorithm to determine what process to use for a
+given facility's incoming waste.  Simple classification into groups for WC
+221, 222, 223.
+
+221 is easy- we have P, Tx, C, G; we've already determined H039 qtys for
+each facility.  so: classify the facility as:
+
+221:
+ - DK
+ - Ev
+ - Decert : (x: DK; y: ex; 1-x-y: RFO-CA)
+ - ex : ( a: RFO;  1-a: SK re-re)
+ - SK
+
+222: 
+
+
+223:
+ - dewatering 221
+ - dewatering + RFO
+ - Oil extraction 221 
+ - Oil extraction + RFO
+ - solid waste
+
+
+
+
+List of EPAIDs and dispositions
+ARD981057870 Clean Harbors - Incinerator - I-I
+
+ugh how do I want to do this?????
+
+
+
+All waste codes: follow method codes for H040, H050+H061, H132, H135
+WC 221- assume 95% oil, 5% water
+WC 222- assume 50% oil, 50% haz waste
+WC 223- facility dependent?
+ugh, time to go.
+

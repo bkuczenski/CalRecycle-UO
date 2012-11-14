@@ -147,13 +147,10 @@ switch dbase
   case 'CR'
     % CalRecycle database-- only interested in processor data; read from scratch
     % include all years
-    savevars={'CR_Proc','CR_Hauler','CR_Sales','CR_Txfr'};
-    src_file{1}=[prefix '/CR-processor.csv'];
-    src_file{2}=[prefix '/CR-hauler.csv'];
-    src_file{3}=[prefix '/CR-sales.csv'];
-    src_file{4}=[prefix '/CR-transfer.csv'];
+    savevars={'CR_Proc'};
+    src_file=[prefix '/CR-processor.csv'];
     
-    CR=read_dat(src_file{1},',',{'','','n','s','s','','','','','',...
+    CR=read_dat(src_file,',',{'','','n','s','s','','','','','',...
                       'n','n','n','n','n','n','n','n','n','s','s',... % through StateCountry
                       'n','n','n','n','n','n', ... % through Recycled
                       'n','n','','','n', ... % Residual
@@ -161,11 +158,6 @@ switch dbase
     CR=crquarteryear(CR);
     
     D.(savevars{1})=CR;
-    D.(savevars{2})=crquarteryear(read_dat(src_file{2},',',...
-                                           {'','','n','s','s','','','','','','n'}));
-
-    D.(savevars{3})=read_dat(src_file{3},',','n');
-    D.(savevars{4})=crtxfrcorr(src_file{4});
     
     
   otherwise
@@ -192,91 +184,3 @@ end
 if sum(M)>0
   [Q(M).TSDF_EPA_ID]=deal('CA9999999999');
 end
-
-function [D,DID]=crquarteryear(D,fn)
-% function D=crquarteryear(D)
-% converts CalRecycle quarter-year ID field to Quarter and Year.  Replaces the one
-% field with two (second field inserted in-place).
-%
-% function D=crquarteryear(D,fn)
-% By default, uses fieldname 'QuarterYearID', but an alternative fieldname can be
-% provided as an optional second argument.
-%
-% mapping from QuarterYearID to quarter: mod(*-3,4)={0,1,2,3} -> {Q1,Q2,Q3,Q4}
-% mapping from QuarterYearID to year: 1874+floor((*-3)/4) = year
-%
-% Example: QuarterYearID=550 corresponds to Oct-Dec 2010
-%
-
-if nargin<2
-  fn='QuarterYearID';
-end
-
-FN=fieldnames(D);
-
-I=find(strcmp(FN,fn));
-switch(fn)
-  case 'QuarterYearID'
-    D=moddata(D,fn,@(x)(1874+floor((x-3)/4)),'Year');
-    D=moddata(D,fn,@(x)(['Q' num2str(1+mod(x-3,4))])); % replace field
-  case 'QuarterYear'
-    QYMap=struct('Str',{'Ja','Ap','Ju','Oc'},'Map',{'Q1','Q2','Q3','Q4'});
-    D=moddata(D,'QuarterYear',@(x)(cell2mat(regexp(x,'[0-9]{4}','match'))),'Year');
-    D=vlookup(moddata(D,fn,@(x)(subsref(x,substruct('()',{1:2})))),...
-              fn,QYMap,'Str','Map','inplace');
-  otherwise
-    disp(['fn = ' fn '; I''m confused.'])
-    keyboard
-end
-D=orderfields(D,[1:I, length(FN)+1, (I+1):length(FN)]);
-D=mvfield(D,fn,'Quarter');
-
-if nargout>1
-  DID=accum(D,'ddmm'); % accum list of EPAIDs
-  DID=orderfields(DID,[2 3 1]);
-  DID=flookup(DID,'EPAIDNumber','FAC_NAME'); % crosscheck them against
-                                             % facility master list
-end
-
-function CR_Txfr=crtxfrcorr(fname)
-
-  CR_Txfr=read_dat(fname,',',{'s','s','s','s','s','s','s','n','n','n'});
-  CR_Txfr=crquarteryear(CR_Txfr,'QuarterYear');
-  
-  % SourceName,
-  % RptSrc,
-  % SrcEPAID,
-  % DestinationName,
-  % DestType,
-  % DestEPAID,
-  % Quarter,
-  % Year,
-  % LubeOil,
-  % IndOil,
-  % Total
-  
-  %%% don't really know what to do with this, since the double counting at first
-  % seems inscrutable. I think there is something going on where every entry with a
-  % "Transfer Station" destination is double counted, but I can't be sure.
-  
-  % for 2010 (746 records):
-  % 63 distinct destination facilities
-  % 83 distinct destination-type pairs (i.e. 20 double entries)
-  % 102 distinct source facilities
-  % 103 distinct source-type pairs (i.e. 1 double entry)
-  
-  % assertion: Two records are duplicate if they share SrcEPAID, DestEPAID, Quarter,
-  % Year, LubeOil, IndOil, Total AND have different DestTypes.  A function to screen
-  % out duplicates will have to step through each record in sequence, checking it
-  % against all subsequent entries (and skipping those already marked as duplicates).
-  
-  disp('Performing double counting hunt')
-  
-  CR_Txfr=moddata(CR_Txfr,'DestType',@(x)(regexprep(x,'Re-refiner',...
-                                                    're-refiner')));
-  % take first char and concatenate; Recycler distinct from re-refiner
-  CR_Txfr=moddata(CR_Txfr,'DestType',@(x)(subsref(x,substruct('()',{1}))));
-  CR_Txfr=accum(CR_Txfr,'ddmdcmmmmmm'); % m instead of a to screen double
-                                              % entries 
-  CR_Txfr=moddata(CR_Txfr,'Year',@str2num);
-  

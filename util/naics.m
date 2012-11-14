@@ -199,11 +199,9 @@ elseif isstruct(C)
           M(:,j)=M(:,j) & ~M(:,i);
         end
       end
-      if (sum(M(:,end)))
-        [C(M(:,end)).NAICS_SECTOR]=deal(C(M(:,end)).NAICSTitle1997);
-        maxyear(M(:,end))=1997;
-        C=rmfield(C,'NAICSTitle1997');
-      end
+      [C(M(:,end)).NAICS_SECTOR]=deal(C(M(:,end)).NAICSTitle1997);
+      maxyear(M(:,end))=1997;
+      C=rmfield(C,'NAICSTitle1997');
     end
     C=rmfield(C,'new__NAICS');
     S=C;

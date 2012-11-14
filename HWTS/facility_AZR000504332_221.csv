@@ -1,0 +1,22 @@
+
+###
+##
+## Facility Report for AZR000504332
+## Waste Code 221
+##
+,GEN_EPA_ID ,AZR000504332
+,  FAC_NAME ,SOUTHWEST PETROLEUM WASTE MANAGEMENT
+,  FAC_STR1 ,6515 N EL MIRAGE RD
+,  FAC_CITY ,GLENDALE
+,  FAC_CNTY ,99
+,    FAC_ST ,AZ
+,   FAC_ZIP ,853073403
+
+Indicator    ,D_2008      ,D_2009      ,D_2010      
+
+ 221_Received,   3463.8064,   4657.9035,   5389.3337
+         221_,   1164.0597,   1981.7869,    452.2798
+     221_H039,   2155.6816,   2662.3272,   4937.0539
+     221_H061,      7.7393,     13.7894,      0.0000
+     221_H141,    136.3259,      0.0000,      0.0000
+221_Generated,      0.0000,      0.0000,      0.0000

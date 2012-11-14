@@ -1,0 +1,92 @@
+D.CR:
+.Hauling:
+.Lub:
+CC          	Ind         	Mar         	Agr         	Gov         	Import      	Consol      	Total       
+
+69.5708     	7.2801      	0.2874      	2.1066      	1.6011      	0.2637      	14.2084     	95.3182     
+
+Ind:
+CC          	Ind         	Mar         	Agr         	Gov         	Import      	Consol      	Total       
+
+0.4089      	5.6037      	0.2508      	0.0577      	0.1067      	0.0092      	0.0068      	6.4439      
+
+Total       
+
+    101.7621
+
+Processed:
+Total       	Exports     	ReportedRcvd
+
+101.9937    	4.3487      	112.5219    
+
+Products:
+BaseOil     	LightFuels  	RFO         	Asphalt     	Total       
+
+14.3841     	33.8218     	24.7611     	15.4744     	88.4413     
+
+Unit
+
+Mgal
+
+MD:
+.UOGen:
+WC_221      	WC_222      	WC_223      	Total       
+
+109.4940    	6.0271      	15.3221     	130.8432    
+
+Geog:
+Total       	WC_221_ex   	WC_222_ex   	WC_223_ex   
+
+130.8432    	13.8222     	0.9901      	3.6313      
+
+Hauling:
+.WC_221:
+TxStation   	TxLosses    	Direct      
+
+53.3345     	2.4047      	53.7547     
+
+WC_222:
+TxStation   	TxLosses    	Direct      
+
+0.1116      	0.0961      	5.8194      
+
+WC_223:
+TxStation   	TxLosses    	Direct      
+
+3.7611      	1.7054      	9.8557      
+
+Total       	Direct      	TxStation   	TxLosses    
+
+    130.8432	     69.4298	     57.2072	      4.2062
+
+Disposition:
+.WC_221:
+Total       	H039        	H061        	H050        	H020        	H135        	H141        	H132        	H010        	H129        	H040        	H037        	OtherUnknown
+
+107.0892    	87.5904     	5.8187      	4.0729      	3.2262      	1.1141      	0.9930      	0.4587      	0.1556      	0.1318      	0.0841      	0.0112      	3.4325      
+
+WC_222:
+Total       	H039        	H081        	H132        	H135        	H141        	H040        	H061        	H111        	H050        	OtherUnknown
+
+5.9310      	3.7968      	0.5882      	0.4038      	0.3643      	0.1984      	0.1688      	0.1208      	0.0041      	0.0017      	0.2842      
+
+WC_223:
+Total       	H039        	H132        	H135        	H141        	H061        	H040        	H010        	H129        	H101        	T68         	H020        	H050        	H111        	H213        	OtherUnknown
+
+13.6168     	5.9645      	3.6002      	2.1767      	0.6814      	0.3247      	0.0780      	0.0563      	0.0514      	0.0296      	0.0267      	0.0185      	0.0086      	0.0075      	0.0005      	0.5924      
+
+Total       	H039        	H061        	H050        	H020        	H135        	H141        	H132        	H010        	H129        	H040        	H037        	OtherUnknown	H081        	H111        	H101        	T68         	H213        
+
+    126.6370	     97.3516	      6.2641	      4.0832	      3.2447	      3.6551	      1.8728	      4.4626	      0.2119	      0.1831	      0.3309	      0.0112	      4.3091	      0.5882	      0.0116	      0.0296	      0.0267	      0.0005
+
+Products:
+BaseOil     	LightFuels  	RFO         	Asphalt     	Total       
+
+9.6256      	28.5382     	20.5858     	13.0535     	71.8032     
+
+Unit
+
+Mgal
+
+	Year 	2008
+

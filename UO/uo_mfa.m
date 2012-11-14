@@ -1,9 +1,86 @@
 %% script file for performing the UO mfa
 %%
+%%=========================================================================
+%%=========================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% CONFIGURATION HAPPENS HERE!
+%% 
+%% Make changes to the below lines to tune the file to your operating 
+%% conditions.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Select which parts of the MFA to run
+YEARS=2007:2011;
+WCs=221:223;
+
+READ_FACILITIES = false;
+READ_NAICS      = false;
+LOAD_MD_NODE    = false;
+GEN_MD          = false;
+UNITCONV_MD     = false;
+RE_CORR_METH    = false;
+GEN_NODE        = false;
+GEN_NODE_FORCE  = false;
+LOAD_CR_PROC    = false;
+GEN_NODE_PIVOT  = false;
+PUBLISH_DATA    = true;
+APPLY_FAC_DATA  = true;
+FORCE_FAC_DATA  = true;
+COMPUTE_ACTIVITY = true;
+
+%% INPUT FILES
+%% Location of facility description data in csv format
+% modified to include DESTINATION_UNKNOWN, SOURCE_UNKNOWN, and custom additions
+FACILITIES_FILE='FacilityData/HWTS_FACILITIES_2007_2011.csv'; 
+NAICS_FILE='FacilityData/HWTS_FACILITIES_NAICS.csv';
+
+TANNER_PREFIX='../HWTS/'; % path to Tanner report data - each year in 'TannerYYYY'
+                          % subdir - list of manifest files is hardcoded into
+                          % uo_load (based on downloadable data)
+CALRECYCLE_PREFIX='../CalRecycle/'; %% path to CalRecycle data - need
+                                    % CR-processor.csv
 
 
-%% Load configuration
-uo_config
+%% Management Method Codes we're interested in
+METH_REGEXP='^H[0-9]{3}';  % regexp to match all method codes
+TANNER_DISP='H039';  % net flows into a facility are given this code
+TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132', ...
+                 'H135'}; % these codes are considered "terminal" & do not add to
+                          % the quantity of oil to TANNER_DISP 
+
+% The following codes (1) are valid, (2) show up in the data, and (3) have not
+% been incorporated and are therefore interpreted as H039:
+% H077 (4x), H101 (9x), H103 (2x), H121 (corrected from H221, 1x), H122 (1x), H123
+% (5x), H131 (4x), H134 (1x), totalling 318,000 gallons over 8 years.
+
+% of these, H077, H101, H123 can reasonably be considered to produce RFO and
+% should properly count as H039 (totalling 254,000 gal)
+
+% The rest are just not worth considering.
+
+%% Output Files
+FILE_EXCHANGE='../../research.bren/CalRecycle-Oil/Working Documents/Data Collection/MFA/';
+NODE_PIVOT_PREFIX='UO_facilities';
+ACTIVITY_FILE_PREFIX='UO_activity';
+
+FAC_DATA_FILE=[FILE_EXCHANGE 'Facilities.xlsx'];
+FAC_DATA_SHEET='Activities';
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% END CONFIG
+%% 
+%% Only nake changes above this line.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%=========================================================================
+%%=========================================================================
 
 
 NODE_PIVOT_FILE=[NODE_PIVOT_PREFIX '_' num2str(YEARS(1))];
@@ -31,10 +108,10 @@ GAL_PER_TON='2000/7.5';
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if READ_FACILITIES | ~exist('FacilitiesUO.mat','file')
+if READ_FACILITIES
   fprintf(1,'Reading facilities database: %.1f sec \n',toc)
   global Facilities FACILITIES GEO_CONTEXT GEO_REGION UNIT_CONV
-  Facilities = read_dat([FACILITIES_PREFIX FACILITIES_FILE],',', ...
+  Facilities = read_dat(FACILITIES_FILE,',', ...
                         {'s','n','n','s','s','','s','s','s','s','s','','s',''}, ...
                         struct('Field',{'FAC_NAME'},'Test',{@isempty}, ...
                                'Pattern',{''},'Inv',{1}));
@@ -85,10 +162,10 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
+if READ_NAICS
   fprintf(1,'Adding NAICS codes to Facilities (this is SLOW): %.1f sec\n',toc)
   fprintf(1,'Reading NAICS database:\n')
-  FN=read_dat([FACILITIES_PREFIX NAICS_FILE],',',{'s','s','',''},...
+  FN=read_dat(NAICS_FILE,',',{'s','s','',''},...
               struct('Field',{'NAICS_CODE'},'Test',{@isempty}, ...
                     'Pattern',{''},'Inv',{1}));
   FN=sort(FN,'GEN_EPA_ID');
@@ -113,7 +190,7 @@ if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
           'exact');
   [Facilities(~Mf).NAICS_CODE]=deal('');
   Facilities=moddata(Facilities,'NAICS_CODE',@deblank);
-  save FacilitiesUO FACILITIES Facilities GEO_CONTEXT GEO_REGION UNIT_CONV
+  save FacilitiesUO FACILITIES Facilities
 end
 
 %% okay, so we read in the facility data
@@ -268,7 +345,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if GEN_NODE | FORCE_GEN_NODE
+if GEN_NODE
   fprintf('%s ... %.1f sec\n','Computing Node Mass Balances',toc)
   for i=1:length(YEARS)
     yy=num2str(YEARS(i));
@@ -280,13 +357,13 @@ if GEN_NODE | FORCE_GEN_NODE
       manname=['Q' tanner_suffix];
       nodename=['Rn' tanner_suffix];
 
-      if exist('Node','var') & isfield(Node,nodename) & ~FORCE_GEN_NODE
+      if exist('Node','var') & isfield(Node,nodename) & ~GEN_NODE_FORCE
         fprintf('%s exists: nothing to do.\n',nodename)
       else
         fprintf('Computing node balance: %s\n',nodename)
-        Rn=uo_node(MD.(manname),TANNER_TERMINAL,TANNER_DISP,TANNER_CUTOFF);
+        Rn=uo_node(MD.(manname),TANNER_TERMINAL,TANNER_DISP);
         [Rn(1:end).Year]=deal(YEARS(i));
-        [Rn(1:end).WC]=deal(wc);
+        [Rn(1:end).WASTE_STATE_CODE]=deal(wc);
         nf=length(fieldnames(Rn));
         Node.(nodename)=orderfields(Rn,[1 nf nf-1 2:nf-2]);
       end
@@ -302,66 +379,40 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-if FORCE_CR_PROC & isfield(Node,'CR_Proc') 
-  Node=rmfield(Node,'CR_Proc');
-end
-
-if LOAD_CR_PROC | FORCE_CR_PROC
+if LOAD_CR_PROC
   fprintf('%s ... %.1f sec\n','Appending CalRecycle processor data',toc);
 
-  if ~isfield(Node,'CR_Proc') 
+  if ~isfield(Node,'CR_Proc')
     Node=union(Node,uo_load('CR',CALRECYCLE_PREFIX));
   end
   for i=1:length(YEARS)
-
     yy=num2str(YEARS(i));
     nodename=['Rn_' yy '_221'];
     crname=['CR_' yy];
-
-    % cleanup
-    if isfield(Node.(nodename),'CR_inGAL')
-      Node.(nodename)=rmfield(Node.(nodename),{'CR_inGAL','CR_prodGAL', ...
-                          'CR_resGAL'});
-      Node=rmfield(Node,crname); % reload to get ind fraction
-    end
-    
-    if isfield(Node,crname) & ~FORCE_CR_PROC
+    if isfield(Node,crname)
       fprintf('%s exists: nothing to do.\n',crname)
       CRa=Node.(crname);
     else
       fprintf('Computing CR totals: %s\n',crname)
       CRa=select(accum(filter(Node.CR_Proc,'Year',{@eq},YEARS(i)),'dmdm',''),...
                  {'Year','EPAIDNumber','GrandTotalOilReceivedGallons', ...
-                  'RecycledOilTotalGallons','ResidualMaterialTotalGallons',...
-                  'TotalIndGallons'});
+                  'RecycledOilTotalGallons','ResidualMaterialTotalGallons'});
       % transfers column just makes NO consistent sense
       CRa=mvfield(CRa,'EPAIDNumber','CR_EPA_ID');
-      CRa=mvfield(CRa,'GrandTotalOilReceivedGallons','CR_GAL');
+      CRa=mvfield(CRa,'GrandTotalOilReceivedGallons','CR_inGAL');
       CRa=mvfield(CRa,'RecycledOilTotalGallons','CR_prodGAL');
-      CRa=mvfield(CRa,'ResidualMaterialTotalGallons','CR_residGAL');
-      CRa=mvfield(CRa,'TotalIndGallons','CR_indGAL');
+      CRa=mvfield(CRa,'ResidualMaterialTotalGallons','CR_resGAL');
       Node.(crname)=CRa;
     end
     fprintf('Appending to %s \n',nodename)
-    if isfield(Node.(nodename),'CR_GAL')
-      Node.(nodename)=rmfield(Node.(nodename),{'CR_GAL','CR_prodGAL','CR_residGAL','CR_indGAL'});
-    end
-      
-    FN=fieldnames(Node.(nodename));
-    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_GAL', ...
+    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_inGAL', ...
                           'zer');
     Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_prodGAL', ...
                           'zer');
-    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_residGAL', ...
+    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_resGAL', ...
                           'zer');
-    Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_indGAL', ...
-                          'zer');
-    
-    Node.(nodename)=select(Node.(nodename),{FN{1:11},...
-                        'CR_GAL','CR_indGAL','CR_prodGAL','CR_residGAL',...
-                        FN{12:end}});
-    %[1:11 nf-2 nf nf-1 12:nf-3]);
+    nf=length(fieldnames(Node.(nodename)));
+    Node.(nodename)=orderfields(Node.(nodename),[1:11 nf-2 nf nf-1 12:nf-3]);
   end
   save Node Node
 end
@@ -419,12 +470,11 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 if APPLY_FAC_DATA
   if ~isfield(Node,'FacData') | FORCE_FAC_DATA
     fprintf('%s ... %.1f sec\n','Reading Facility Method-to-Activity spreadsheet',toc)
     
-    Fac=xls2struct([FILE_EXCHANGE FAC_DATA_FILE],FAC_DATA_SHEET,{'n','s','s','s','s','n','s'});
+    Fac=xls2struct(FAC_DATA_FILE,FAC_DATA_SHEET,{'n','s','s','s','s','n','s'});
     [Fac(isnan([Fac.FRACTION])).FRACTION]=deal(1);
     Node.FacData=Fac;
     FN=fieldnames(Node);
@@ -453,7 +503,7 @@ if APPLY_FAC_DATA
         % compute activity levels
         An=uo_activity(Node.(nodename),METH_REGEXP,FacWaste); 
         [An(1:end).Year]=deal(YEARS(i));
-        [An(1:end).WC]=deal(wc);
+        [An(1:end).WASTE_STATE_CODE]=deal(wc);
         nf=length(fieldnames(An));
         Node.(actname)=orderfields(An,[1 nf nf-1 2:nf-2]);
       end
@@ -543,5 +593,3 @@ if COMPUTE_ACTIVITY
     copyfile(ACTIVITY_FILE,FILE_EXCHANGE)
   end
 end
-
-fprintf ('DONE \n')
