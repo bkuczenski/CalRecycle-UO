@@ -286,7 +286,7 @@ if GEN_NODE | GEN_NODE_FORCE
         fprintf('Computing node balance: %s\n',nodename)
         Rn=uo_node(MD.(manname),TANNER_TERMINAL,TANNER_DISP,TANNER_CUTOFF);
         [Rn(1:end).Year]=deal(YEARS(i));
-        [Rn(1:end).WASTE_STATE_CODE]=deal(wc);
+        [Rn(1:end).WC]=deal(wc);
         nf=length(fieldnames(Rn));
         Node.(nodename)=orderfields(Rn,[1 nf nf-1 2:nf-2]);
       end
@@ -443,7 +443,7 @@ if APPLY_FAC_DATA
         % compute activity levels
         An=uo_activity(Node.(nodename),METH_REGEXP,FacWaste); 
         [An(1:end).Year]=deal(YEARS(i));
-        [An(1:end).WASTE_STATE_CODE]=deal(wc);
+        [An(1:end).WC]=deal(wc);
         nf=length(fieldnames(An));
         Node.(actname)=orderfields(An,[1 nf nf-1 2:nf-2]);
       end
