@@ -245,11 +245,9 @@ else
 end
 
 
-counts=find(strcmp(NewFN,'Count')); 
+counts=find(~cellfun(@isempty,regexp(NewFN,'^Count'))); 
 if length(counts)>1
-  for i=2:length(counts)
-    NewFN{counts(i)}=[NewFN{counts(i)} num2str(i-1)];
-  end
+  NewFN{counts(end)}=['Count' num2str(length(counts)-1)];
 end
 Da=cell2struct(d,NewFN,2);
 
