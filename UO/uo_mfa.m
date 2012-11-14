@@ -268,7 +268,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if GEN_NODE | GEN_NODE_FORCE
+if GEN_NODE | FORCE_GEN_NODE
   fprintf('%s ... %.1f sec\n','Computing Node Mass Balances',toc)
   for i=1:length(YEARS)
     yy=num2str(YEARS(i));
@@ -280,7 +280,7 @@ if GEN_NODE | GEN_NODE_FORCE
       manname=['Q' tanner_suffix];
       nodename=['Rn' tanner_suffix];
 
-      if exist('Node','var') & isfield(Node,nodename) & ~GEN_NODE_FORCE
+      if exist('Node','var') & isfield(Node,nodename) & ~FORCE_GEN_NODE
         fprintf('%s exists: nothing to do.\n',nodename)
       else
         fprintf('Computing node balance: %s\n',nodename)
@@ -302,10 +302,15 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if LOAD_CR_PROC
+
+if FORCE_CR_PROC & isfield(Node,'CR_Proc') 
+  Node=rmfield(Node,'CR_Proc');
+end
+
+if LOAD_CR_PROC | FORCE_CR_PROC
   fprintf('%s ... %.1f sec\n','Appending CalRecycle processor data',toc);
 
-  if ~isfield(Node,'CR_Proc')
+  if ~isfield(Node,'CR_Proc') 
     Node=union(Node,uo_load('CR',CALRECYCLE_PREFIX));
   end
   for i=1:length(YEARS)
@@ -321,7 +326,7 @@ if LOAD_CR_PROC
       Node=rmfield(Node,crname); % reload to get ind fraction
     end
     
-    if isfield(Node,crname)
+    if isfield(Node,crname) & ~FORCE_CR_PROC
       fprintf('%s exists: nothing to do.\n',crname)
       CRa=Node.(crname);
     else
@@ -339,6 +344,10 @@ if LOAD_CR_PROC
       Node.(crname)=CRa;
     end
     fprintf('Appending to %s \n',nodename)
+    if isfield(Node.(nodename),'CR_GAL')
+      Node.(nodename)=rmfield(Node.(nodename),{'CR_GAL','CR_prodGAL','CR_residGAL','CR_indGAL'});
+    end
+      
     FN=fieldnames(Node.(nodename));
     Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_GAL', ...
                           'zer');
@@ -409,6 +418,7 @@ end
 %% Compute Activity levels on a facility-specific basis
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 if APPLY_FAC_DATA
   if ~isfield(Node,'FacData') | FORCE_FAC_DATA
