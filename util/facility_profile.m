@@ -1,4 +1,4 @@
-function D=facility_profile(MDfile,EPAID,generator)
+function [Dg,Dt]=facility_profile(MDfile,EPAID)
 % function D=facility(MDfile,regex)
 % This function prepares a facility profile from a Tanner Report of Manifest
 % data.  [new] Tanner Reports have nine fields: 
@@ -22,12 +22,8 @@ function D=facility_profile(MDfile,EPAID,generator)
 % reference data found in Tanner.mat
 
 delim=',';
-accum_cols='ddddmma';
-fac_field=3;
-if nargin>2 & ~isempty(generator)
-  fac_field=1;
-end
-accum_cols(fac_field)='m';
+fac_field={1,2};
+accum_cols='mmmma';
 
 try 
   fid=fopen(MDfile);
@@ -39,9 +35,9 @@ end
 
 switch length(regexp(fgetl(fid),delim,'split'))
   case 7
-    manifest_read={'s','s','s','s','s','s','n'};
+    manifest_read={'s','','s','','s','s','n'};
   case 9
-    manifest_read={'s','s','s','s','','','s','s','n'};
+    manifest_read={'s','','s','','','','s','s','n'};
   otherwise
     error(['Unhandled number of fields'])
 end
@@ -49,8 +45,8 @@ fclose(fid)
 
 D=read_dat(MDfile,delim,manifest_read,struct('Field',fac_field,...
                                                  'Test',@regexp,...
-                                                 'Pattern',EPAID));
-D=accum(D,accum_cols);
+                                                 'Pattern',EPAID,'Inv',0,'Or',1));
+D=rmfield(accum(D,accum_cols),'Count');
 
 load Tanner
 
@@ -64,5 +60,16 @@ else
 end
 D=vlookup(D,'METH_CODE',Methods,'METH_CODE','METH_DESC');
 
-D=orderfields(D,[1 2 6 3 7 4 5]);
+    % GEN_EPA_ID
+    % TSDF_EPA_ID
+    % METH_CODE
+    % CAT_CODE
+    % Accum__TONS
+    % CAT_DESC
+    % METH_DESC
+
+Dg=filter(D,{'GEN_EPA_ID','TSDF_EPA_ID'},{@strcmp},EPAID,{0,1}); % omit
+                                                                 % self-transfers
+                                                                 % from gen
+Dt=accum(filter(D,'TSDF_EPA_ID',{@strcmp},EPAID),'dmmmamm','');
 

@@ -422,7 +422,36 @@ end
 %% Append RCRA Data
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+if GEN_RCRA
+  if ~isfield(MD,['RCRA_' num2str(RCRA_YEARS(1))])
+    fprintf('%s ... %.1f sec\n','Reading RCRA data',toc)
+    MD=union(MD,uo_load('RCRA','../RCRAData',RCRA_YEARS));
+  end
 
+  for i=1:length(RCRA_YEARS)
+    fprintf('%s ... %.1f sec\n','Computing RCRA node balances',toc)
+    rcraname=['RCRA_' num2str(RCRA_YEARS(i))];
+    manname=['RCRA_Q_' num2str(RCRA_YEARS(i))];
+    nodename=['RCRA_Rn_' num2str(RCRA_YEARS(i))];
+    nodetgt=['Rn_' num2str(RCRA_YEARS(i)) '_221'];
+    MD.(manname)=select(MD.(rcraname),{'GEN_EPA_ID','GEN_NAME','TSDF_EPA_ID','TSDF_NAME',...
+                        'FormCode','METH_CODE','TONS','HazWasteCodes','HazWasteGroup'});
+    MD.(manname)=rmfield(fieldop(MD.(manname),'GAL',...
+                                 ['floor( #TONS * ' GAL_PER_TON ')']), 'TONS');
+    MD.(manname)=orderfields(MD.(manname),[1 2 3 4 5 6 9 7 8]);
+    Node.(nodename)=uo_node(filter(MD.(manname),'GEN_EPA_ID',{@regexp},'^CA'), ...
+                            TANNER_TERMINAL,'H800'); 
+    Node.(nodetgt)=vlookup(Node.(nodetgt),'TSDF_EPA_ID',...
+                           mvfield(Node.(nodename),'DGAL','RCRA_DGAL'),...
+                           ,'TSDF_EPA_ID','RCRA_DGAL','zer');
+                                   
+  end
+
+  save MD MD
+  save Node Node
+  error('Stop after RCRA')
+end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
