@@ -62,6 +62,8 @@ while ~isempty(varargin)
         inplace=1;
       case 'bla'
         blank=1;
+      case 'zer'
+        blank=2;
       otherwise
         ReturnField=varargin{1};
     end
@@ -100,8 +102,11 @@ else
   RtnData=repmat({''},length(N),1);
   %  keyboard
   [RtnData{find(N)}]=Facilities(N(find(N))).(ReturnField);
-  if blank==0
-    [RtnData{find(N==0)}]=D(find(N==0)).(KeyField);
+  switch blank
+    case 0
+      [RtnData{find(N==0)}]=D(find(N==0)).(KeyField);
+    case 2 % fill with zeros
+      [RtnData{find(N==0)}]=deal(0);
   end % else leave blank
 end
 [D(:).(DestField)]=RtnData{:};
