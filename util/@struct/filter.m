@@ -38,20 +38,22 @@ else
   if nargin<6 Or=0; end
   filt=struct('Field',Field,'Test',Test,'Pattern',Pattern,'Inv',Inv,'Or',Or);
 end
-
+filt(1).Or=any([filt.Or]); % any or means all or
 M=logical(zeros(length(D),length(filt)));
 
 for i=1:length(D)
-  filt_pass=1;
   for f=1:length(filt)
+    % Field reference by name or index
     if isnumeric(filt(f).Field)
       mydata=D(i).(FN{filt(f).Field});
     else
       mydata=D(i).(filt(f).Field);
     end
+    % controversial: NaN always returns false
     if isnan(mydata)
       result=false;
     elseif isempty(filt(f).Pattern)
+      % unary test
       try
         result=feval(filt(f).Test,mydata);
       catch
@@ -59,6 +61,7 @@ for i=1:length(D)
         keyboard
       end
     else
+      % binary test
       try
         result=feval(filt(f).Test,mydata,filt(f).Pattern);
       catch 
@@ -66,6 +69,7 @@ for i=1:length(D)
         keyboard
       end
     end
+    % invert the result - handle empty vs false results
     if filt(f).Inv
       if islogical(result)
         result=~result;
@@ -77,30 +81,19 @@ for i=1:length(D)
         end
       end
     end
-    % try
-    %   isempty(result) | ~result;
-    % catch
-    %   keyboard
-    % end
-    if  isempty(result) | ~result 
-      if ~filt(f).Or
-        filt_pass=0;
+    % did we pass?
+    if isempty(result) | ~result 
+      if ~filt(1).Or % 
         break;
       end
     else
       M(i,f)=true;
     end
   end
-  if filt(f).Or
-    filt_pass=any(M(i,:));
-  end
-  if filt_pass
-    if isempty(Ds)
-      Ds=D(i);
-    else
-      Ds(end+1)=D(i);
-    end
-  end
 end
-Ds=Ds(:);
-
+% final outcome - AND vs OR
+if filt(1).Or
+  Ds=D(any(M,2));
+else
+  Ds=D(M(:,end));
+end
