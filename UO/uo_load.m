@@ -32,111 +32,114 @@ switch dbase
       D=load(savefile);
     else
       % need to generate the data
-    
-      switch wc
-        case '223'
-          srcfile=[prefix '/Tanner' num2str(year) '/MD_units' tanner_suffix '.csv'];
-          
-          MD=read_dat(srcfile,',',{'s','s','s','s','s','n','s'}); % no filter- all 223
-          MD=container_correct(MD);
-          disp('Adding county data to 223 manifest record..')
-          MD=mvfield(flookup(MD,'GEN_EPA_ID','FAC_CNTY'),'FAC_CNTY','GEN_CNTY', ...
-                     'bla');
-          MD=mvfield(flookup(MD,'TSDF_EPA_ID','FAC_CNTY'),'FAC_CNTY','TSDF_CNTY', ...
-                     'bla');
-          MD=orderfields(MD,[1 8 2 9 3:7]);
-
-        otherwise
-          manfiles={'TANNER2011.txt',%2011
-                    'Manifest.txt',%2010
-                    'MANIFEST.txt',%2009
-                    'tanner2008.txt',
-                    'TANNER2007.txt',
-                    'TANNER2006.txt',
-                    'tanner2005.txt',
-                    'tanner2004.txt',
-                    'tanner2003.txt',
-                    'tanner2002.txt',
-                    '2001_SUMMARY.txt',
-                    'tanner2000.txt',
-                    'tanner_1999.txt',
-                    'tanner_1998.txt',
-                    'tanner_1997.txt',
-                    'tanner_1996.txt',
-                    'tanner_1995.txt',
-                    'tanner_1994.txt',
-                    'tanner_1993.txt'         };
-          srcfile=[prefix '/Tanner' num2str(year) '/' manfiles{2012-year}];
-          
-          switch year
-            % note- q is obsolete
-            case 2001
-              manifest_read={'s','n','s','n','s','','s','n'};
-              WASTE_STATE_CODE='WASTE_STATE_CODE';
-              TSDF_CNTY='DISP_CNTY';
-            case 2010
-              manifest_read={'s','n','s','n','','','s','s','n'};
-              WASTE_STATE_CODE='WASTE_STATE_CODE';
-              TSDF_CNTY='TSDF_CNTY';
-            case 2007
-              manifest_read={'s','n','s','n','s','s','n'};
-              WASTE_STATE_CODE='WASTE_STATE_CODE';
-              TSDF_CNTY='DISP_CNTY';
-            case 2006
-              manifest_read={'s','n','s','n','s','s','n'};
-              WASTE_STATE_CODE='CAT_CODE';
-              TSDF_CNTY='DISP_CNTY';
-            otherwise
-              %% 1996 case: line 81982 has a typo
-              % case 2011,2009,2008,2005,2004,2003,2002,2000,1999,1998,1997,1996,1995,1994,1993
-              manifest_read={'s','n','s','n','s','s','n'};
-              WASTE_STATE_CODE='CAT_CODE';
-              TSDF_CNTY='DISP_CNTY';
-          end
-          
-          
-          
-          MD=read_dat(srcfile,',',manifest_read,...
-                      struct('Field',WASTE_STATE_CODE,'Test',{@regexp},'Pattern', ...
+      unit_srcfile=[prefix '/Tanner' num2str(year) '/MD_units' tanner_suffix ...
+                    '.csv'];
+      if exist(unit_srcfile,'file')
+        
+        MD=read_dat(unit_srcfile,',',{'s','s','s','s','s','n','s'}); % no filter- all 223
+        MD=container_correct(MD);
+        disp('Adding county data to 223 manifest record..')
+        MD=mvfield(flookup(MD,'GEN_EPA_ID','FAC_CNTY'),'FAC_CNTY','GEN_CNTY', ...
+                   'bla');
+        MD=mvfield(flookup(MD,'TSDF_EPA_ID','FAC_CNTY'),'FAC_CNTY','TSDF_CNTY', ...
+                   'bla');
+        MD=orderfields(MD,[1 8 2 9 3:7]);
+        
+      else
+        manfiles={'TANNER2011.txt',%2011
+                  'Manifest.txt',%2010
+                  'MANIFEST.txt',%2009
+                  'tanner2008.txt',
+                  'TANNER2007.txt',
+                  'TANNER2006.txt',
+                  'tanner2005.txt',
+                  'tanner2004.txt',
+                  'tanner2003.txt',
+                  'tanner2002.txt',
+                  '2001_SUMMARY.txt',
+                  'tanner2000.txt',
+                  'tanner_1999.txt',
+                  'tanner_1998.txt',
+                  'tanner_1997.txt',
+                  'tanner_1996.txt',
+                  'tanner_1995.txt',
+                  'tanner_1994.txt',
+                  'tanner_1993.txt'         };
+        srcfile=[prefix '/Tanner' num2str(year) '/' manfiles{2012-year}];
+        
+        switch year
+          % note- q is obsolete
+          case 2001
+            manifest_read={'s','n','s','n','s','','s','n'};
+            WASTE_STATE_CODE='WASTE_STATE_CODE';
+            TSDF_CNTY='DISP_CNTY';
+          case 2010
+            manifest_read={'s','n','s','n','','','s','s','n'};
+            WASTE_STATE_CODE='WASTE_STATE_CODE';
+            TSDF_CNTY='TSDF_CNTY';
+          case 2007
+            manifest_read={'s','n','s','n','s','s','n'};
+            WASTE_STATE_CODE='WASTE_STATE_CODE';
+            TSDF_CNTY='DISP_CNTY';
+          case 2006
+            manifest_read={'s','n','s','n','s','s','n'};
+            WASTE_STATE_CODE='CAT_CODE';
+            TSDF_CNTY='DISP_CNTY';
+          otherwise
+            %% 1996 case: line 81982 has a typo
+            % case 2011,2009,2008,2005,2004,2003,2002,2000,1999,1998,1997,1996,1995,1994,1993
+            manifest_read={'s','n','s','n','s','s','n'};
+            WASTE_STATE_CODE='CAT_CODE';
+            TSDF_CNTY='DISP_CNTY';
+        end
+        
+        
+        
+        MD=read_dat(srcfile,',',manifest_read,...
+                    struct('Field',WASTE_STATE_CODE,'Test',{@regexp},'Pattern', ...
                              wc));
-          MD=MD(:);
-          if year==2011
-            % need to correct for erroneous TSDF_CNTY entry through flookup 
-            MD=rmfield(MD,TSDF_CNTY);
-            [MD,M]=flookup(MD,'TSDF_EPA_ID','FAC_CNTY');
-            MD=moddata(MD,'FAC_CNTY',@ifstr2num);
-            MD=orderfields(MD,[1 2 3 7 4 5 6]);
+        MD=MD(:);
+        if year==2011
+          % need to correct for erroneous TSDF_CNTY entry through flookup 
+          MD=rmfield(MD,TSDF_CNTY);
+          [MD,M]=flookup(MD,'TSDF_EPA_ID','FAC_CNTY');
+          MD=moddata(MD,'FAC_CNTY',@ifstr2num);
+          MD=orderfields(MD,[1 2 3 7 4 5 6]);
+        end
+        if ~isfield(MD,'WASTE_STATE_CODE')
+          MD=mvfield(MD,WASTE_STATE_CODE,'WASTE_STATE_CODE');
+        end
+        if ~isfield(MD,'TSDF_CNTY')
+          MD=mvfield(MD,4,'TSDF_CNTY');
+        end
+        if ~isfield(MD,'TSDF_EPA_ID')
+          MD=mvfield(MD,3,'TSDF_EPA_ID');
+        end
+        if ~isfield(MD,'TONS')
+          MD=mvfield(MD,7,'TONS');
+        end
+        % ensure field order is correct
+        if year==2011
+          try
+            MD=orderfields(MD,{'GEN_EPA_ID',
+                               'GEN_CNTY',
+                               'TSDF_EPA_ID',
+                               'TSDF_CNTY',
+                               'WASTE_STATE_CODE',
+                               'METH_CODE',
+                               'TONS'}); % this will error if something is wrong
+          catch
+            disp('Ordering fields messed up')
+            keyboard
           end
-          if ~isfield(MD,'WASTE_STATE_CODE')
-            MD=mvfield(MD,WASTE_STATE_CODE,'WASTE_STATE_CODE');
-          end
-          if ~isfield(MD,'TSDF_CNTY')
-            MD=mvfield(MD,4,'TSDF_CNTY');
-          end
-          if ~isfield(MD,'TSDF_EPA_ID')
-            MD=mvfield(MD,3,'TSDF_EPA_ID');
-          end
-          if ~isfield(MD,'TONS')
-            MD=mvfield(MD,7,'TONS');
-          end
-          % ensure field order is correct
-          if year==2011
-            try
-              MD=orderfields(MD,{'GEN_EPA_ID',
-                                 'GEN_CNTY',
-                                 'TSDF_EPA_ID',
-                                 'TSDF_CNTY',
-                                 'WASTE_STATE_CODE',
-                                 'METH_CODE',
-                                 'TONS'}); % this will error if something is wrong
-            catch
-              disp('Ordering fields messed up')
-              keyboard
-            end
-          end
+        end
           
       end
-      MD=meth_correct(MD);
+      if year<2007
+        MD=meth_correct(MD,1);
+      else
+        MD=meth_correct(MD);
+      end
       MD=blank_epaid_correct(MD);
       
       %keyboard

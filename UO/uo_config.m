@@ -24,32 +24,46 @@ end
 fprintf('Loading config for user %s\n',USER);
 
 %% Select which parts of the MFA to run
-YEARS=2007:2011;
-RCRA_YEARS=[2007 2009];
+YEARS=[2004 2005 2007:2011];
+RCRA_YEARS=[2005 2007 2009];
 WCs=221:223;
 
-READ_FACILITIES = true;
-READ_NAICS      = true;
-LOAD_MD_NODE    = false;
-GEN_MD          = true;
-UNITCONV_MD     = false;
-RE_CORR_METH    = false;
-GEN_NODE        = true;
-FORCE_GEN_NODE  = false;
-LOAD_CR_PROC    = true;
-FORCE_CR_PROC   = true;
-GEN_RCRA        = true;
-GEN_NODE_PIVOT  = true;
-PUBLISH_DATA    = true;
-APPLY_FAC_DATA  = true;
-FORCE_FAC_DATA  = true;
-COMPUTE_ACTIVITY = true;
+%% ----------------------------------------
+%% these 3 params only need to be set to 'true' to force a reload- 
+%% during normal operation the operations will be performed as needed if the data
+%% fields are not present.
+READ_FACILITIES = false;
+READ_NAICS      = false;
+READ_LAT_LONG   = false;
+%% ----------------------------------------
+%% These are used to correct data in an intermediate state and should be left
+%% false pretty much of the time.
+UNITCONV_MD     = false;  %% force a unit conversion from TONS to GAL
+RE_CORR_METH    = false;  %% re-apply method-code correction
 
+%% ----------------------------------------
+%% Normal Functionality
+LOAD_MD_NODE    = false;  %% whether to reload of data from disk each run
+GEN_MD          = true;   %% generate manifest data (if not already generated)
+GEN_NODE        = true;   %% compute node mass balances
+FORCE_GEN_NODE  = false;  %% force re-computation of node mass balances
+LOAD_CR_PROC    = true;   %% load CalRecycle data + append to nodes
+FORCE_CR_PROC   = false;  %% force reload CalRecycle data
+GEN_RCRA        = false;  %% generate RCRA manifest data + node mass balances
+GEN_NODE_PIVOT  = true;   %% generate pivot table
+APPLY_FAC_DATA  = false;  %% Compute node activity levels from Facilities data
+FORCE_FAC_DATA  = false;  %% force a reload of Facilities spreadsheet
+COMPUTE_ACTIVITY = false; %% compute aggregate (MFA-LCA) activity levels
+
+PUBLISH_DATA    = true;   %% publish generated spreadsheets to FILE_EXCHANGE
+
+%% ----------------------------------------
 %% INPUT FILES
 %% Location of facility description data in csv format
 % modified to include DESTINATION_UNKNOWN, SOURCE_UNKNOWN, and custom additions
 FACILITIES_FILE='HWTS_FACILITIES_2007_2011.csv'; 
 NAICS_FILE='HWTS_FACILITIES_NAICS.csv';
+LAT_LONG_FILE='reduced_ZIP_proxy_facilities_mod.csv';
 
 FACILITIES_PREFIX='../FacilityData/';
 
@@ -59,15 +73,16 @@ TANNER_PREFIX='../TannerData/'; % path to Tanner report data - each year in 'Tan
 CALRECYCLE_PREFIX='../CalRecycleData/'; %% path to CalRecycle data - need
                                     % CR-processor.csv
 
-  
-NODE_PIVOT_PREFIX='UO_facilities';
-ACTIVITY_FILE_PREFIX='UO_activity';
-
 FAC_DATA_FILE='Facilities.xlsx';
 FAC_DATA_SHEET='Activities';
 
+%% ----------------------------------------
+%% Output files - named PREFIX_year[_endyear].xls
+NODE_PIVOT_PREFIX='UO_facilities';
+ACTIVITY_FILE_PREFIX='UO_activity';
 
 
+%% ----------------------------------------
 %% Management Method Codes we're interested in
 METH_REGEXP='^H[0-9]{3}';  % regexp to match all method codes
 TANNER_DISP={'H900','H901'};  % net flows into a facility are given this code

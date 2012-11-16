@@ -35,13 +35,13 @@ if READ_FACILITIES | ~exist('FacilitiesUO.mat','file')
   fprintf(1,'Reading facilities database: %.1f sec \n',toc)
   global Facilities FACILITIES GEO_CONTEXT GEO_REGION UNIT_CONV
   Facilities = read_dat([FACILITIES_PREFIX FACILITIES_FILE],',', ...
-                        {'s','n','n','s','s','','s','s','s','s','s','','s',''}, ...
+                        {'s','','','s','s','','s','s','s','s','s','','s',''}, ...
                         struct('Field',{'FAC_NAME'},'Test',{@isempty}, ...
                                'Pattern',{''},'Inv',{1}));
   % Facilities = 
   %     GEN_EPA_ID
-  %     NAICS_COUNT
-  %     SIC_COUNT
+  %X     NAICS_COUNT
+  %X     SIC_COUNT
   %     FAC_NAME
   %     FAC_STR1
   %     FAC_CITY
@@ -50,7 +50,6 @@ if READ_FACILITIES | ~exist('FacilitiesUO.mat','file')
   %     FAC_ZIP
   %     FAC_ACT_IND
   %     CREATE_DATE
-  %     NAICS_CODE
   [FACILITIES,ind]=sort({Facilities(:).GEN_EPA_ID});
   Facilities=Facilities(ind);
 
@@ -86,6 +85,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
+  %     NAICS_CODE
   fprintf(1,'Adding NAICS codes to Facilities (this is SLOW): %.1f sec\n',toc)
   fprintf(1,'Reading NAICS database:\n')
   FN=read_dat([FACILITIES_PREFIX NAICS_FILE],',',{'s','s','',''},...
@@ -116,6 +116,53 @@ if READ_NAICS | ~isfield(Facilities,'NAICS_CODE')
   save FacilitiesUO FACILITIES Facilities GEO_CONTEXT GEO_REGION UNIT_CONV
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Apply Lat/Long to Facilities Database - as 2-element vector
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if READ_LAT_LONG | ~isfield(Facilities,'LAT_LONG')
+  %     LAT_LONG - 2-element concatenation 
+  fprintf(1,'%s ... %.1f sec\n','Adding Lat/Long to Facilities Database',toc)
+  FLL=read_dat([FACILITIES_PREFIX LAT_LONG_FILE],',',{'n','','','s','s','','','n','n'},...
+               struct('Field',{'ZIP5'},'Test',{@eq},'Pattern',{0},'Inv',{1}));
+
+  if 1 % URL_LOOKUP_MISSING
+    fprintf(1,'%s ... %.1f sec\n','Performing URL lookup Lat/Long for missing ZIPs',toc)
+    [~,M]=filter(FLL,'POINT_X',{@eq},0);
+    ZIP_missing=unique({FLL(M).ZIP5});
+    err_list=[];
+    for k=1:size(ZIP_missing,2)
+      if mod(k,100)==1 
+        disp([num2str(k-1) ' ZIPs done (' num2str(size(ZIP_missing,2)) ' total)'])
+      end
+      [s,st]=urlread(sprintf('http://%s/%2.2s/%05d.html','www.brainyzip.com/zipcodes',...
+                             ZIP_missing{1,k},str2num(ZIP_missing{1,k})));
+      if st
+        Lat=regexp(s,'L[atong]+itude[^0-9-+.]+([0-9-+.]+)','tokens');
+        ZIP_missing([2,3],k)=[Lat{:}];
+      else
+        disp(['URL read failed for ZIP ' ZIP_missing{1,k} ' (' num2str(k) ')'])
+        err_list=[err_list k];
+      end
+    end
+    ZIP_missing(:,err_list)=[];
+    ZIP_missing=cell2struct(ZIP_missing,{'ZIP5','POINT_Y','POINT_X'});
+
+    % apply lookedup results to FLL
+    [FLL(M)]=vlookup(FLL(M),'ZIP5',ZIP_missing,'ZIP5','POINT_X','zer');
+    [FLL(M)]=vlookup(FLL(M),'ZIP5',ZIP_missing,'ZIP5','POINT_Y','zer');
+  end
+  LAT_LONG=num2cell([FLL(:).POINT_Y; FLL(:).POINT_X]',2);
+  [FLL.LAT_LONG]=deal(LAT_LONG{:});
+  
+  fprintf(1,'%s ... %.1f sec\n','Appending LAT_LONG to facilities database',toc)
+  
+  Facilities=vlookup(Facilities,'GEN_EPA_ID',FLL,'GEN_EPA_ID','LAT_LONG','zer');
+  save FacilitiesUO FACILITIES Facilities GEO_CONTEXT GEO_REGION UNIT_CONV
+end
+  
 %% okay, so we read in the facility data
 %% (use read_fac as template to revise stored data)
 
@@ -160,7 +207,7 @@ if GEN_MD
           MD=uo_load('MD',TANNER_PREFIX,YEARS(i),WCs(j));
         end
       
-        if WCs(j)==223
+        if isfield(MD.(manname),'QUANTITY') % do 223 conversion
           [MD.(manname),Qx]=screen223(MD.(manname));
         else
           % get rid of NANs
@@ -205,7 +252,7 @@ if UNITCONV_MD
 
       manname=['Q' tanner_suffix];
 
-      if WCs(j)~=223
+      if WCs(j)~=223 & isfield(MD.(manname),'TONS')
         % get rid of NANs
         [MD.(manname)(find(isnan([MD.(manname).TONS]))).TONS]=deal(0);
         % convert to GAL
@@ -246,7 +293,11 @@ if RE_CORR_METH
       tanner_suffix=['_' yy '_' wc];
 
       manname=['Q' tanner_suffix];
-      MD.(manname)=meth_correct(MD.(manname));
+      if YEARS(i)<2007
+        MD.(manname)=meth_correct(MD.(manname),1);
+      else
+        MD.(manname)=meth_correct(MD.(manname));
+      end
       if exist('Node','var')
         % if we change MD, we need to strike all the derived nodes
         FN=fieldnames(Node);
@@ -393,8 +444,8 @@ if GEN_RCRA
                             TANNER_TERMINAL,'H800'); 
     Node.(nodetgt)=vlookup(Node.(nodetgt),'TSDF_EPA_ID',...
                            mvfield(Node.(nodename),'DGAL','RCRA_DGAL'),...
-                           ,'TSDF_EPA_ID','RCRA_DGAL','zer');
-                                   
+                           'TSDF_EPA_ID','RCRA_DGAL','zer');
+    
   end
 
   save MD MD
