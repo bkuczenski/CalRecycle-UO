@@ -128,9 +128,9 @@ switch opt
             'mm','');
     
     P=accum(select(DB.CR_Proc,...
-                   {'Year','EPAIDNumber','GrandTotalOilReceivedGallons', ...
+                   {'Year','EPAIDNumber','TotalOilInCAGallons', ...
                     'RecycledOilTotalGallons','ResidualMaterialTotalGallons',...
-                    'TotalIndGallons'}),'mm','');
+                    'IndOilInCAGallons'}),'mm','');
       
     S=DB.CR_Sales;
     
@@ -149,9 +149,9 @@ switch opt
       
       Py=accum(filter(P,'Year',{@eq},y(i)),'mdaaaa','');
       D.(optname)=appendval(D.(optname),'LubeProcessedRpt',y(i),...
-                            Py.GrandTotalOilReceivedGallons- Py.TotalIndGallons);
+                            Py.TotalOilInCAGallons- Py.IndOilInCAGallons);
       D.(optname)=appendval(D.(optname),'IndProcessedRpt',y(i),...
-                            Py.TotalIndGallons);
+                            Py.IndOilInCAGallons);
 
       Ty=filter(T,'Year',{@eq},y(i));
       D.(optname)=appendval(D.(optname),'LubeTransferred',y(i),Ty.LubeOil);
@@ -159,16 +159,16 @@ switch opt
       
       Pyx=accum(filter(P,{'Year','EPAIDNumber'},{@eq,@regexp},{y(i),'^CA'},{0,1}),'mdaaaa','');
       D.(optname)=appendval(D.(optname),'LubeProcessedRptExCA',y(i),...
-                            Pyx.GrandTotalOilReceivedGallons- Pyx.TotalIndGallons);
+                            Pyx.TotalOilInCAGallons- Pyx.IndOilInCAGallons);
       D.(optname)=appendval(D.(optname),'IndProcessedRptExCA',y(i),...
-                            Pyx.TotalIndGallons);
+                            Pyx.IndOilInCAGallons);
       
       Pyy=accum(filter(P,{'Year','RecycledOilTotalGallons'},{@eq},{y(i),0},{0,1}),...
                 'm','');
       D.(optname)=appendval(D.(optname),'LubeProcessedCorr',y(i),...
-                            Pyy.GrandTotalOilReceivedGallons- Pyy.TotalIndGallons);
+                            Pyy.TotalOilInCAGallons- Pyy.IndOilInCAGallons);
       D.(optname)=appendval(D.(optname),'IndProcessedCorr',y(i),...
-                            Pyy.TotalIndGallons);
+                            Pyy.IndOilInCAGallons);
 
       D.(optname)=createtbl(D.(optname),indicator);
 
