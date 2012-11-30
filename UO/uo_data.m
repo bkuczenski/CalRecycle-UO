@@ -134,7 +134,7 @@ switch opt
       
     S=DB.CR_Sales;
     
-    T=accum(DB.CR_Txfr,'dddmaaa','')
+    T=accum(DB.CR_Txfr,'dddmaaa','');
 
     
     for i=1:length(y)
