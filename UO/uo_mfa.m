@@ -313,6 +313,8 @@ if RE_CORR_METH
   end
 end
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% Generate node data
@@ -346,6 +348,48 @@ if GEN_NODE | FORCE_GEN_NODE
   save Node Node
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Generate distance data
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if GEN_DISTANCE | ~isfield(Node,'Dist')
+  fprintf('%s ... %.1f sec\n','Computing freight requirements',toc)
+  if isfield(Node,'Dist')
+    Node=rmfield(Node,'Dist');
+  end
+  Node.Dist=struct('Year',{},'WC',{},'Collected_kg',{},'Freight_tkm',{});
+  for i=1:length(YEARS)
+    yy=num2str(YEARS(i));
+    for j=1:length(WCs)
+      wc=num2str(WCs(j));
+
+      tanner_suffix=['_' yy '_' wc];
+
+      manname=['Q' tanner_suffix];
+      nodename=['Rn' tanner_suffix];
+
+      fprintf('Computing distance: %s\n',manname)
+
+      Q=uo_distance(MD.(manname));
+      Q=fieldop(Q,'kg','#GAL * 7.5/2.204622');
+      Q=rmfield(Q,'GAL');
+      Q=fieldop(Q,'tkm',['#kg .* #DISTANCE * ' num2str(DIST_SCALE) ' / 1000']); %
+                                                                               % factor of 1.2
+      M=isnan([Q.tkm]);
+      Q=sum([Q(~M).tkm]);
+
+      C=sum([Node.(nodename).GGAL] + [Node.(nodename).IgGAL])*7.5/2.204622;
+      Node.Dist=stack(Node.Dist,struct('Year',YEARS(i),'WC',wc,...
+                                       'Collected_kg',C,'Freight_tkm',Q));
+    end
+  end
+  Node.Dist=select(Node.Dist,{'Year','WC','Collected_kg','Freight_tkm'});
+  save Node Node
+end
+
+      
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -354,8 +398,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-if FORCE_CR_PROC & isfield(Node,'CR_Proc') 
-  Node=rmfield(Node,'CR_Proc');
+if FORCE_CR_PROC 
+  Node=ifrmfield(Node,{'CR_Proc','CR_Sales','CR_Hauler','CR_Txfr'});
 end
 
 if LOAD_CR_PROC | FORCE_CR_PROC
@@ -370,34 +414,25 @@ if LOAD_CR_PROC | FORCE_CR_PROC
     nodename=['Rn_' yy '_221'];
     crname=['CR_' yy];
 
-    % cleanup
-    if isfield(Node.(nodename),'CR_inGAL')
-      Node.(nodename)=rmfield(Node.(nodename),{'CR_inGAL','CR_prodGAL', ...
-                          'CR_resGAL'});
-      Node=rmfield(Node,crname); % reload to get ind fraction
-    end
-    
     if isfield(Node,crname) & ~FORCE_CR_PROC
       fprintf('%s exists: nothing to do.\n',crname)
       CRa=Node.(crname);
     else
       fprintf('Computing CR totals: %s\n',crname)
       CRa=select(accum(filter(Node.CR_Proc,'Year',{@eq},YEARS(i)),'dmdm',''),...
-                 {'Year','EPAIDNumber','GrandTotalOilReceivedGallons', ...
+                 {'Year','EPAIDNumber','TotalOilInCAGallons', ...
                   'RecycledOilTotalGallons','ResidualMaterialTotalGallons',...
-                  'TotalIndGallons'});
+                  'IndOilInCAGallons'});
       % transfers column just makes NO consistent sense
       CRa=mvfield(CRa,'EPAIDNumber','CR_EPA_ID');
-      CRa=mvfield(CRa,'GrandTotalOilReceivedGallons','CR_GAL');
+      CRa=mvfield(CRa,'TotalOilInCAGallons','CR_GAL');
       CRa=mvfield(CRa,'RecycledOilTotalGallons','CR_prodGAL');
       CRa=mvfield(CRa,'ResidualMaterialTotalGallons','CR_residGAL');
-      CRa=mvfield(CRa,'TotalIndGallons','CR_indGAL');
+      CRa=mvfield(CRa,'IndOilInCAGallons','CR_indGAL');
       Node.(crname)=CRa;
     end
     fprintf('Appending to %s \n',nodename)
-    if isfield(Node.(nodename),'CR_GAL')
-      Node.(nodename)=rmfield(Node.(nodename),{'CR_GAL','CR_prodGAL','CR_residGAL','CR_indGAL'});
-    end
+    Node.(nodename)=ifrmfield(Node.(nodename),{'CR_inGAL','CR_GAL','CR_prodGAL','CR_residGAL','CR_indGAL'});
       
     FN=fieldnames(Node.(nodename));
     Node.(nodename)=vlookup(Node.(nodename),'TSDF_EPA_ID',CRa,'CR_EPA_ID','CR_GAL', ...
@@ -604,17 +639,54 @@ if COMPUTE_ACTIVITY
   end
   
   for j=1:length(WCs)
+    % add in tabulated data from Node.Dist
     wc=num2str(WCs(j));
+    WC{j}=vlookup(WC{j},'Year',filter(Node.Dist,'WC',{@strcmp},wc),'Year','Collected_kg');
+    WC{j}=vlookup(WC{j},'Year',filter(Node.Dist,'WC',{@strcmp},wc),'Year','Freight_tkm');
     fprintf(1,'%s%s\n','Writing to Excel: WC',wc)
     xlswrite(ACTIVITY_FILE,struct2xls(WC{j}),['WC' wc]);
+    WC{j}=rmfield(WC{j},'Count');
+    if j==1
+      W=WC{j};
+    else
+      W=stack(W,WC{j});
+    end
   end
 
+  nosort={'Year','WC'};
+  noscale=[nosort {'Collected_kg','Freight_tkm'}];
+  FN=sort(setdiff(fieldnames(W),nosort));
+
+  W=select(W,[nosort FN]);
+  
+  W=scalestruct(W,7.5/2.204622,noscale);
+  W=sort(W,'Year');
+  P=pivot(W,'WC','Year',FN);
+
+  P_out=P.Cols;
+  N_out={'Year'};
+  for i=1:length(P.Rows)
+    for j=1:length(P.Fields)
+      P_out=[P_out; num2cell(P.Data{j}(i,:))];
+      N_out=[N_out;{[P.Rows{i} '_' P.Fields{j}]}];
+    end
+  end
+  
+  fprintf(1,'%s\n','Writing to Excel: GaBi activity levels')
+  xlswrite(ACTIVITY_FILE,[N_out P_out],'GaBi_kg');
+  
   for i=1:length(YEARS)
     yy=num2str(YEARS(i));
     fprintf(1,'%s %d %s\n','Writing to Excel: Year',YEARS(i),'detail')
     xlswrite(ACTIVITY_FILE,struct2xls(FA{i}),[yy '_Detail']);
   end
 
+  % % now print transposed
+  % Meta={'Year'};
+  
+  % FN=setdiff(fieldnames(W),Meta);
+  
+  % W=select(W,[Meta; FN]);
   
   fprintf('%s %s ... %.1f sec\n','Open and initialize activity sheet ',ACTIVITY_FILE,toc)
   pause
