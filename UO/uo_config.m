@@ -35,6 +35,7 @@ WCs=221:223;
 READ_FACILITIES = false;
 READ_NAICS      = false;
 READ_LAT_LONG   = false;
+GEN_DISTANCE    = false;  %% compute freight requirements
 %% ----------------------------------------
 %% These are used to correct data in an intermediate state and should be left
 %% false pretty much of the time.
@@ -47,13 +48,13 @@ LOAD_MD_NODE    = false;  %% whether to reload of data from disk each run
 GEN_MD          = true;   %% generate manifest data (if not already generated)
 GEN_NODE        = true;   %% compute node mass balances
 FORCE_GEN_NODE  = false;  %% force re-computation of node mass balances
-LOAD_CR_PROC    = true;   %% load CalRecycle data + append to nodes
+LOAD_CR_PROC    = false;   %% load CalRecycle data + append to nodes
 FORCE_CR_PROC   = false;  %% force reload CalRecycle data
 GEN_RCRA        = false;  %% generate RCRA manifest data + node mass balances
-GEN_NODE_PIVOT  = true;   %% generate pivot table
-APPLY_FAC_DATA  = false;  %% Compute node activity levels from Facilities data
-FORCE_FAC_DATA  = false;  %% force a reload of Facilities spreadsheet
-COMPUTE_ACTIVITY = false; %% compute aggregate (MFA-LCA) activity levels
+GEN_NODE_PIVOT  = false;   %% generate pivot table
+APPLY_FAC_DATA  = true;  %% Compute node activity levels from Facilities data
+FORCE_FAC_DATA  = true;  %% force a reload of Facilities spreadsheet
+COMPUTE_ACTIVITY = true; %% compute aggregate (MFA-LCA) activity levels
 
 PUBLISH_DATA    = true;   %% publish generated spreadsheets to FILE_EXCHANGE
 
@@ -64,6 +65,8 @@ PUBLISH_DATA    = true;   %% publish generated spreadsheets to FILE_EXCHANGE
 FACILITIES_FILE='HWTS_FACILITIES_2007_2011.csv'; 
 NAICS_FILE='HWTS_FACILITIES_NAICS.csv';
 LAT_LONG_FILE='reduced_ZIP_proxy_facilities_mod.csv';
+
+DIST_SCALE=1.2;  % factor between great-circle distance and on-road distance
 
 FACILITIES_PREFIX='../FacilityData/';
 
@@ -76,6 +79,8 @@ CALRECYCLE_PREFIX='../CalRecycleData/'; %% path to CalRecycle data - need
 FAC_DATA_FILE='Facilities.xlsx';
 FAC_DATA_SHEET='Activities';
 
+MFA_RESULTS_FILE=['UO_MFA_Results-' date '.xls'];
+
 %% ----------------------------------------
 %% Output files - named PREFIX_year[_endyear].xls
 NODE_PIVOT_PREFIX='UO_facilities';
@@ -85,8 +90,8 @@ ACTIVITY_FILE_PREFIX='UO_activity';
 %% ----------------------------------------
 %% Management Method Codes we're interested in
 METH_REGEXP='^H[0-9]{3}';  % regexp to match all method codes
-TANNER_DISP={'H900','H901'};  % net flows into a facility are given this code
-TANNER_CUTOFF=-0.1; % cutoff between disp codes
+TANNER_DISP={'H900','H901','H900'};  % net flows into a facility are given this code
+TANNER_CUTOFF=[-0.1 0]; % cutoff between disp codes ; values above 0 are import adjustments
 TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132', ...
                  'H135'}; % these codes are considered "terminal" & do not add to
                           % the quantity of oil to TANNER_DISP 
