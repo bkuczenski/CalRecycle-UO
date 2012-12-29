@@ -1,0 +1,11 @@
+NAICS1	NAICSTitle1
+1	11 Agriculture, Forestry, Fishing and Hunting
+2	21-23 Mining, Utilities, Construction
+3	31-33 Manufacturing
+4	41-49 Trade and Transportation
+5	51-56 Finance, Management, Administrative Services
+6	61-62 Education and Health Care
+7	71-72 Entertainment, Accommodation, Food Service
+8	81 Other services (except Public Administration)
+9	91 Public Administration
+unknown	Unknown
