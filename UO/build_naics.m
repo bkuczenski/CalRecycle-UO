@@ -4,6 +4,8 @@ function B=build_naics(N,field,par)
 % constructs a NAICS tree via attrition-and-aggregation
 if nargin<3 par=0.08; end
 
+upper_lvl=1;
+
 agg=sum([N.(field)]);
 thresh=agg*par;
 
@@ -24,7 +26,7 @@ lvl=length(b(1).(FN{NAICS}));
 
 B=[];
 
-while lvl>2
+while lvl>upper_lvl
   fprintf('%s %d\n','curr level',lvl);
   if b(1).(field) >thresh
     B=[B;b(1)];
