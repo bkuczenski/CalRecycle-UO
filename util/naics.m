@@ -46,7 +46,8 @@ function [S,maxyear]=naics(C,varargin)
 % currently only supports single codes-- all codes except the first are truncated.
 
 
-NAICS_YEARS=[2012 2007 2002];
+NAICS_YEARS=[1 2012 2007 2002];
+NAICS97ind=length(NAICS_YEARS)+1;
 SHOWALL=false;
 SHOWYEAR=0;
 CORRECT97=false;
@@ -54,11 +55,11 @@ CORRECT97=false;
 if strcmp(C,'generate')
   global NAICS
   for i=1:length(NAICS_YEARS)
-    yy=num2str(NAICS_YEARS(i));
-    NAICS{i}=read_dat(['NAICS' yy '.txt'],'\t',{'s','s'});
+    yy=num2str(NAICS_YEARS(i))
+    NAICS{i}=read_dat(['NAICS_Files/NAICS' yy '.txt'],'\t',{'s','s'});
   end
   i=i+1;
-  NAICS{i}=read_dat('NAICS97_02.txt','\t',{'s','s','s','s','s'}); % concordance
+  NAICS{i}=read_dat('NAICS_Files/NAICS97_02.txt','\t',{'s','s','s','s','s'}); % concordance
 
   save NAICS NAICS NAICS_YEARS
   S=true;
@@ -103,8 +104,8 @@ if ischar(C)
     end
     R02=find(strcmp(C,{NAICS{3}.NAICS2002}));
     if isempty(R02)
-      R97=find(strcmp(C,{NAICS{4}.NAICS1997}));
-      R02=NAICS{4}(min(R97)).NAICS2002;
+      R97=find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997}));
+      R02=NAICS{NAICS97ind}(min(R97)).NAICS2002;
     end
     S=R02;
   else
@@ -133,7 +134,7 @@ if ischar(C)
       if length(C)<6
         C=[C repmat('0',1,6-length(C))];
       end
-      S=NAICS{4}(max(find(strcmp(C,{NAICS{4}.NAICS1997})))).NAICSTitle1997;
+      S=NAICS{NAICS97ind}(max(find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997})))).NAICSTitle1997;
     end
   end
   
@@ -157,7 +158,7 @@ elseif isstruct(C)
       [C(try_old)]=moddata(C(try_old),'new__NAICS',...
                            @(x)(subsref([x '00000'],substruct('()',{1:6}))));
       [C(try_old),Mm]=vlookup(C(try_old),'new__NAICS',...
-                                        NAICS{4},'NAICS1997','NAICS2002');
+                                        NAICS{NAICS97ind},'NAICS1997','NAICS2002');
       keyboard
       [C(try_old).(SRC_FIELD)]=deal(C(try_old).NAICS2002);
       S=rmfield(C,{'new__NAICS','NAICS2002'});
@@ -184,7 +185,7 @@ elseif isstruct(C)
       fprintf('%d %s\n',i,'1997')
       
       [C(try_old),M(try_old,i)]=vlookup(C(try_old),'new__NAICS',...
-                                        NAICS{4},'NAICS1997','NAICSTitle1997');
+                                        NAICS{NAICS97ind},'NAICS1997','NAICSTitle1997');
     end
     if SHOWALL
       maxyear=M;

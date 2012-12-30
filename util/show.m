@@ -139,11 +139,14 @@ for i=1:length(FN)
     if isnumeric(firstlook)
       secondlook=D(max([1 min(find([D.(FN{i})]>0))])).(FN{i});
       
-      if fix(secondlook)==secondlook & fix(firstlook)==firstlook %&firstlook>0 
+      accumfmt(i)='a';
+      if prod(size(secondlook))>1
+        t_fmt{1}{3}='v'; % for vector
+        accumfmt(i)='d';
+      elseif fix(secondlook)==secondlook & fix(firstlook)==firstlook %&firstlook>0 
         t_fmt{1}{3}='d';
       else t_fmt{1}{3}='f';
       end
-      accumfmt(i)='a';
     else
       t_fmt{1}{3}='s';
     end
@@ -169,6 +172,14 @@ for i=1:length(FN)
         width(i)=12;
         hdr_fmt{i}='%-12s';
         accumfmt(i)='a';
+      case 'v' % for vector
+        D=moddata(D,FN{i},@vec2char);
+        s_width=max([myhwidth cellfun(@length,[{D.(FN{i})}])]); % check out those parens
+        t_fmt{1}{2}=[num2str(s_width) '.' num2str(s_width)]; 
+        
+        width(i)=s_width;
+        hdr_fmt{i}=['%-' num2str(s_width) '.' num2str(s_width) 's'];
+        t_fmt{1}{3}(1)='s';
       otherwise % c, s - char
 %         if strcmp(delim,',*') % special delimiter for CSV file: no padding
 %           t_fmt{1}{2}='';
@@ -292,3 +303,10 @@ end
 fprintf(fid,NEWLINE);
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function S=vec2char(v)
+if prod(size(v)) < 3
+  S=['[ ' sprintf('%.3f ',v) ']'];
+else
+  S=sprintf('[ %d x %d array]',size(v,1),size(v,2));
+end

@@ -117,6 +117,7 @@ end % if nargout ==0
   
 P.Rows=Rows;
 P.Cols=Cols;
+P.Fields=D;
 P.Data=data;
 
 

@@ -26,7 +26,7 @@ Q=mvfield(Q,'TSDF_CNTY','LAT_LONG');
 Q=flookup(Q,'TSDF_EPA_ID','LAT_LONG','zer');
 Q=mvfield(Q,'LAT_LONG','TSDF_LATLONG');
 
-d = {r * gc_distance({Q.GEN_LATLONG},{Q.TSDF_LATLONG})};
+d = num2cell(r * gc_distance({Q.GEN_LATLONG},{Q.TSDF_LATLONG}));
 [Q.DISTANCE]=d{:};
 
 function D = gc_distance(LL1,LL2)

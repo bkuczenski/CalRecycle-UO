@@ -138,6 +138,7 @@ end
 % inflows include all flows
 F.Ia = accum(Q(isself),'ddmddda','Ia');
 F.Im = accum(Q(isimport),'ddmddda','Im');
+F.ImNT = accum(Q(isimport & ~isterminal),'ddmddda','ImNT'); % for mass balance adj
 F.Ig = accum(Q(~isself & ~isimport & ~istx),'ddmddda','Ig');
 F.It = accum(Q(~isself & ~isimport & istx),'ddmddda','It');
 
@@ -157,6 +158,7 @@ Rn = vlookup(Rn,'TSDF_EPA_ID',F.Ia,'TSDF_EPA_ID',['Ia' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.Ig,'TSDF_EPA_ID',['Ig' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.It,'TSDF_EPA_ID',['It' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.Im,'TSDF_EPA_ID',['Im' QTY],'zero');
+Rn = vlookup(Rn,'TSDF_EPA_ID',F.ImNT,'TSDF_EPA_ID',['ImNT' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.O,'GEN_EPA_ID',['O' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.Ox,'GEN_EPA_ID',['Ox' QTY],'zero');
 Rn = vlookup(Rn,'TSDF_EPA_ID',F.T,'TSDF_EPA_ID',['T' QTY],'zero');
@@ -171,10 +173,18 @@ Rn = fieldop(Rn,'Isum',[' #Ia' QTY ' + #Ig' QTY ' + #It' QTY ]); % + #Im' QTY ' 
 Rn = fieldop(Rn,'b',[' #Osum + #T' QTY ' - #Isum' ]);
 Rn = fieldop(Rn,'f','#b ./ max([ #Osum; #Isum])');
 Rn = fieldop(Rn,'RC',' abs( - min([ #b ; zeros(size(#b))]))');
-Rn = fieldop(Rn,['D' QTY],[' #T' QTY ' + #RC']);
 Rn = fieldop(Rn,['G' QTY],[' #Ia' QTY ' + max([ #b ; zeros(size(#b))])']);
+% for apparent generation, non-terminal imports must be subtracted (already
+% excluded from apparent disposition)
+Rn = fieldop(Rn,'ImCorrect',['min([ max([ #b ; zeros(size(#b))]) ; #ImNT' QTY '])']);
+% subtract apparent generation of nonterminal imports from both gen and RC
+% this violates mass balance on facilities with imports (e.g. can result in
+% negative #D) but overall mass balance is correct
+Rn = fieldop(Rn,['G' QTY],[' #G' QTY ' - #ImCorrect']);
+Rn = fieldop(Rn,'RC',' #RC - #ImCorrect');
+Rn = fieldop(Rn,['D' QTY],[' #T' QTY ' + #RC']);
 % deal with tiered RC codes
-Fc=[-1;Fc(:);0];
+Fc=[-1;Fc(:);1];
 for i=1:length(RC) % initialize fields
   [Rn.([RC{i} QTY])]=deal(0);
 end
@@ -188,8 +198,8 @@ end
 %% PART 5
 %% METH_CODE Totals
 
-if any(isterminal)
-  P = pivot(Q(isterminal),'TSDF_EPA_ID','METH_CODE',QTY);
+if any(isterminal & ~isimport)
+  P = pivot(Q(isterminal & ~isimport),'TSDF_EPA_ID','METH_CODE',QTY);
   % need to index P.Rows into Ts
   RowInd=cell2mat(cellfun(@find,...
                           cellfun(@strcmp,P.Rows,repmat({Ts},1,length(P.Rows)), ...
