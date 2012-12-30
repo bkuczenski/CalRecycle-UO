@@ -193,7 +193,7 @@ ImGAL - Used oil imported from out of state.  (EXCLUDED FROM MASS BALACE
 CALCULATION- for information purposes only)
 
 ItGAL - Used oil transferred into the facility from transfer stations
-inside CA.
+inside CA. (self-transfers excluded; counted as generation)
 
 OGAL - Used oil transferred out of the facility to other facilities in
 California.
@@ -241,6 +241,7 @@ Some equivalencies
 ------------------
 
  GGAL + IgGAL + ItGAL = IN
+
          OGAL + OxGAL = OUT
 
  DGAL = sum of all disposal flows H###

@@ -44,11 +44,11 @@ RE_CORR_METH    = false;  %% re-apply method-code correction
 %% ----------------------------------------
 %% Normal Functionality
 LOAD_MD_NODE    = false;  %% whether to reload of data from disk each run
-GEN_MD          = true;   %% generate manifest data (if not already generated)
-GEN_NODE        = true;   %% compute node mass balances
+GEN_MD          = false;   %% generate manifest data (if not already generated)
+GEN_NODE        = false;   %% compute node mass balances
 FORCE_GEN_NODE  = false;  %% force re-computation of node mass balances
 LOAD_CR_PROC    = true;   %% load CalRecycle data + append to nodes
-FORCE_CR_PROC   = false;  %% force reload CalRecycle data
+FORCE_CR_PROC   = true;  %% force reload CalRecycle data
 GEN_RCRA        = false;  %% generate RCRA manifest data + node mass balances
 GEN_NODE_PIVOT  = true;   %% generate pivot table
 APPLY_FAC_DATA  = false;  %% Compute node activity levels from Facilities data
