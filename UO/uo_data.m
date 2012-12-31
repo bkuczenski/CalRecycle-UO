@@ -1,4 +1,4 @@
-function D=uo_data(varargin)
+function D=uo_data(opt,varargin)
 % function D=uo_data(opt)
 %
 % Generate indicators from uo data.  Select with opt.
@@ -26,9 +26,10 @@ function D=uo_data(varargin)
 %
 % indicator
 
-opt=varargin{1};
+global Facilities GEO_REGION GEO_CONTEXT Node MD
+
 if nargin==2
-DB=varargin{2};
+  DB=varargin{1};
 end
 
 switch opt
@@ -36,66 +37,14 @@ switch opt
     % *****************************************************************
     % Collection & Processing Inflows from Manifest data - 221
     % *****************************************************************
-    if nargin<2
-      load Node;
-      DB=Node;
-    end
+    D=do_md('221',varargin{:});
+    D=union(D,do_md('222'),varargin{:});
+    D=union(D,do_md('223'),varargin{:});
+    
+    
+    
 
-    optname='MD_221';
-    
-    metadata={'Units','GAL','years',[2004 2005 2007:2011]};
-    indicator={'TotalCollected',...
-               'Consolidated',...
-               'TotalTransferred',...
-               'ExportedFromCA',...
-               'TotalDisposed'};
-    D=struct(optname,cell2struct(repmat({[]},1,length(indicator)),indicator,2));
-    D.(optname)=union(D.(optname),struct(metadata{:}));
 
-    y=D.(optname).years;
-
-    for i=1:length(y)
-      nn=['Rn_' num2str(y(i)) '_221'];
-      
-      Da=accum(select(DB.(nn),{'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
-      DExCA=accum(select(filter(DB.(nn),'TSDF_EPA_ID',{@regexp},'^CA',1),...
-                         {'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
-      
-      D.(optname)=appendval(D.(optname),'TotalCollected',y(i),Da.GGAL+Da.IgGAL);
-      D.(optname)=appendval(D.(optname),'Consolidated',y(i),Da.GGAL);
-      D.(optname)=appendval(D.(optname),'TotalTransferred',y(i),Da.OGAL+Da.OxGAL);
-      D.(optname)=appendval(D.(optname),'ExportedFromCA',y(i),DExCA.DGAL);
-      D.(optname)=appendval(D.(optname),'TotalDisposed',y(i),Da.DGAL);
-    end
-    D.(optname)=createtbl(D.(optname),indicator);
-    
-    % *****************************************************************
-    % Collection & Processing Inflows from Manifest data - 222+223
-    % *****************************************************************
-    optname='MD_222_223';
-        
-    D.(optname)=cell2struct(repmat({[]},1,length(indicator)),indicator,2);
-    D.(optname)=union(D.(optname),struct(metadata{:}));
-    
-    for i=1:length(y)
-      for j=1:2
-        nN{j}=['Rn_' num2str(y(i)) '_22' num2str(j+1)];
-      end
-      Dn=stack(DB.(nN{1}),DB.(nN{2}));
-      
-      Da=accum(select(Dn,{'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
-      DExCA=accum(select(filter(Dn,'TSDF_EPA_ID',{@regexp},'^CA',1),...
-                         {'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
-      
-      D.(optname)=appendval(D.(optname),'TotalCollected',y(i),Da.GGAL+Da.IgGAL);
-      D.(optname)=appendval(D.(optname),'Consolidated',y(i),Da.GGAL);
-      D.(optname)=appendval(D.(optname),'TotalTransferred',y(i),Da.OGAL+Da.OxGAL);
-      D.(optname)=appendval(D.(optname),'ExportedFromCA',y(i),DExCA.DGAL);
-      D.(optname)=appendval(D.(optname),'TotalDisposed',y(i),Da.DGAL);
-    end
-    
-      D.(optname)=createtbl(D.(optname),indicator);
-      
   case 2
     % *****************************************************************
     % Collection & Processing Inflows from CalRecycle data
@@ -170,15 +119,72 @@ switch opt
       D.(optname)=appendval(D.(optname),'IndProcessedCorr',y(i),...
                             Pyy.IndOilInCAGallons);
 
-      D.(optname)=createtbl(D.(optname),indicator);
-
       
     end
+    
+    D.(optname)=createtbl(D.(optname),indicator);
+
 
   case 3
     % *****************************************************************
     % Manifest Distance and freight transport
     % *****************************************************************
+    % totally just hacked it
+    
+    optname='Dist';
+
+    DIST_SCALE=1.2;
+    
+    metadata={'Units',{{'kg','tkm'}},'years',[2007:2011],'WCs',[221,222,223],...
+              'kg_gal',[3.4019,3.4019,3.4019]};
+    indicator={'Collected_221',...
+               'Collected_222',...
+               'Collected_223',...
+               'Freight_221',...
+               'Freight_222',...
+               'Freight_223'};
+    D=struct(optname,cell2struct(repmat({[]},1,length(indicator)),indicator,2));
+    D.(optname)=union(D.(optname),struct(metadata{:}));
+    
+    y=D.(optname).years;
+    
+    for i=1:length(y)
+      yy=num2str(y(i));
+      for j=1:length(D.(optname).WCs)
+        wc=num2str(D.(optname).WCs(j));
+        
+        tanner_suffix=['_' yy '_' wc];
+        
+        manname=['Q' tanner_suffix];
+        nodename=['Rn' tanner_suffix];
+        
+        fprintf('Computing distance: %s\n',manname)
+        
+        % set scope
+        Q=MD.(manname);
+        isself=strcmp({Q.GEN_EPA_ID},{Q(:).TSDF_EPA_ID});
+        isself=isself(:);
+        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
+        isimport=isimport(:,end);
+
+        Q=Q(~isself & ~isimport);
+        % compute distance
+        Q=uo_distance(Q);
+        % convert gal to kg
+        kg_gal=D.(optname).kg_gal(j);
+        Q=fieldop(Q,'kg',['#GAL * ' num2str(kg_gal)]);
+        Q=rmfield(Q,'GAL');
+        Q=fieldop(Q,'tkm',['#kg .* #DISTANCE * ' num2str(DIST_SCALE) ' / 1000']); %
+                                                                                  % factor of 1.2
+        M=isnan([Q.tkm]);
+        Qtkm=sum([Q(~M).tkm]);
+        
+        C=sum([Node.(nodename).GGAL] + [Node.(nodename).IgGAL])*7.5/2.204622;
+        D.(optname)=appendval(D.(optname),['Collected_' wc],y(i),C);
+        D.(optname)=appendval(D.(optname),['Freight_' wc],y(i),Qtkm);
+      end
+    end
+    D.(optname)=createtbl(D.(optname),indicator);
     
     
   otherwise
@@ -200,3 +206,40 @@ for k=2:length(ind)
   G.Table=vlookup(G.Table,'Year',G.(ind{k}),'Year','Value','zer');
   G.Table=mvfield(G.Table,'Value',ind{k});
 end
+
+%%%%
+function D=do_md(wc,DB)
+
+if nargin<2
+  load Node;
+  DB=Node;
+end
+
+optname=['MD_' wc];
+
+metadata={'Units','GAL','years',[2004 2005 2007:2011]};
+indicator={'TotalCollected',...
+           'Consolidated',...
+           'TotalTransferred',...
+           'ExportedFromCA',...
+           'TotalDisposed'};
+
+D=struct(optname,cell2struct(repmat({[]},1,length(indicator)),indicator,2));
+D.(optname)=union(D.(optname),struct(metadata{:}));
+
+y=D.(optname).years;
+
+for i=1:length(y)
+  nn=['Rn_' num2str(y(i)) '_' wc];
+  
+  Da=accum(select(DB.(nn),{'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
+  DExCA=accum(select(filter(DB.(nn),'TSDF_EPA_ID',{@regexp},'^CA',1),...
+                     {'GGAL','IgGAL','OGAL','OxGAL','DGAL'}),'a','');
+  
+  D.(optname)=appendval(D.(optname),'TotalCollected',y(i),Da.GGAL+Da.IgGAL);
+  D.(optname)=appendval(D.(optname),'Consolidated',y(i),Da.GGAL);
+  D.(optname)=appendval(D.(optname),'TotalTransferred',y(i),Da.OGAL+Da.OxGAL);
+  D.(optname)=appendval(D.(optname),'ExportedFromCA',y(i),DExCA.DGAL);
+  D.(optname)=appendval(D.(optname),'TotalDisposed',y(i),Da.DGAL);
+end
+D.(optname)=createtbl(D.(optname),indicator);
