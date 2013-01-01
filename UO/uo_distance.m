@@ -17,12 +17,16 @@ if nargin<2
 end
 
 fprintf(1,'Looking up %s Coords...\n','GEN_EPA_ID')
-Q=mvfield(Q,'GEN_CNTY','LAT_LONG');
+if isfield(Q,'GEN_CNTY')
+  Q=mvfield(Q,'GEN_CNTY','LAT_LONG');
+end
 Q=flookup(Q,'GEN_EPA_ID','LAT_LONG','zer');
 Q=mvfield(Q,'LAT_LONG','GEN_LATLONG');
 
 fprintf(1,'Looking up %s Coords...\n','TSDF_EPA_ID')
-Q=mvfield(Q,'TSDF_CNTY','LAT_LONG');
+if isfield(Q,'TSDF_CNTY')
+  Q=mvfield(Q,'TSDF_CNTY','LAT_LONG');
+end
 Q=flookup(Q,'TSDF_EPA_ID','LAT_LONG','zer');
 Q=mvfield(Q,'LAT_LONG','TSDF_LATLONG');
 
