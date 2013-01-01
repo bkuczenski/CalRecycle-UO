@@ -92,16 +92,18 @@ ACTIVITY_FILE_PREFIX='UO_activity';
 METH_REGEXP='^H[0-9]{3}';  % regexp to match all method codes
 TANNER_DISP={'H900','H901','H900'};  % net flows into a facility are given this code
 TANNER_CUTOFF=[-0.1 0]; % cutoff between disp codes ; values above 0 are import adjustments
-TANNER_TERMINAL={'H010','H020','H040','H050','H061','H081','H111','H129','H132', ...
+TANNER_TERMINAL={'H010','H020','H040','H050','H061','H077','H081','H111','H129','H132', ... 
                  'H135'}; % these codes are considered "terminal" & do not add to
                           % the quantity of oil to TANNER_DISP 
 
+% H077 should be treated like H135
+
 % The following codes (1) are valid, (2) show up in the data, and (3) have not
 % been incorporated and are therefore interpreted as H039:
-% H077 (4x), H101 (9x), H103 (2x), H121 (corrected from H221, 1x), H122 (1x), H123
+% H101 (9x), H103 (2x), H121 (corrected from H221, 1x), H122 (1x), H123
 % (5x), H131 (4x), H134 (1x), totalling 318,000 gallons over 8 years.
 
-% of these, H077, H101, H123 can reasonably be considered to produce RFO and
+% of these, H101, H123 can reasonably be considered to produce RFO and
 % should properly count as H039 (totalling 254,000 gal)
 
 % The rest are just not worth considering.
