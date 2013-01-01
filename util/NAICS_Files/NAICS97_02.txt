@@ -159,12 +159,13 @@ NAICS1997	NAICSTitle1997	NAICS2002	NAICSTitle2002	PARTS
 421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	423860	Transportation Equipment and Supplies (except Motor Vehicle) Merchant Wholesalers	Merchant Wholesalers
 421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
 421860	Transportation Equipment and Supplies (except Motor Vehicle) Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421900	Miscellaneous Durable Goods Wholesalers	423900	Miscellaneous Durable Goods Merchant Wholesalers	Not Enough Information is Specified
 421910	Sporting and Recreational Goods and Supplies Wholesalers	423910	Sporting and Recreational Goods and Supplies Merchant Wholesalers	Merchant Wholesalers
 421910	Sporting and Recreational Goods and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
 421910	Sporting and Recreational Goods and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
-421920	 Toy and Hobby Goods and Supplies Wholesalers	423920	 Toy and Hobby Goods and Supplies Merchant Wholesalers	Merchant Wholesalers
-421920	 Toy and Hobby Goods and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
-421920	 Toy and Hobby Goods and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
+421920	Toy and Hobby Goods and Supplies Wholesalers	423920	 Toy and Hobby Goods and Supplies Merchant Wholesalers	Merchant Wholesalers
+421920	Toy and Hobby Goods and Supplies Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
+421920	Toy and Hobby Goods and Supplies Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers
 421930	Recyclable Material Wholesalers	423930	Recyclable Material Merchant Wholesalers	Merchant Wholesalers
 421930	Recyclable Material Wholesalers	425110	Business to Business Electronic Markets (pt)	Business to Business Electronic Markets
 421930	Recyclable Material Wholesalers	425120	Wholesale Trade Agents and Brokers (pt)	Agents and Brokers

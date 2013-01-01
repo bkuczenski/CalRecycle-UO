@@ -58,8 +58,7 @@ if strcmp(C,'generate')
     yy=num2str(NAICS_YEARS(i))
     NAICS{i}=read_dat(['NAICS_Files/NAICS' yy '.txt'],'\t',{'s','s'});
   end
-  i=i+1;
-  NAICS{i}=read_dat('NAICS_Files/NAICS97_02.txt','\t',{'s','s','s','s','s'}); % concordance
+  NAICS{NAICS97ind}=read_dat('NAICS_Files/NAICS97_02.txt','\t',{'s','s','s','s','s'}); % concordance
 
   save NAICS NAICS NAICS_YEARS
   S=true;
@@ -134,7 +133,13 @@ if ischar(C)
       if length(C)<6
         C=[C repmat('0',1,6-length(C))];
       end
-      S=NAICS{NAICS97ind}(max(find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997})))).NAICSTitle1997;
+      try
+        S=NAICS{NAICS97ind}(max(...
+            find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997})))).NAICSTitle1997; 
+      catch
+        disp('code not found in 97-02 concordance')
+        keyboard
+      end
     end
   end
   
@@ -142,7 +147,9 @@ elseif isstruct(C)
   if ~isempty(varargin)
     SRC_FIELD=varargin{1};
   else
-    SRC_FIELD='NAICS_CODE';
+    FN=fieldnames(C);
+    SRC_FIELD=FN{find(~cellfun(@isempty,strfind(FN,'NAICS')))};
+%    SRC_FIELD='NAICS_CODE';
   end
   if isfield(C,SRC_FIELD)
     % condition the field: keep only the first NAICS code listed
