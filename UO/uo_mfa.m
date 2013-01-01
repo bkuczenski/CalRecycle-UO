@@ -372,7 +372,15 @@ if GEN_DISTANCE | ~isfield(Node,'Dist')
 
       fprintf('Computing distance: %s\n',manname)
 
-      Q=uo_distance(MD.(manname));
+      Q=MD.(manname);
+      isself=strcmp({Q.GEN_EPA_ID},{Q(:).TSDF_EPA_ID});
+      isself=isself(:);
+      [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
+      isimport=isimport(:,end);
+      
+      Q=Q(~isself & ~isimport);
+
+      Q=uo_distance(Q);
       Q=fieldop(Q,'kg','#GAL * 7.5/2.204622');
       Q=rmfield(Q,'GAL');
       Q=fieldop(Q,'tkm',['#kg .* #DISTANCE * ' num2str(DIST_SCALE) ' / 1000']); %
