@@ -230,10 +230,11 @@ if isempty(MatchCols)
 else
   d_fix=regexprep(d(:,1),'\+{4}','++ ++');
   d_fix=regexprep(d_fix,'\+{4}','++ ++');
-  dd=regexp(d_fix,'++','split');  
+  dd=regexp(d_fix,'\+\+','split');  
   try
     d=[reshape([dd{:}],length(MatchCols),size(dd,1))' d(:,2:end)];
   catch
+    disp('accum barf')
     keyboard
   end
   nmc=find(NumericMatchCols);
