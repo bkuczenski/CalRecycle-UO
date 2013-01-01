@@ -1,4 +1,4 @@
-function [S,Centers,CenterNames]=bins(S,Field,Bins,varargin)
+function [S,Centers,CenterTitle]=bins(S,Field,Bins,varargin)
 % function S=bins(S,Field,Bins)
 % 
 % Replaces a numerical data column with a partitioning of the data value into
@@ -10,8 +10,8 @@ function [S,Centers,CenterNames]=bins(S,Field,Bins,varargin)
 %
 % [S,B]=bins(S,Field,Bins) returs the bin centers in B. 
 %
-% bins(...,'text') will return concise bin names (text) in place of numeric center
-% values.
+% bins(...,'text') will return concise bin names (text) in addition to numeric center
+% values, in field CENTERNAMES.
 %
 % [S,B,C]=bins(S,Field,Bins,'text') returs the bin centers in B and a cell array
 % containing center names in C.
@@ -42,12 +42,14 @@ M=~isnan(Sm) & ~isinf(Sm);
 
 if isscalar(Bins)
   % reports the desired number of bins; assume equally spaced
-  binsize=(1+Sm(max(find(M)))-Sm(min(find(M))))/Bins;
-  Bins=Sm(min(find(M))):binsize:Sm(max(find(M)))+1; % replace scalar with bin edges
+  binsize=(Sm(max(find(M)))-Sm(min(find(M))))/Bins;
+  Bins=Sm(min(find(M))):binsize:(Sm(max(find(M)))+binsize); % replace scalar with bin edges
 else
   % assume bins already specified; compute smallest binsize
   binsize=min(diff(Bins));
 end
+
+%keyboard
 
 Centers=mean([Bins(1:end-1);Bins(2:end)]);
 
@@ -59,27 +61,27 @@ if use_centernames
   CenterNames=scale*floor(Centers/scale);
   CenterNames(find(abs(Centers)<binsize))=floor(Centers(find(abs(Centers)< ...
                                                     binsize)));
-  precis=1+floor(log10(max(abs(Centers)))); % necessary printf precision
+  precis=1+floor(max(abs(log10(Centers)))); % necessary printf precision
   for i=1:length(CenterNames)
     CenterTitle{i}=sprintf('B%0.*i',precis,CenterNames(i));
   end
   try
-  NewFieldVal=CenterTitle(BIN(Ir(M(Ir))));
+  NewFieldValC=CenterTitle(BIN(Ir(M(Ir))));
   catch
-    disp('NewFieldVal')
+    disp('NewFieldValC')
     keyboard
   end
-  [S(~M(Ir)).(NewField)]=deal('NaN');
-else
-  try
-  NewFieldVal=num2cell(Centers(BIN(Ir(M(Ir)))));
-  catch
-    disp('NewFieldVal')
-    keyboard
-  end
-  
-  [S(~M(Ir)).(NewField)]=deal(NaN);
+  [S(~M(Ir)).CENTERNAMES]=deal('NaN');
+  [S(M(Ir)).CENTERNAMES]=deal(NewFieldValC{:});
 end
+try
+  NewFieldVal=num2cell(Centers(BIN(Ir(M(Ir)))));
+catch
+  disp('NewFieldVal')
+  keyboard
+end
+  
+[S(~M(Ir)).(NewField)]=deal(NaN);
 try
   [S(M(Ir)).(NewField)]=deal(NewFieldVal{:});
 catch
