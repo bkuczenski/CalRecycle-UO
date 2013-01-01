@@ -1,13 +1,20 @@
-function B=build_naics(N,field,par)
+function B=build_naics(N,field,par,upper_lvl)
 % function B=build_naics(N,field,par)
 %
 % constructs a NAICS tree via attrition-and-aggregation
 if nargin<3 par=0.08; end
 
-upper_lvl=1;
+if nargin<4 upper_lvl=2; end
 
 agg=sum([N.(field)]);
 thresh=agg*par;
+
+% first, keeps only relevant columns
+FN=fieldnames(N);
+NAICS=find(~cellfun(@isempty,strfind(FN,'NAICS')));
+COUNT=find(~cellfun(@isempty,regexp(FN,'Count[0-9]*')));
+
+N=select(N,[FN(NAICS)  FN(COUNT')  {field}]);
 
 FN=fieldnames(N);
 NAICS=find(~cellfun(@isempty,strfind(FN,'NAICS')));
