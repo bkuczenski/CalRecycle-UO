@@ -74,7 +74,11 @@ while length(varargin)>0
   arg=varargin{end};
   if isnumeric(arg)
     % override builtin
-    i=find(arg==NAICS_YEARS);
+    if arg==1997
+      i=NAICS97ind;
+    else
+      i=find(arg==NAICS_YEARS);
+    end
     varargin=varargin(1:end-1);
   elseif ischar(arg) & strcmp(arg,'-all')
     SHOWALL=true;
@@ -115,12 +119,11 @@ if ischar(C)
       R{i}=find(strcmp(C,{NAICS{i}.(['NAICS' yy])}));
       if ~isempty(R{i})
         fmax(i)=max([R{i}]); % assume greatest is most specific
-      end
-      
-      if SHOWALL
-        show(NAICS{i}(R{i}));
-      else
-        break
+        if SHOWALL
+          show(NAICS{i}(R{i}));
+        else
+          break
+        end
       end
       i=i+1;
     end
@@ -136,9 +139,11 @@ if ischar(C)
       try
         S=NAICS{NAICS97ind}(max(...
             find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997})))).NAICSTitle1997; 
+        if isempty(maxyear) maxyear=1997; end
       catch
-        disp('code not found in 97-02 concordance')
-        keyboard
+        disp([C ': code not found in 97-02 concordance'])
+        S=[]; maxyear=[];
+        %        keyboard
       end
     end
   end
@@ -160,7 +165,7 @@ elseif isstruct(C)
     if CORRECT97
       % replace matching 1997 fields with 2002 fields- only for fields that don't
       % already match 2002
-      [C,M]=vlookup(C,'new__NAICS',NAICS{3},'NAICS2002','NAICS2002');
+      [C,M]=vlookup(C,'new__NAICS',NAICS{find(NAICS_YEARS==2002)},'NAICS2002','NAICS2002');
       try_old= ~M & ~empties;
       [C(try_old)]=moddata(C(try_old),'new__NAICS',...
                            @(x)(subsref([x '00000'],substruct('()',{1:6}))));
@@ -227,5 +232,5 @@ elseif isstruct(C)
     error('not a field.')
   end
 else
-  error('duhhhh..nno.')
+  error('unsupported arg type (TODO: vectorize cell inputs)')
 end
