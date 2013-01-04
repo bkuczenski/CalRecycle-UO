@@ -5,6 +5,7 @@ function EST=est_uo(X,varargin)
 %
 % request can be numeric or text, one of:
 %
+% output opts:
 %   num    txt   Output
 %  1, 2.1 'T2'  Table 2 "big MFA table"
 %  2, 2.2 'F2'  Fig 2 NAICS of Ig + G for sumof 3 waste codes
@@ -12,6 +13,13 @@ function EST=est_uo(X,varargin)
 %  2.22   'F2b' part b G
 %  3      'F3'  Fig 3 volume by transport distance, yoy
 %  4      'F4'  Fig 4 fate + GIS map
+%
+% internal opts:
+%   num   txt    Output
+% 101   'D'      EST.D - flow data; uo_activity output
+% 201   'NAICS'  EST.NAICS - NAICS lookup by year - fig2a / generators
+% 202   'NAICSB' EST.NAICSB - NAICS lookup by year - fig2b / consolidators
+% 301   'QDIST'  uo_distance computation by year
 %
 % expects global MD, Node, GEO_CONTEXT
 %
@@ -72,6 +80,14 @@ if ischar(request)
       R=3;
     case {'f4','figure4'}
       R=4;
+    case 'd'
+      R=101;
+    case 'naics'
+      R=201;
+    case 'naicsb'
+      R=202;
+    case 'qdist'
+      R=301;
     otherwise
       error(['unknown fig spec ' request])
   end
@@ -192,48 +208,20 @@ switch R
   case 2.1
     EST=est_uo(EST,1,varargin{:}); return  % perplexing
   case 2.21
-    if isempty(MD)
-      load MD
+    if ~isfield(EST,'NAICS')
+      EST=est_uo(EST,'NAICS');
     end
-    
+
     BN=[];
     field='GAL';
+    
     for i=1:length(YEARS)
-      yy=num2str(YEARS(i));
-      QN=[];
-      for j=1:3
-        wc=num2str(220+j);
-
-        manname=['Q_' yy '_' wc];
-        fprintf('Doing %s\n',manname)
-        
-        Q=MD.(manname);
-        
-        [~,istx]=filter(Q,'GEN_EPA_ID',{@ismember},{unique({Q.TSDF_EPA_ID})});
-        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
-        isimport=isimport(:,end);
-
-        Qg=select(Q(~istx & ~isimport),{'GEN_EPA_ID',field});
-        Qg=flookup(Qg,'GEN_EPA_ID','NAICS_CODE','bla');
-        
-        Qg=mvfield(Qg,'NAICS_CODE','GEN_NAICS');
-        
-        Qg=expand(Qg,'GEN_NAICS',' ',field);
-        
-        Qg=accum(Qg,'dam','');
-
-%        Qg=moddata(Qg,field,@floor);
-        if isempty(QN)
-          QN=Qg;
-        else
-          QN=[QN;Qg];
-        end
-      end
+      QN=EST.NAICS{i};
       QN=accum(QN,'mad','');
       
       B=build_naics(QN,field,.045,2);
       [B.Year]=deal(YEARS(i));
-      B=sort(B,'GEN_NAICS');
+      B=sort(B,'GENNAICS');
       %      B=naics_style(B);
       
       if isempty(BN)
@@ -244,47 +232,24 @@ switch R
     end
 
     BN=moddata(BN,'GAL',@(x)(x * 3.785e-6),'ML'); % conv to million liters
-    show(select(BN,{'Year','GEN_NAICS','ML'}),'',{'est_fig2a.csv',1,1},',*')
+    show(select(BN,{'Year','GENNAICS','ML'}),'',{'est_fig2a.csv',1,1},',*')
     
     EST.Fig2a=BN;
     
   case 2.22
-    if isempty(Node)
-      load Node
+    if ~isfield(EST,'NAICSB')
+      EST=est_uo(EST,'NAICSB');
     end
     
     field='GGAL';
     BN=[];
     for i=1:length(YEARS)
-      yy=num2str(YEARS(i));
-      RN=[];
-      for j=1:3
-        wc=num2str(220+j);
-        
-        nodename=['Rn_' yy '_' wc];
-        Rn=Node.(nodename);
-        Ng=select(filter(Rn,field,{@ne},0),{'TSDF_EPA_ID',field});
-
-        Ng=flookup(Ng,'TSDF_EPA_ID','NAICS_CODE','bla');
-        
-        Ng=mvfield(Ng,'NAICS_CODE','GEN_NAICS');
-        
-        Ng=expand(Ng,'GEN_NAICS',' ',field);
-        Ng=moddata(Ng,field,@floor);
-        
-        Ng=accum(Ng,'dam','');
-
-        if isempty(RN)
-          RN=Ng;
-        else
-          RN=[RN;Ng];
-        end
-      end
+      RN=EST.NAICSB{i};
       RN=accum(RN,'mad','');
       
       B=build_naics(RN,field,.045);
       [B.Year]=deal(YEARS(i));
-      B=sort(B,'GEN_NAICS');
+      B=sort(B,'GENNAICS');
       
       if isempty(BN)
         BN=B;
@@ -294,17 +259,11 @@ switch R
     end
     
     BN=moddata(BN,field,@(x)(x * 3.785e-6),'ML'); % conv to million liters
-    show(select(BN,{'Year','GEN_NAICS','ML'}),'',{'est_fig2b.csv',1,1},',*')
+    show(select(BN,{'Year','GENNAICS','ML'}),'',{'est_fig2b.csv',1,1},',*')
     
     EST.Fig2b=BN;
 
   case 3
-    % freight distance
-    if isempty(MD)
-      load MD
-    end
-    
-    DN=[];
     field='GAL';
     numbins=50;
     mybins=linspace(-1.5,4,numbins+1);
@@ -315,43 +274,28 @@ switch R
 
     % account for very short distances by adding them to the first bin
     mybins(1)=-2;
+
+    if ~isfield(EST,'QDIST')
+      EST=est_uo(EST,'QDIST');
+    end
+    
+    DN=[];
     for i=1:length(YEARS)
-      yy=num2str(YEARS(i));
-      QN=[];
-      for j=1:3
-        wc=num2str(220+j);
-
-        manname=['Q_' yy '_' wc];
-        fprintf('Doing %s\n',manname)
-        
-        Q=MD.(manname);
-        
-        isself=strcmp({Q.GEN_EPA_ID},{Q.TSDF_EPA_ID});
-        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
-        isimport=isimport(:,end);
-
-        Qd=select(Q(~isself' & ~isimport),{'GEN_EPA_ID','TSDF_EPA_ID',field});
-        
-        if isempty(QN)
-          QN=Qd;
-        else
-          QN=[QN;Qd];
-        end
-      end
-      QN=uo_distance(QN); % look up distance from lat + long
-%      iszero=[QN.DISTANCE]==0;
-      QN=moddata(QN,'DISTANCE',@log10,'LOGDISTANCE');
+      yy=num2str(YEARS(i))
+      QN=moddata(EST.QDIST{i},'DISTANCE',@log10,'LOGDISTANCE');
       [S,S1,S2]=bins(QN,'LOGDISTANCE',mybins,'text','DBIN');      %      QN=moddata(QN, 
       Sa=accum(select(S,{field,'CENTERNAMES','DBIN'}),'amm','');
       DO=struct('Year',yy,'LOGDISTANCE',num2cell(S1),'BIN',S2);
       DO=vlookup(DO,'BIN',Sa,'CENTERNAMES',field,'zer');
-      
+
       if isempty(DN)
-        DN=DO;
+        DN=DO(:);
       else
-        DN=[DN;DO];
+        DN=[DN;DO(:)];
       end
     end
+
+    keyboard
     
     DN=moddata(DN,field,@(x)(x * 3.785e-6),'ML'); % conv to million liters
     show(select(DN,{'Year','LOGDISTANCE','ML'}),'',{'est_fig3.csv',1,1},',*')
@@ -359,6 +303,48 @@ switch R
     
     EST.Fig3=DN;
     EST.Fig3meta=DNm;
+
+  case 3.1
+    % GIS output files for TSDF locations
+    % plan to present a US map with markers showing facilities receiving UO by
+    % Isum; yearly average over 5 years
+    if isempty(Node)
+      load Node
+    end
+
+    RN=[];
+    
+    for i=1:length(YEARS)
+
+      yy=num2str(YEARS(i));
+      for j=1:3
+        wc=num2str(220+j);
+        
+        nodename=['Rn_' yy '_' wc];
+        Rn=fieldop(Node.(nodename),'Isum','#GGAL + #IgGAL + #ItGAL');
+        Ng=select(filter(Rn,'Isum',{@ne},0),{'TSDF_EPA_ID','Isum'});
+        if isempty(RN)
+          RN=Ng(:);
+        else
+          RN=[RN;Ng(:)];
+        end
+      end
+    end
+    RN=accum(RN,'ma','');
+    RN=moddata(RN,'Isum',@(x)(x * 3.785e-6 / length(YEARS)),'MLY'); % million
+                                                                    % liters per year
+    [RN,M]=flookup(RN,'TSDF_EPA_ID','LAT_LONG','bla');
+    RN=RN(M);
+    [~,M]=filter(moddata(RN,'LAT_LONG',@prod),'LAT_LONG',{@eq},0);    
+    RN=RN(~M); % RN(~M) is about 0.5 MLY total
+    RN=moddata(RN,'LAT_LONG',@(x)(x(2)),'LONGITUDE');
+    RN=moddata(RN,'LAT_LONG',@(x)(x(1)),'LATITUDE');
+    RN=sort(RN,'MLY','descend');
+    EST.TSDFs=select(RN,{'TSDF_EPA_ID','MLY','LONGITUDE','LATITUDE'});
+    show(EST.TSDFs,'',{'est_fig3gis.csv',1,1},',*')
+    
+        
+    
     
   case 4
 
@@ -469,6 +455,124 @@ switch R
     EST.D=D;
     keyboard
 
+  case 201
+    % NAICS GEN
+    if isempty(MD)
+      load MD
+    end
+    
+    field='GAL';
+    for i=1:length(YEARS)
+      yy=num2str(YEARS(i));
+      QN=[];
+      for j=1:3
+        wc=num2str(220+j);
+
+        manname=['Q_' yy '_' wc];
+        fprintf('Doing %s\n',manname)
+        
+        Q=MD.(manname);
+        
+        [~,istx]=filter(Q,'GEN_EPA_ID',{@ismember},{unique({Q.TSDF_EPA_ID})});
+        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
+        isimport=isimport(:,end);
+
+        Qg=select(Q(~istx & ~isimport),{'GEN_EPA_ID',field});
+        Qg=flookup(Qg,'GEN_EPA_ID','NAICS_CODE','bla');
+        
+        Qg=mvfield(Qg,'NAICS_CODE','GENNAICS');
+        
+        Qg=expand(Qg,'GENNAICS',' ',field);
+        
+        Qg=accum(Qg,'dam','');
+
+%        Qg=moddata(Qg,field,@floor);
+        if isempty(QN)
+          QN=Qg;
+        else
+          QN=[QN;Qg];
+        end
+      end
+      EN{i}=QN;
+    end
+
+    EST.NAICS=EN;
+  
+  case 202
+    if isempty(Node)
+      load Node
+    end
+
+    field='GGAL';
+    for i=1:length(YEARS)
+
+      yy=num2str(YEARS(i));
+      RN=[];
+      for j=1:3
+        wc=num2str(220+j);
+        
+        nodename=['Rn_' yy '_' wc];
+        Rn=Node.(nodename);
+        Ng=select(filter(Rn,field,{@ne},0),{'TSDF_EPA_ID',field});
+
+        Ng=flookup(Ng,'TSDF_EPA_ID','NAICS_CODE','bla');
+        
+        Ng=mvfield(Ng,'NAICS_CODE','GENNAICS');
+        
+        Ng=expand(Ng,'GENNAICS',' ',field);
+        Ng=moddata(Ng,field,@floor);
+        
+        Ng=accum(Ng,'dam','');
+
+        if isempty(RN)
+          RN=Ng;
+        else
+          RN=[RN;Ng];
+        end
+      end
+      EN{i}=RN;
+    end
+
+    EST.NAICSB=EN;
+    
+  case 301
+    if isempty(MD)
+      load MD
+    end
+    
+    field='GAL';
+    % QDIST
+        
+    for i=1:length(YEARS)
+      yy=num2str(YEARS(i));
+      QN=[];
+      for j=1:3
+        wc=num2str(220+j);
+
+        manname=['Q_' yy '_' wc];
+        fprintf('Doing %s\n',manname)
+        
+        Q=MD.(manname);
+        
+        isself=strcmp({Q.GEN_EPA_ID},{Q.TSDF_EPA_ID});
+        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
+        isimport=isimport(:,end);
+
+        Qd=select(Q(~isself' & ~isimport),{'GEN_EPA_ID','TSDF_EPA_ID',field});
+        
+        if isempty(QN)
+          QN=Qd;
+        else
+          QN=[QN;Qd];
+        end
+      end
+      QDIST{i}=uo_distance(QN); % look up distance from lat + long
+%      iszero=[QN.DISTANCE]==0;
+      QDIST{i}=rmfield(QDIST{i},{'GEN_LATLONG','TSDF_LATLONG'});
+    end
+    EST.QDIST=QDIST;
+
+    
   otherwise
     error(['Unknown case ' num2str(R)]);
 end
