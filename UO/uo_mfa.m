@@ -218,8 +218,15 @@ if GEN_MD
                                        ['floor( #TONS * ' GAL_PER_TON ')']), 'TONS');
           
         end
-        %% correct TSDF_EPA_IDs and store
+        %% correct TSDF_EPA_IDs
         MD.(manname)=correct_epaid(MD.(manname),'TSDF_EPA_ID',true);
+        %% filter out 222 from 32411
+        if strcmp(wc,'222')
+          [~,M]=filter(flookup(MD.(manname),'GEN_EPA_ID','NAICS_CODE','bla'), ...
+                       'NAICS_CODE',{@regexp},REGEXP_222_EXCLUDE);
+          MD.(manname)=MD.(manname)(~M);
+        end
+        
         save MD MD
         if exist('Node','var')
           % if we change MD, we need to strike all the derived nodes

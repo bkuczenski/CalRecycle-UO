@@ -28,6 +28,9 @@ YEARS=[2004 2005 2007:2011];
 RCRA_YEARS=[2005 2007 2009];
 WCs=221:223;
 
+%% exclude from certain waste codes
+REGEXP_222_EXCLUDE='\<32411';
+
 %% ----------------------------------------
 %% these 3 params only need to be set to 'true' to force a reload- 
 %% during normal operation the operations will be performed as needed if the data
