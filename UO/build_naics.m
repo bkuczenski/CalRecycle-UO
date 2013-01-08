@@ -19,15 +19,22 @@ N=select(N,[FN(NAICS)  FN(COUNT')  {field}]);
 FN=fieldnames(N);
 NAICS=find(~cellfun(@isempty,strfind(FN,'NAICS')));
 
-[~,M]=filter(N,FN{NAICS},{@isempty},'');
-[~,Mm]=filter(N,FN{NAICS},{@regexp},'^\s+$');
-M=M|Mm;
-[N(M).(FN{NAICS})]=deal('999999');
-
 cols=repmat('m',1,length(FN));
 cols(find(strcmp(FN,field)))='a';
 cols(find(~cellfun(@isempty,regexp(FN,'Count[0-9]*'))))='a';
+%sum([N.(field)])
+N=accum(N,cols,'');
+FN=fieldnames(N);
+cols(find(~cellfun(@isempty,regexp(FN,'Count[0-9]*'))))='a';
 
+[~,M]=filter(N,FN{NAICS},{@isempty},'');
+[~,Mm]=filter(N,FN{NAICS},{@regexp},'^[\s9]+$');
+M=M|Mm;
+[N(M).(FN{NAICS})]=deal('999999');
+N=accum(N,cols,'');
+N=select(N,FN);
+%sum([N.(field)])
+%keyboard
 b=top(N,field,1);
 lvl=length(b(1).(FN{NAICS}));
 
@@ -48,6 +55,8 @@ while lvl>upper_lvl
     N=select(N,FN);
     b=top(N,field,1);
   end
+%  show(b)
+%  fprintf('Totals: B: %f B + N: %f\n',sum([B.(field)]),sum([B.(field)])+sum([N.(field)]))
   if length(N)==0 
     break
   end

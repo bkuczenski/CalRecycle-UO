@@ -64,6 +64,8 @@ METH_REGEXP='^H[0-9]{3}';
 FAC_DATA_FILE='../../../../Dropbox/research.local/oil/esthag/EST-Facilities.xlsx';
 FAC_DATA_SHEET='Activities';
 
+NAMED_CONSOL_REGEXP='CAL000330453';
+
 conv = 3.785; % L per GAL
 
 if ischar(request)
@@ -202,8 +204,13 @@ switch R
     
   case 2
     % Figure 2
-    EST=est_uo(EST,2.21,varargin{:}); return
-    EST=est_uo(EST,2.22,varargin{:}); return
+    %EST=est_uo(EST,2.21,varargin{:}); return
+    %EST=est_uo(EST,2.22,varargin{:}); return
+    if ~isfield(EST,'TOTAL')
+      EST=est_uo(EST,231,varargin{:}); 
+    end
+
+    
     
   case 2.1
     EST=est_uo(EST,1,varargin{:}); return  % perplexing
@@ -263,6 +270,50 @@ switch R
     
     EST.Fig2b=BN;
 
+  case 2.31
+    if ~isfield(EST,'RnGEN')
+      EST=est_uo(EST,231);
+    end
+    if ~isfield(EST,'GEN')
+      EST=est_uo(EST,232);
+    end
+
+    % now we need to stack these and make our output tables
+    Total=[];
+    Gn=[];
+    for i=1:length(YEARS)
+      d=[EST.GEN{i};filter(EST.RnGEN,'Year',{@eq},YEARS(i))];
+      Total=[Total; struct('Year',YEARS(i),'GENNAICS','Direct','GAL',sum([d.GAL]))];
+      f=filter([EST.CONSOL; EST.RnCONSOL],'Year',{@eq},YEARS(i));
+      B=pull_naics(f,'GAL',{'324191','42272','484','562112','562119'});
+      [B.Year]=deal(YEARS(i));
+      B=sort(B,'GENNAICS');
+      Total=[Total;select(B,{'Year','GENNAICS','GAL'})];
+      G=build_naics(d,'GAL',.045);
+      [G.Year]=deal(YEARS(i));
+      G=sort(G,'GENNAICS');
+      Gn=[Gn;G(:)];
+      %keyboard
+    end
+    Total=moddata(Total,'GAL',@(x)(x * 3.785e-6),'ML');
+    Gn=moddata(Gn,'GAL',@(x)(x * 3.785e-6),'ML');
+    
+    show(select(Gn,{'Year','GENNAICS','ML'}),'',{'est_fig2a.csv',1,1},',*')
+    show(select(Total,{'Year','GENNAICS','ML'}),'',{'est_fig2b.csv',1,1},',*')
+    
+    EST.Fig2a=Gn;
+    EST.Fig2b=Total;
+
+    Dgen=sort(accum(select(Gn,{'Year','ML'}),'ma',''),'Year','ascend');
+    Dcon=sort(accum(select(Total,{'Year','ML'}),'ma',''),'Year','ascend');
+    
+    try
+    EST.Dgen=[Dgen.ML] * 1e6;
+    EST.Dcon=[Dcon.ML] * 1e6;
+    catch
+      keyboard
+    end
+    
   case 3
     field='GAL';
     numbins=50;
@@ -534,7 +585,92 @@ switch R
     end
 
     EST.NAICSB=EN;
+
+  case 231
+    % new NAICS: make two separate stacks
+    if isempty(Node)
+      load Node
+    end
     
+    field='GGAL';
+    RN=[];
+    for i=1:length(YEARS)
+
+      yy=num2str(YEARS(i));
+      for j=1:3
+        wc=num2str(220+j);
+        
+        nodename=['Rn_' yy '_' wc];
+        Rn=Node.(nodename);
+        Ng=select(filter(Rn,field,{@ne},0),{'TSDF_EPA_ID','Year',field});
+        if isempty(RN)
+          RN=Ng(:);
+        else
+          RN=[RN;Ng(:)];
+        end
+      end
+    end
+    RN=flookup(RN,'TSDF_EPA_ID','NAICS_CODE','bla');
+    
+    RN=mvfield(RN,'NAICS_CODE','GENNAICS');
+    RN=mvfield(RN,'TSDF_EPA_ID','GEN_EPA_ID');
+    RN=expand(RN,'GENNAICS',' ',field);
+    RN=mvfield(RN,field,'GAL');
+
+    [~,M]=filter(RN,'GENNAICS',{@regexp},'324191|^562|^484|^42272');
+
+    EST.RnCONSOL=RN(M);
+    EST.RnGEN=RN(~M);
+    
+  case 232
+    % now- add direct-gen data to new naics structures
+    if isempty(MD)
+      load MD
+    end
+    
+    field='GAL'
+    CONSOL=[];
+    for i=1:length(YEARS)
+      yy=num2str(YEARS(i));
+      Mq=[];
+      for j=1:3
+        wc=num2str(220+j);
+        manname=['Q_' yy '_' wc];
+        fprintf('Doing %s\n',manname)
+        Q=MD.(manname);
+        [~,istx]=filter(Q,'GEN_EPA_ID',{@ismember},{unique({Q.TSDF_EPA_ID})});
+        [~,isimport]=filter(Q,{'GEN_EPA_ID','TSDF_EPA_ID'},{@regexp},{GEO_REGION},{1,0});
+        isimport=isimport(:,end);
+
+        Q=select(Q(~istx & ~isimport),{'GEN_EPA_ID',field});
+        [Q.Year]=deal(YEARS(i));
+        if isempty(Mq)
+          Mq=Q(:);
+        else
+          Mq=[Mq;Q(:)];
+        end
+      end
+      fprintf('Flookuping ..')
+      Mq=flookup(Mq,'GEN_EPA_ID','NAICS_CODE','bla');
+      Mq=mvfield(Mq,'NAICS_CODE','GENNAICS');
+      Mq=expand(Mq,'GENNAICS',' ',field);
+      Mq=select(Mq,{'GEN_EPA_ID','Year',field,'GENNAICS'});
+      
+      % now pull off consolidators- first named ones
+      fprintf(' Pulling consolidators\n')
+      [~,Mnamed]=filter(Mq,'GEN_EPA_ID',{@regexp},NAMED_CONSOL_REGEXP);
+      [~,Mnaics]=filter(Mq,'GENNAICS',{@regexp},'562112|562119');
+      if isempty(CONSOL)
+        CONSOL=Mq(Mnamed | Mnaics);
+      else
+        CONSOL=[CONSOL ; Mq(Mnamed | Mnaics)];
+      end
+      GEN{i}=Mq(~Mnamed & ~Mnaics);
+    end
+        
+    EST.CONSOL=CONSOL;
+    EST.GEN=GEN;
+  
   case 301
     if isempty(MD)
       load MD
