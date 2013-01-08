@@ -43,6 +43,8 @@ switch dbase
                    'bla');
         MD=mvfield(flookup(MD,'TSDF_EPA_ID','FAC_CNTY'),'FAC_CNTY','TSDF_CNTY', ...
                    'bla');
+        MD=moddata(MD,'GEN_CNTY',@ifstr2num);
+        MD=moddata(MD,'TSDF_CNTY',@ifstr2num);
         MD=orderfields(MD,[1 8 2 9 3:7]);
         
       else
