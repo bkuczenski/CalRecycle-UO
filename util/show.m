@@ -158,6 +158,10 @@ for i=1:length(FN)
   if strcmp( delim, ',*' )
     width=0;
     hdr_fmt{i}='%s';
+    if strcmp(t_fmt{1}{3}(1),'v')
+      D=moddata(D,FN{i},@vec2char);
+      t_fmt{1}{3}(1)='s';
+    end
   elseif isempty(t_fmt{1}{2}) % no field width supplied - figure it out ourselves
     switch t_fmt{1}{3}(1)
       case {'b','d','i','o','t','u','x','X'} % integer
