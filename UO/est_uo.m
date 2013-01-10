@@ -145,9 +145,11 @@ switch R
         'other','valu','export','freight','dist'};
     data=[ YEARS(:)';
            D.wcD ; % total by waste code
-           sum(D.wcIg,1);
-           sum(D.wcG,1);
-           sum([D.wcIg;D.wcG],1);
+           %sum(D.wcIg,1);
+           %sum(D.wcG,1);
+           EST.Dgen;
+           EST.Dcon;
+           sum([EST.Dgen;EST.Dcon],1);
            sum(D.wcTx,1);
            sum(D.ww,1);
            sum(D.hw,1);
@@ -206,9 +208,9 @@ switch R
     % Figure 2
     %EST=est_uo(EST,2.21,varargin{:}); return
     %EST=est_uo(EST,2.22,varargin{:}); return
-    if ~isfield(EST,'TOTAL')
-      EST=est_uo(EST,231,varargin{:}); 
-    end
+    EST=est_uo(EST,2.31); % generate outputs
+    
+    EST=est_uo(EST,2.39); % generate meta
 
     
     
@@ -307,12 +309,14 @@ switch R
     Dgen=sort(accum(select(Gn,{'Year','ML'}),'ma',''),'Year','ascend');
     Dcon=sort(accum(select(Total,{'Year','ML'}),'ma',''),'Year','ascend');
     
-    try
     EST.Dgen=[Dgen.ML] * 1e6;
-    EST.Dcon=[Dcon.ML] * 1e6;
-    catch
-      keyboard
-    end
+    EST.Dcon=[Dcon.ML] * 1e6 - EST.Dgen;
+
+  case 2.39 % naics meta
+    GN=cell2struct(unique({EST.Fig2a.GENNAICS EST.Fig2b.GENNAICS}),'Meta');
+    GN=naics(GN,'Meta');
+    GN=mvfield(GN,'NAICS_SECTOR','Title');
+    show(GN,'',{'est_fig2meta.csv',1,1},',*');
     
   case 3
     field='GAL';
@@ -373,7 +377,7 @@ switch R
         
         nodename=['Rn_' yy '_' wc];
         Rn=fieldop(Node.(nodename),'Isum','#GGAL + #IgGAL + #ItGAL');
-        Ng=select(filter(Rn,'Isum',{@ne},0),{'TSDF_EPA_ID','Isum'});
+        Ng=select(filter(Rn,'Isum',{@ne},0),{'TSDF_EPA_ID','Isum','DGAL'});
         if isempty(RN)
           RN=Ng(:);
         else
@@ -381,8 +385,10 @@ switch R
         end
       end
     end
-    RN=accum(RN,'ma','');
+    RN=accum(RN,'maa','');
     RN=moddata(RN,'Isum',@(x)(x * 3.785e-6 / length(YEARS)),'MLY'); % million
+                                                                    % liters per year
+    RN=moddata(RN,'DGAL',@(x)(x * 3.785e-6 / length(YEARS)),'MLD'); % million
                                                                     % liters per year
     [RN,M]=flookup(RN,'TSDF_EPA_ID','LAT_LONG','bla');
     RN=RN(M);
@@ -391,7 +397,7 @@ switch R
     RN=moddata(RN,'LAT_LONG',@(x)(x(2)),'LONGITUDE');
     RN=moddata(RN,'LAT_LONG',@(x)(x(1)),'LATITUDE');
     RN=sort(RN,'MLY','descend');
-    EST.TSDFs=select(RN,{'TSDF_EPA_ID','MLY','LONGITUDE','LATITUDE'});
+    EST.TSDFs=select(RN,{'TSDF_EPA_ID','MLY','MLD','LONGITUDE','LATITUDE'});
     show(EST.TSDFs,'',{'est_fig3gis.csv',1,1},',*')
     
         
@@ -619,6 +625,13 @@ switch R
 
     [~,M]=filter(RN,'GENNAICS',{@regexp},'324191|^562|^484|^42272');
 
+    TxStn=read_dat('TxStn.csv',',');
+    Txs={TxStn.EPAID};
+    [~,MM]=filter(RN,'GEN_EPA_ID',{@ismember},{Txs});
+
+    fprintf('%s\n','Reconcile NAICS-based TxStn identification (M)  vs CalRecycle (MM)')
+    keyboard
+    
     EST.RnCONSOL=RN(M);
     EST.RnGEN=RN(~M);
     
