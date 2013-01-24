@@ -45,6 +45,15 @@ function [S,maxyear]=naics(C,varargin)
 %
 % currently only supports single codes-- all codes except the first are truncated.
 
+if isnumeric(C)
+  [S,maxyear]=naics(cellfun(@num2str,num2cell(C(:)),'uniformoutput',false),varargin{:});
+  return
+elseif iscell(C)
+  for i=1:length(C)
+    [S{i},maxyear{i}]=naics(C{i},varargin{:});
+  end
+  return
+end
 
 NAICS_YEARS=[1 2012 2007 2002];
 NAICS97ind=length(NAICS_YEARS)+1;
@@ -105,10 +114,12 @@ if ischar(C)
     if length(C)<6
       C=[C repmat('0',1,6-length(C))];
     end
-    R02=find(strcmp(C,{NAICS{3}.NAICS2002}));
+    R02=find(strcmp(C,{NAICS{find(NAICS_YEARS==2002)}.NAICS2002}));
+    maxyear=2002;
     if isempty(R02)
       R97=find(strcmp(C,{NAICS{NAICS97ind}.NAICS1997}));
       R02=NAICS{NAICS97ind}(min(R97)).NAICS2002;
+      maxyear=1997;
     end
     S=R02;
   else
@@ -170,13 +181,13 @@ elseif isstruct(C)
       [C(try_old)]=moddata(C(try_old),'new__NAICS',...
                            @(x)(subsref([x '00000'],substruct('()',{1:6}))));
       [C(try_old),Mm]=vlookup(C(try_old),'new__NAICS',...
-                                        NAICS{NAICS97ind},'NAICS1997','NAICS2002');
-      keyboard
+                                        NAICS{NAICS97ind},'NAICS1997','NAICS2002','first');
       [C(try_old).(SRC_FIELD)]=deal(C(try_old).NAICS2002);
       S=rmfield(C,{'new__NAICS','NAICS2002'});
       Mf=find(try_old);
       maxyear=try_old;
       maxyear(Mf(~Mm))=0;
+      return
     end
     
     % do a vlookup

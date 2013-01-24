@@ -3,6 +3,8 @@
 
 
 %% Load configuration
+global Node
+global MD
 uo_config
 
 
@@ -415,6 +417,9 @@ end
 
 if FORCE_CR_PROC 
   Node=ifrmfield(Node,{'CR_Proc','CR_Sales','CR_Hauler','CR_Txfr'});
+  for i=1:length(YEARS)
+    Node=ifrmfield(Node,['CR_' num2str(YEARS(i))]);
+  end
 end
 
 if LOAD_CR_PROC | FORCE_CR_PROC

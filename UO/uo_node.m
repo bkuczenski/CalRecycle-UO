@@ -184,7 +184,7 @@ Rn = fieldop(Rn,['G' QTY],[' #G' QTY ' - #ImCorrect']);
 Rn = fieldop(Rn,'RC',' #RC - #ImCorrect');
 Rn = fieldop(Rn,['D' QTY],[' #T' QTY ' + #RC']);
 % deal with tiered RC codes
-Fc=[-1;Fc(:);1];
+Fc=[-1;Fc(:);1.1]; % 1.1 for @lt below
 for i=1:length(RC) % initialize fields
   [Rn.([RC{i} QTY])]=deal(0);
 end
