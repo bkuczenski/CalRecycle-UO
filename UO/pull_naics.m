@@ -26,9 +26,8 @@ B=[];
 
 for i=1:length(codes)
   [a,M]=filter(N,FN{NAICS},{@regexp},['\<' codes{i}]);
-  [a.(FN{NAICS})]=deal(codes{i});
-%  keyboard
   if ~isempty(a)
+    [a.(FN{NAICS})]=deal(codes{i});
     a=(accum(a,cols,''));
 %    show(a)
     B=[B;a];

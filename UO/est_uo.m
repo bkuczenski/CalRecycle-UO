@@ -66,6 +66,13 @@ FAC_DATA_SHEET='Activities';
 
 NAMED_CONSOL_REGEXP='CAL000330453';
 
+NAICS_GEN_PULL={'2211','331','332','333','334','335','336','337','339', '481', ...
+                '482','483','484','485','486','487','488','489', '8111','928'};
+
+NAICS_CON_PULL={'324191','42472','484','562112','562119'};
+
+NAICS_DISP_PULL={'324191','562213','562211'};
+
 conv = 3.785; % L per GAL
 
 if ischar(request)
@@ -84,6 +91,8 @@ if ischar(request)
       R=4;
     case 'd'
       R=101;
+    case 'sales'
+      R=102;
     case 'naics'
       R=201;
     case 'naicsb'
@@ -118,6 +127,12 @@ switch R
     if ~isfield(EST,'D')
       EST=est_uo(EST,101);
     end
+    if ~isfield(EST.D,'KlineInd')
+      EST=est_uo(EST,102);
+    end
+    if ~isfield(EST.D,'gen')
+      EST=est_uo(EST,2.31);
+    end
     D=EST.D;
 
     %% Table 2 big MFA
@@ -141,26 +156,42 @@ switch R
     %% 
     %%  freight  tkm Node.Dist
     %%  avgdist   km average shipment distance
-    hdr={'year','wc221','wc222','wc223','uogen','uoconsol','uototal','uotxfr','ww','hw', ...
-        'other','valu','export','freight','dist'};
+%         'klinelub','klineind','klinetot',...
+    hdr={'year','crlub','crind','crtot',...
+         'wc221','wc222','wc223','uogen','uoconsol','uototal','uotxfr','ww','hw', ...
+        'other','valu','crreco','klinereco','export','freight','dist'};
     data=[ YEARS(:)';
+           D.CRLube;
+           D.CRInd;
+           D.CRLube+D.CRInd;
+%           D.KlineLube;
+%           D.KlineInd;
+%           D.KlineLube+D.KlineInd;
            D.wcD ; % total by waste code
            %sum(D.wcIg,1);
            %sum(D.wcG,1);
-           EST.Dgen;
-           EST.Dcon;
-           sum([EST.Dgen;EST.Dcon],1);
+           D.gen;
+           D.con;
+           sum([D.gen;D.con],1);
            sum(D.wcTx,1);
            sum(D.ww,1);
            sum(D.hw,1);
            sum(D.other,1);
            sum(D.valu,1);
+           D.crreco;
+%           D.klinereco;
            sum(D.export,1);
            sum(D.freight,1);
            1000*sum(D.freight,1)./sum(D.coll,1)];
     
     mhdr={'Key','Title','Units','Scale','Precision','Term'};
-    meta={'Total Collection - WC 221','L',1,'2','';
+    meta={'Sales - Lubricants [1]','L',1,'2','';
+          'Sales - Industrial [1]','L',1,'2','\n';
+          'Total Sales','L',1,'2','\n';
+%          'Demand - Lubricants [2]','L',1,'2','';
+%          'Demand - Industrial [2]','L',1,'2','\n';
+%          'Total Demand','L',1,'2','\n';
+          'Total Collection - WC 221','L',1,'2','';
           'Total Collection - WC 222','L',1,'2','';
           'Total Collection - WC 223','L',1,'2','\n';
           'Direct from Generator','L',1,'2','';
@@ -171,7 +202,9 @@ switch R
           'Hazardous Waste','kg',1,'2','';
           'Other / Unknown','kg',1,'2','\n';
           'Dry Oil Recovered','kg',1,'2','';
-          'Total Exports','kg',1,'2','\n';
+          'Recovery Rate vs Sales','',1,'2','';
+%          'Recovery Rate vs Demand [3]','',1,'2','\n';
+          'Exports from CA (dry oil)','kg',1,'2','\n';
           'Freight','tkm',1,'3','';
           'Average Distance','km',1,'1',''};
                
@@ -217,6 +250,7 @@ switch R
   case 2.1
     EST=est_uo(EST,1,varargin{:}); return  % perplexing
   case 2.21
+    error('Case 2.21 is outmoded.  Use case 2.33')
     if ~isfield(EST,'NAICS')
       EST=est_uo(EST,'NAICS');
     end
@@ -246,6 +280,7 @@ switch R
     EST.Fig2a=BN;
     
   case 2.22
+    error('Case 2.22 is outmoded.  Use case 2.33')
     if ~isfield(EST,'NAICSB')
       EST=est_uo(EST,'NAICSB');
     end
@@ -273,6 +308,7 @@ switch R
     EST.Fig2b=BN;
 
   case 2.31
+    error('Case 2.31 is outmoded.  Use 2.33')
     if ~isfield(EST,'RnGEN')
       EST=est_uo(EST,231);
     end
@@ -287,7 +323,7 @@ switch R
       d=[EST.GEN{i};filter(EST.RnGEN,'Year',{@eq},YEARS(i))];
       Total=[Total; struct('Year',YEARS(i),'GENNAICS','Direct','GAL',sum([d.GAL]))];
       f=filter([EST.CONSOL; EST.RnCONSOL],'Year',{@eq},YEARS(i));
-      B=pull_naics(f,'GAL',{'324191','42272','484','562112','562119'});
+      B=pull_naics(f,'GAL',{'324191','42472','484','562112','562119'});
       [B.Year]=deal(YEARS(i));
       B=sort(B,'GENNAICS');
       Total=[Total;select(B,{'Year','GENNAICS','GAL'})];
@@ -299,6 +335,9 @@ switch R
     end
     Total=moddata(Total,'GAL',@(x)(x * 3.785e-6),'ML');
     Gn=moddata(Gn,'GAL',@(x)(x * 3.785e-6),'ML');
+
+    [~,M]=filter(Gn,'GENNAICS',{@regexp},'^99');
+    [Gn(M).GENNAICS]=deal('unknown');
     
     show(select(Gn,{'Year','GENNAICS','ML'}),'',{'est_fig2a.csv',1,1},',*')
     show(select(Total,{'Year','GENNAICS','ML'}),'',{'est_fig2b.csv',1,1},',*')
@@ -309,14 +348,110 @@ switch R
     Dgen=sort(accum(select(Gn,{'Year','ML'}),'ma',''),'Year','ascend');
     Dcon=sort(accum(select(Total,{'Year','ML'}),'ma',''),'Year','ascend');
     
-    EST.Dgen=[Dgen.ML] * 1e6;
-    EST.Dcon=[Dcon.ML] * 1e6 - EST.Dgen;
+    EST.D.gen=[Dgen.ML] * 1e6;
+    EST.D.con=[Dcon.ML] * 1e6 - EST.D.gen;
 
+  case 2.33
+    % pull 3- and 4-digit codes of interest
+
+    if ~isfield(EST,'RnGEN')
+      EST=est_uo(EST,231);
+    end
+    if ~isfield(EST,'GEN')
+      EST=est_uo(EST,232);
+    end
+
+    % now we need to stack these and make our output tables
+    Total=[];
+    Gn=[];
+    for i=1:length(YEARS)
+      d=[EST.GEN{i};filter(EST.RnGEN,'Year',{@eq},YEARS(i))];
+      Total=[Total; struct('Year',YEARS(i),'GENNAICS','Direct','GAL',sum([d.GAL]))];
+      f=filter([EST.CONSOL; EST.RnCONSOL],'Year',{@eq},YEARS(i));
+      B=pull_naics(f,'GAL',NAICS_CON_PULL);
+      [B.Year]=deal(YEARS(i));
+      B=sort(B,'GENNAICS');
+      Total=[Total;select(B,{'Year','GENNAICS','GAL'})];
+%      keyboard
+      G=pull_naics(d,'GAL',NAICS_GEN_PULL); 
+      [G.Year]=deal(YEARS(i));
+      G=sort(G,'GENNAICS');
+      Gn=[Gn;G(:)];
+      %keyboard
+    end
+    Total=moddata(Total,'GAL',@(x)(x * 3.785e-6),'ML');
+    Gn=moddata(Gn,'GAL',@(x)(x * 3.785e-6),'ML');
+    
+    show(select(Gn,{'Year','GENNAICS','ML'}),'',{'est_fig2a.csv',1,1},',*')
+    show(select(Total,{'Year','GENNAICS','ML'}),'',{'est_fig2b.csv',1,1},',*')
+    
+    [~,M]=filter(Gn,'GENNAICS',{@regexp},'^99');
+    [Gn(M).GENNAICS]=deal('unknown');
+    
+    EST.Fig2a=Gn;
+    EST.Fig2b=Total;
+
+    Dgen=sort(accum(select(Gn,{'Year','ML'}),'ma',''),'Year','ascend');
+    Dcon=sort(accum(select(Total,{'Year','ML'}),'ma',''),'Year','ascend');
+    
+    EST.D.gen=[Dgen.ML] * 1e6;
+    EST.D.con=[Dcon.ML] * 1e6 - EST.D.gen;
+
+  case 2.331
+    % building off 2.33, get annual average for origin and destination
+    if ~isfield(EST.D,'con')
+      EST=est_uo(EST,2.33);
+    end
+
+    if ~isfield(EST,'RnDISP')
+      EST=est_uo(EST,233.1)
+    end
+    
+    orig=1001;
+    dest=1002;
+    fprintf('Appending to Fig2b: year: %d origin - %d destination\n',orig,dest)
+    Gn=read_dat('est_fig2a.csv',',',{'d','s','d'});
+    [Gn.Year]=deal(orig);
+    Gn=accum(Gn,'mma','');
+    Gn=moddata(Gn,'ML',@(x)(x / length(YEARS)));
+    Gn=rmfield(Gn,'Count');
+    Gn=[Gn; struct('Year',1001,'GENNAICS','Consol','ML',sum([EST.RnCONSOL.GAL])*3.785e-6/length(YEARS))];
+    
+    Gd=accum(EST.RnDISP,'ddma','');
+    Gd=moddata(Gd,'GAL',@(x)(x * 3.785e-6 / length(YEARS)),'ML');
+    Gd=sort(pull_naics(Gd,'ML',NAICS_DISP_PULL),'TSDFNAICS');
+    [Gd.Year]=deal(dest);
+    Gd=mvfield(Gd,'TSDFNAICS','GENNAICS');
+    Gd=select(Gd,{'Year','GENNAICS','ML'});
+
+    Gb=read_dat('est_fig2b.csv',',',{'d','s','d'});
+    Gb=[Gb(:);Gn;Gd];
+    
+    show(Gb,'',{'est_fig2b.csv',1,1},',*');
+
+    EST.Fig2b=Gb;
+    
   case 2.39 % naics meta
+    % need to generate psstyle data here as well
     GN=cell2struct(unique({EST.Fig2a.GENNAICS EST.Fig2b.GENNAICS}),'Meta');
     GN=naics(GN,'Meta');
     GN=mvfield(GN,'NAICS_SECTOR','Title');
     show(GN,'',{'est_fig2meta.csv',1,1},',*');
+
+    fid=fopen('est-naics.cfg','w');
+    for i=1:length(GN)
+      if ismember(GN(i).Meta,NAICS_GEN_PULL)
+        fprintf(fid,'\\newpsstyle{%s}{style=%2.2s,style=naicsspecific}\n',GN(i).Meta,GN(i).Meta);
+      elseif ismember(GN(i).Meta,NAICS_CON_PULL)
+        fprintf(fid,'\\newpsstyle{%s}{style=%2.2s,style=naicsconsol}\n',GN(i).Meta,GN(i).Meta);
+      elseif ismember(GN(i).Meta,NAICS_DISP_PULL)
+        fprintf(fid,'\\newpsstyle{%s}{style=%2.2s,style=naicsdisp}\n',GN(i).Meta,GN(i).Meta);
+      elseif ismember(GN(i).Meta,{'Direct','unknown','Consol'})
+        fprintf(fid,'%%%% \\newpsstyle{%s}{style=%s}\n',GN(i).Meta,GN(i).Meta);
+      else
+        fprintf(fid,'\\newpsstyle{%s}{style=naics%1.1s}\n',GN(i).Meta,GN(i).Meta);
+      end
+    end
     
   case 3
     field='GAL';
@@ -359,6 +494,17 @@ switch R
     EST.Fig3=DN;
     EST.Fig3meta=DNm;
 
+  case 3.01 % dist average
+    F=EST.Fig3';
+    F=F(:);
+    Fa=accum(F,'dmmaa','');
+    Fa=fieldop(Fa,'GAL','#GAL ./ #Count');
+    Fa=fieldop(Fa,'ML','#ML ./ #Count');
+    Fa=rmfield(Fa,'Count');
+    Fa=fieldop(Fa,'ML','#GAL * 3.785e-6')
+    show(sort(select(Fa,{'LOGDISTANCE','ML'}),'LOGDISTANCE'),'',{'est_fig3avg.csv',1,1},',*')
+    
+    
   case 3.1
     % GIS output files for TSDF locations
     % plan to present a US map with markers showing facilities receiving UO by
@@ -411,10 +557,12 @@ switch R
       EST=est_uo(EST,101);
     end
     D=EST.D;
-    hdr={'year','rere','dist','dielectric','ca','export','ww','hw', ...
+    hdr={'year','cr','kline','rere','dist','dielectric','ca','export','ww','hw', ...
         'other'};
     
     data=[ YEARS(:)';
+           (D.CRLube+D.CRInd)*OIL_DENS;
+           (D.KlineLube+D.KlineInd)*OIL_DENS;
            sum(D.rere,1);
            sum(D.dist,1);
            sum(D.dielectric,1);
@@ -428,7 +576,9 @@ switch R
     
     mhdr={'Key','Title','Units','Scale','Precision','Term'};
     
-    meta={'Re-refining','kt',1e-6,'2','';
+    meta={'Sales (CalRecycle)','kt',1e-6,'2','';
+          'Demand (Kline)','kt',1e-6,'2','\n';
+          'Re-refining','kt',1e-6,'2','';
           'Distillation','kt',1e-6,'2','';
           'Dielectric Rejuvenation','kt',1e-6,'2','\n';
           'CA RFO Market','kt',1e-6,'2','';
@@ -512,6 +662,20 @@ switch R
     EST.D=D;
     keyboard
 
+  case 102
+    % Kline and CalRecycle ind and lube numbers
+    if ~isfield(EST,'D')
+      EST=est_uo(EST,101);
+    end
+    S=read_dat('CR-Kline-Sales.csv',',','n');
+    for i=1:length(YEARS) % in L
+      EST.D.CRLube(1,i)=lookup(S,YEARS(i),'Year','LubSales');
+      EST.D.CRInd(1,i)=lookup(S,YEARS(i),'Year','IndSales');
+      EST.D.KlineLube(1,i)=lookup(S,YEARS(i),'Year','KlineLubSales');
+      EST.D.KlineInd(1,i)=lookup(S,YEARS(i),'Year','KlineIndDiel');
+    end
+    EST.D.crreco=sum(EST.D.valu,1) ./ (EST.D.CRLube+EST.D.CRInd) ./ OIL_DENS;
+    EST.D.klinereco=sum(EST.D.valu,1) ./ (EST.D.KlineLube+EST.D.KlineInd) ./ OIL_DENS;
   case 201
     % NAICS GEN
     if isempty(MD)
@@ -621,10 +785,13 @@ switch R
     RN=mvfield(RN,'NAICS_CODE','GENNAICS');
     RN=mvfield(RN,'TSDF_EPA_ID','GEN_EPA_ID');
     RN=expand(RN,'GENNAICS',' ',field);
+
     RN=mvfield(RN,field,'GAL');
 
     [~,M]=filter(RN,'GENNAICS',{@regexp},'324191|^562|^484|^42272');
 
+    RN=naics(RN,'-correct97');
+    
     TxStn=read_dat('TxStn.csv',',');
     Txs={TxStn.EPAID};
     [~,MM]=filter(RN,'GEN_EPA_ID',{@ismember},{Txs});
@@ -669,10 +836,13 @@ switch R
       Mq=expand(Mq,'GENNAICS',' ',field);
       Mq=select(Mq,{'GEN_EPA_ID','Year',field,'GENNAICS'});
       
+      fprintf('Correcting NAICS 1997 codes ..')
+      Mq=naics(Mq,'-correct97');
+      
       % now pull off consolidators- first named ones
       fprintf(' Pulling consolidators\n')
       [~,Mnamed]=filter(Mq,'GEN_EPA_ID',{@regexp},NAMED_CONSOL_REGEXP);
-      [~,Mnaics]=filter(Mq,'GENNAICS',{@regexp},'562112|562119');
+      [~,Mnaics]=filter(Mq,'GENNAICS',{@regexp},'562112|562119|^4239|^4247');
       if isempty(CONSOL)
         CONSOL=Mq(Mnamed | Mnaics);
       else
@@ -683,6 +853,45 @@ switch R
         
     EST.CONSOL=CONSOL;
     EST.GEN=GEN;
+  
+  
+  case 233.1
+    % more NAICS: do destination facilities
+    if isempty(Node)
+      load Node
+    end
+    
+    field='DGAL';
+    RN=[];
+    for i=1:length(YEARS)
+
+      yy=num2str(YEARS(i));
+      for j=1:3
+        wc=num2str(220+j);
+        
+        nodename=['Rn_' yy '_' wc];
+        Rn=Node.(nodename);
+        Ng=select(filter(Rn,field,{@ne},0),{'TSDF_EPA_ID','Year',field});
+        if isempty(RN)
+          RN=Ng(:);
+        else
+          RN=[RN;Ng(:)];
+        end
+      end
+    end
+    RN=flookup(RN,'TSDF_EPA_ID','NAICS_CODE','bla');
+    
+    RN=mvfield(RN,'NAICS_CODE','TSDFNAICS');
+    RN=expand(RN,'TSDFNAICS',' ',field);
+
+    RN=mvfield(RN,field,'GAL');
+    RN=accum(RN,'mmam','');
+
+    RN=naics(RN,'-correct97');
+    RN=rmfield(RN,'Count');
+    
+    EST.RnDISP=RN;
+
   
   case 301
     if isempty(MD)
