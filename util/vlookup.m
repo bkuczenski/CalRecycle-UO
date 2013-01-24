@@ -67,6 +67,8 @@ while ~isempty(varargin)
           end
         case 'old'
           match='oldstrdist';
+        case 'fir'
+          match='first';
         case 'bla'
           blank=1;
         case {'zer','spa'}
@@ -85,6 +87,7 @@ end
 
 if isempty(D)
   disp('Empty input.')
+  M=logical([]);
   return
 end
 
@@ -148,11 +151,11 @@ switch class(D(1).(KeyField))
         multi=[];
         for i=1:length(KeyData)
           r=bisect_find(KeyData{i},RefData); % finds nearest index
-          if length(r)>1
-            disp(['  ambiguous match on KeyData ' KeyData{i}])
-            multi=[multi i];
-            r=r(1);
-          end
+          % if length(r)>1
+          %   disp(['  ambiguous match on KeyData ' KeyData{i}])
+          %   multi=[multi i];
+          %   r=r(1);
+          % end
           if strcmp(match(1:2),'in') | strcmp(RefData(r),KeyData{i})
             result(i)=r(1);
           end
@@ -202,6 +205,23 @@ switch class(D(1).(KeyField))
         % now we mess with keys to have M contraindicate ambiguous as well 
         % as un-matching records
         keys(multi)=false;
+      case 'first'
+        % take first match- slower than bisect-find
+        multi=[];
+        for i=1:length(KeyData)
+          r=find(strcmp(KeyData{i},RefData)); % finds nearest index
+          if length(r)>1
+            disp(['  ambiguous match on KeyData ' KeyData{i}])
+            multi=[multi i];
+            r=r(1);
+          end
+          if strcmp(match(1:2),'in') | strcmp(RefData(r),KeyData{i})
+            result(i)=r(1);
+          end
+          if mod(i,1000)==0 fprintf(1,'%d records processed\n',i); end
+        end
+        keys=find(~isnan(result));
+        keys=setdiff(keys,multi);
     end
     
     %     % now fill in unmatched results if inexact matches are allowed
