@@ -156,10 +156,10 @@ switch R
     %% 
     %%  freight  tkm Node.Dist
     %%  avgdist   km average shipment distance
-%         'klinelub','klineind','klinetot',...
-    hdr={'year','crlub','crind','crtot',...
+    hdr={'year','crlub','crind','crtot',... %  'klinelub','klineind','klinetot',...
          'wc221','wc222','wc223','uogen','uoconsol','uototal','uotxfr','ww','hw', ...
-        'other','valu','crreco','klinereco','export','freight','dist'};
+        'other','valu','crreco',...% ,'klinereco',
+         'export','freight','dist'};
     data=[ YEARS(:)';
            D.CRLube;
            D.CRInd;
@@ -208,6 +208,7 @@ switch R
           'Freight','tkm',1,'3','';
           'Average Distance','km',1,'1',''};
                
+%    keyboard
     T=cell2struct(num2cell(data),hdr);
     
     Tm=cell2struct([hdr(2:end);meta'],mhdr);
@@ -415,7 +416,8 @@ switch R
     Gn=accum(Gn,'mma','');
     Gn=moddata(Gn,'ML',@(x)(x / length(YEARS)));
     Gn=rmfield(Gn,'Count');
-    Gn=[Gn; struct('Year',1001,'GENNAICS','Consol','ML',sum([EST.RnCONSOL.GAL])*3.785e-6/length(YEARS))];
+    Gn=[Gn; struct('Year',1001,'GENNAICS','Consol',...
+                   'ML',sum([EST.RnCONSOL.GAL])*3.785e-6/length(YEARS))];
     
     Gd=accum(EST.RnDISP,'ddma','');
     Gd=moddata(Gd,'GAL',@(x)(x * 3.785e-6 / length(YEARS)),'ML');
@@ -425,11 +427,16 @@ switch R
     Gd=select(Gd,{'Year','GENNAICS','ML'});
 
     Gb=read_dat('est_fig2b.csv',',',{'d','s','d'});
+    [~,M]=filter(Gb,'GENNAICS',{@strcmp},'Direct',1);
+    [Gb(M).GENNAICS]=deal('Consol');
+    Gb=accum(Gb,'mma','');
+    Gb=rmfield(Gb,'Count');
+    
     Gb=[Gb(:);Gn;Gd];
     
-    show(Gb,'',{'est_fig2b.csv',1,1},',*');
+    show(Gb,'',{'est_fig2s.csv',1,1},',*');
 
-    EST.Fig2b=Gb;
+    EST.Fig2s=Gb;
     
   case 2.39 % naics meta
     % need to generate psstyle data here as well

@@ -26,7 +26,8 @@ for i=1:length(year)
         E(i).CR_ind=Node.(nodename)(k).CR_indGAL;
         E(i).CR_out=Node.(nodename)(k).CR_prodGAL;
       end
-      E(i).(['MD' wc])=Node.(nodename)(k).DGAL;
+      E(i).(['MD' wc '_DGAL'])=Node.(nodename)(k).DGAL;
+      E(i).(['MD' wc '_H900'])=Node.(nodename)(k).H900GAL;
     end
   end
 end
