@@ -7,6 +7,9 @@ global UNIT_CONV
 
 global Facilities  % data structure array
 global FACILITIES  % cell array list of unique facility EPAIDs 
+
+global MD
+global Node
 %global use_md2
 %use_md2=true
 

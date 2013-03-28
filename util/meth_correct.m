@@ -9,8 +9,13 @@ function S=meth_correct(S,k)
 %
 % Reads MethCorr fresh every time, so make live changes.
 
-fprintf('Correcting method codes on %s: ',inputname(1))
 MC=read_dat('MethCorr',',');
+if nargin==0
+  show(MC)
+  return
+end
+
+fprintf('Correcting method codes on %s: ',inputname(1))
 S=vlookup(S,'METH_CODE',MC,'IN','OUT','inplace');
 
 if nargin>1

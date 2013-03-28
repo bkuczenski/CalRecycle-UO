@@ -36,6 +36,8 @@ bins=[0 1 10 100 500 1500 4000 8500 100000 inf ];
 [count,binlist]=histc([Qx.GAL],bins);
 S.Zero_gal=length(filter(Qx,'GAL',{@eq},0));
 
+keyboard
+
 if fig
   f=figure;
 end
