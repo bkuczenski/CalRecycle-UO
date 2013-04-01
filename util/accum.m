@@ -177,7 +177,7 @@ for i=1:na
   NewFN{end+1}=[pre{1} FN{AccumCols(i)}];
 end
 for j=1:nc
-  d(:,1+na+j)=repmat({''},size(d,1),1);
+  d(:,1+na+j)=repmat({[]},size(d,1),1);
   NewFN{end+1}=[pre{2} FN{ConcatCols(j)}];
 end
 
@@ -194,7 +194,7 @@ if na>0
 end
 if nc>0
   Ct=C(:,ConcatCols);
-  Ct(find(cellfun(@isempty,Ct)))={''};
+  Ct(find(cellfun(@isempty,Ct)))={[]};
   C(:,ConcatCols)=Ct;
 end
 
@@ -214,7 +214,7 @@ for i=1:size(C,1)
     d(n,[2:na+1])=num2cell([d{n,[2:na+1]}]+[C{i,AccumCols}]);
   end
   for j=1:nc
-      d{n,1+na+j}=[d{n,1+na+j} C{i,ConcatCols(j)} pre{3}];
+    d{n,1+na+j}=[d{n,1+na+j} C{i,ConcatCols(j)} pre{3}];
   end
   d{n,end}=d{n,end}+1;
   if mod(i,1000)==0

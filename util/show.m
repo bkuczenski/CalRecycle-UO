@@ -137,15 +137,17 @@ for i=1:length(FN)
     end
     firstlook=D(k).(FN{i});
     if isnumeric(firstlook)
-      secondlook=D(max([1 min(find([D.(FN{i})]>0))])).(FN{i});
-      
       accumfmt(i)='a';
-      if prod(size(secondlook))>1
+      if prod(size(firstlook))>1
         t_fmt{1}{3}='v'; % for vector
         accumfmt(i)='d';
-      elseif fix(secondlook)==secondlook & fix(firstlook)==firstlook %&firstlook>0 
-        t_fmt{1}{3}='d';
-      else t_fmt{1}{3}='f';
+      else
+        secondlook=D(max([1 min(find([D.(FN{i})]>0))])).(FN{i});
+        
+        if fix(secondlook)==secondlook & fix(firstlook)==firstlook %&firstlook>0 
+          t_fmt{1}{3}='d';
+        else t_fmt{1}{3}='f';
+        end
       end
     else
       t_fmt{1}{3}='s';
@@ -165,7 +167,7 @@ for i=1:length(FN)
   elseif isempty(t_fmt{1}{2}) % no field width supplied - figure it out ourselves
     switch t_fmt{1}{3}(1)
       case {'b','d','i','o','t','u','x','X'} % integer
-        maxsize=max([myhwidth,1+ceil(log10(max(abs([D(:).(FN{i})]))))]);
+        maxsize=max([myhwidth,1+ceil(log10(max(abs([D(~isinf([D.(FN{i})])).(FN{i})]))))]);
         width(i)=maxsize;
         t_fmt{1}{2}=num2str(maxsize);
         hdr_fmt{i}=['%-' num2str(maxsize) 's'];

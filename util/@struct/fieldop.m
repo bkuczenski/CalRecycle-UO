@@ -22,7 +22,7 @@ function S=fieldop(S,target,expr)
 Fs=strrep(regexp(expr,'#\w+','match'),'#','');
 for k=1:length(Fs)
   % deal with zeros
-  [S(cellfun(@isempty,{S.(Fs{k})})).(Fs{k})]=deal(0);
+  [S(cellfun(@isempty,{S.(Fs{k})})).(Fs{k})]=deal(NaN); % change!!!!!
   eval([Fs{k} '= [S.(Fs{k})];']);
 end
 T=eval(strrep(expr,'#',''));
