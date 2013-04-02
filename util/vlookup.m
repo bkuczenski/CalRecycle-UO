@@ -110,7 +110,9 @@ switch class(D(1).(KeyField))
   % delivers 'keys' and 'result'.  'keys' is a logical list of successful lookups;
   % 'result' is a list of indices into RtnData (sorted RefTbl)
   case 'double'
-    KeyData=[D(:).(KeyField)];
+    K={D.(KeyField)};
+    K(cellfun(@isempty,K))=deal({NaN});
+    KeyData=cell2mat(K);
     [RefData,I]=sort([RefTbl(:).(RefField)]); % assume RefField is the same class 
     RtnData={RefTbl(I).(ReturnField)};
 
@@ -262,7 +264,11 @@ end
 [OutData{~isnan(result)}]=RtnData{result(~isnan(result))};
 switch blank
   case 0
-    [OutData(isnan(result))]=KeyData(isnan(result));
+    if iscell(KeyData)
+      [OutData(isnan(result))]=KeyData(isnan(result));
+    else
+      [OutData(isnan(result))]=deal({KeyData(isnan(result))});
+    end
     [D(:).(DestField)]=deal(OutData{:});
   case 1 % leave blank / NaN
     [D(~isnan(result)).(DestField)]=deal(OutData{~isnan(result)});
