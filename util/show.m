@@ -124,7 +124,10 @@ for i=1:length(FN)
   % regex for fprintf format string is: '%0?[+-]?[0-9\.]*[bcdeEfgGiostuxX]{1,2}'
   fpf='^%([#0\ +-_]*)([0-9\.]*)([bcdeEfgGiostuxX]{1,2})';
   t_fmt=regexp(myfmt,fpf,'tokens'); % {1} - prefix {2} - width {3} char
-  if isempty(t_fmt)
+  if strcmp(myfmt,'%v') % handle explicit vector
+    t_fmt{1}={'','','v'};
+    accumfmt(i)='d';
+  elseif isempty(t_fmt)
     disp([' ! Field ' FN{i} ': Invalid format string: ' myfmt])
     myfmt=ifinput('   Enter new format: ','%s','s');
     t_fmt=regexp(myfmt,fpf,'tokens'); % {1} - prefix {2} - width {3} char
@@ -312,7 +315,7 @@ fprintf(fid,NEWLINE);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function S=vec2char(v)
 if prod(size(v)) < 3
-  S=['[ ' sprintf('%.3f ',v) ']'];
+  S=['[ ' sprintf('%.3g ',v) ']'];
 else
   S=sprintf('[ %d x %d array]',size(v,1),size(v,2));
 end
