@@ -122,7 +122,7 @@ for i=1:length(FN)
   myhwidth=length(FN{i});
   if isempty(regexp(myfmt,'^%')) myfmt=['%' myfmt]; end
   % regex for fprintf format string is: '%0?[+-]?[0-9\.]*[bcdeEfgGiostuxX]{1,2}'
-  fpf='^%([#0\ +-_]*)([0-9\.]*)([bcdeEfgGiostuxX]{1,2})';
+  fpf='^%([#0\ _+-]*)([0-9\.]*)([bcdeEfgGiostuxX]{1,2})';
   t_fmt=regexp(myfmt,fpf,'tokens'); % {1} - prefix {2} - width {3} char
   if strcmp(myfmt,'%v') % handle explicit vector
     t_fmt{1}={'','','v'};
