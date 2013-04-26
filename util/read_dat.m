@@ -10,18 +10,19 @@ function F=read_dat(filename,delim,fmt,filt)
 % strings.  The argument 'fmt' must be a cell array.  Format strings should fit
 % the following regexp:
 %
-% q?[siILn]
+% q?[sSiILn]
 %
 % where 's' indicates a character string (the default); 'd' indicates a number (empty
 % to 0) and 'n' indicates a number (empty to NaN).  double-quotes are automatically
 % filtered out (and their sense is ignored: quoted delimiters are not escaped).
 %
-% deprecated: 'i' indicates an int16; 'I' int32; 'L' int64.  No longer: The optional
-% 'q' tells the function to strip the first and last character of the field (as
-% quotes).  An empty value '' indicates that the field should be skipped.  The
-% default format is 's'.
+% deprecated: 'i' indicates an int16; 'I' int32; 'L' int64.  The optional 'q' is
+% ignored silently. (formerly told the function to strip the first and last character
+% of the field (as quotes)).  An empty value '' indicates that the field should be
+% skipped.  
 %
-% String-formatted entries are automatically deblanked (trailing blanks).
+% The default format is 's'.  String-formatted entries are automatically deblanked
+% (trailing blanks).'S' is like 's' except suppresses deblanking. 
 %
 % For numeric fields ('u' and 'n'), commas ',' are taken to be 1,000 delimiters
 % and are removed.  If a noninteger is found in a 'u'-specified field, an error
@@ -100,8 +101,8 @@ while L~=-1
       thisdata=Data{i};
       if myfmt(1)=='%' myfmt=myfmt(2:end); end % strip leading %
       if myfmt(1)=='q' 
-        warning('Blindly truncating..')
-        thisdata=thisdata(2:end-1);
+%        warning('Blindly truncating..')
+%        thisdata=thisdata(2:end-1);
         %        tok=regexp(Data{i},'^"([^"]+)"$','tokens');
 %         if isempty(tok)
 %           Data{i}='';
@@ -142,6 +143,8 @@ while L~=-1
         case 'd'
           thisdata=str2double(thisdata);
           thisdata(isnan(thisdata))=0;
+        case 'S' 
+          % strings- no deblank- do nothing
         otherwise
           % strings- no change except:
           thisdata=deblank(thisdata);
