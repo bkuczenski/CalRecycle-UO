@@ -240,7 +240,8 @@ else
   nmc=find(NumericMatchCols);
   if nmc
     for i=1:length(nmc)
-      d(:,nmc(i))=num2cell(cellfun(@str2num,d(:,nmc(i))));
+      d(:,nmc(i))=num2cell(cellfun(@str2num,d(:,nmc(i)),'UniformOutput',false));
+      d(:,nmc(i))=[d{:,nmc(i)}]';
     end
   end
 end
