@@ -6,6 +6,7 @@ function S=xls2struct(xlsfile,worksheet,fmt)
 %
 % Currently supported format specifiers are:
 %  'n' - numeric data
+%  'ND' - numeric data, replacing the string 'ND' with NaN
 %  's' - string data
 %  ''  - skip this column
 %
@@ -32,6 +33,14 @@ for i=1:length(fmt)
   switch(fmt{i})
     case 'n'
       Dat(:,i)=num2cell(cellfun(@ifstr2num,Dat(:,i)));
+    case 'ND'
+      Dat(find(strcmp(Dat(:,i),'ND')),i)=deal({NaN});
+      try
+      Dat(:,i)=num2cell(cellfun(@ifstr2num,Dat(:,i)));
+      catch
+        fprintf('xls2struct: Poorly conditioned data in column %d: %s\n',i,FN{i})
+        keyboard
+      end
     case 's'
       notchar=find(~cellfun(@ischar,Dat(:,i)));
       notan=logical(zeros(size(Dat(:,i))));

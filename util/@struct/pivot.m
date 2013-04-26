@@ -20,6 +20,10 @@ function P=pivot(S,R,C,D,varargin)
 %
 % if nargout==0, pretty prints the result using dispData-inspired fprintf, with some
 % tricks for when D is an array.
+%
+% NOTE: currently fills non-entries with NaNs, which could lead to collisions if
+% the data actually contain NaNs.  Advised not to use this function with data
+% containing NaN.
 
 % now add in 6-arg case
 if nargin>4
@@ -61,7 +65,7 @@ if ~iscell(D)
   D={D};
 end
 for k=1:length(D)
-  data{k}=full(sparse(r_ind,c_ind,[S.(D{k})]));
+  data{k}=nansparse(r_ind,c_ind,[S.(D{k})]);
   dm{k}=max(sum(data{k}));
 end
 
@@ -85,7 +89,7 @@ if nargout==0
       else
         fprintf('%*s |',HW,'')
       end
-      for i=1:length(Cols)  fprintf('%*.*g  ',FW-2,FW-2,data{k}(j,i)) ; end
+      for i=1:length(Cols)  fprintf('%*g  ',FW-2,data{k}(j,i)) ; end
       %fprintf('%s\n',rName{I(j)});
       fprintf('%s\n',D{k});
     end
@@ -119,7 +123,6 @@ P.Rows=Rows;
 P.Cols=Cols;
 P.Fields=D;
 P.Data=data;
-
 
 
 
@@ -186,4 +189,14 @@ while k<=length(D)
     end
   end
   k=k+1;
+end
+
+function D=nansparse(row,col,dat)
+D=nan(max(row),max(col));
+for i=1:length(dat)
+  if isnan(D(row(i),col(i)))
+    D(row(i),col(i))=dat(i);
+  else
+    D(row(i),col(i))=D(row(i),col(i))+dat(i);
+  end
 end
