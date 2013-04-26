@@ -49,10 +49,7 @@ for i=1:length(D)
     else
       mydata=D(i).(filt(f).Field);
     end
-    % controversial: NaN always returns false
-    if isnan(mydata)
-      result=false;
-    elseif isempty(filt(f).Pattern)
+    if isempty(filt(f).Pattern)
       % unary test
       try
         result=feval(filt(f).Test,mydata);
@@ -60,6 +57,9 @@ for i=1:length(D)
         disp('trycatch: filter feval empty pattern')
         keyboard
       end
+    elseif isnan(mydata)
+      % controversial: NaN always returns false for binary tests
+      result=false;
     else
       % binary test
       try
