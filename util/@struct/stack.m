@@ -5,6 +5,14 @@ function S=stack(S1,S2)
 % creates a new structure whose fields are the union of the two input structures,
 % padded with zero if numeric, '' if string.
 
+if isempty(S1)
+  S=S2;
+  return
+elseif isempty(S2)
+  S=S1;
+  return
+end
+
 FNS1=fieldnames(S1);
 FNS2=fieldnames(S2);
 allFN=union(FNS1,FNS2);

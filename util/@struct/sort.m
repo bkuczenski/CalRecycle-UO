@@ -5,6 +5,11 @@ function [Y,I]=sort(X,field,mode)
 
 if nargin<3 mode='ascend'; end
 if nargin<2 field=1; end
+if length(X)==1
+  Y=X;
+  I=1;
+  return
+end
 
 FN=fieldnames(X);
 

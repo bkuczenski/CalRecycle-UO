@@ -1,4 +1,4 @@
-function S=concat(S,field1,varargin)
+function [S,newfield]=concat(S,field1,varargin)
 % function S=concat(S,{field1,field2...},dlm)
 %
 % Concatenates the contents of field1 and field2 (and ...) with intervening
@@ -10,6 +10,8 @@ function S=concat(S,field1,varargin)
 %
 % function S=concat(S,field1,field2,...,[dlm])
 % concatenates multiple fields.
+%
+% [S,FN]=concat(...) returns the name of the new field
 
 if iscell(field1)
   if nargin<3
@@ -40,7 +42,7 @@ if iscell(field1)
     S=rmfield(S,field1{2});
     if length(field1)>2
       if length(dlm)<2 dlm=[dlm dlm]; end
-      S=concat(S,{newfield,field1{3:end}},dlm(2:end));
+      [S,newfield]=concat(S,{newfield,field1{3:end}},dlm(2:end));
     end
   end
 else
@@ -48,9 +50,9 @@ else
   else
     if isfield(S,varargin{end})
       % no dlm provided
-      S=concat(S,{field1,varargin{:}},'+');
+      [S,newfield]=concat(S,{field1,varargin{:}},'+');
     else
-      S=concat(S,{field1,varargin{1:end-1}},varargin{end});
+      [S,newfield]=concat(S,{field1,varargin{1:end-1}},varargin{end});
     end
   end
 end
