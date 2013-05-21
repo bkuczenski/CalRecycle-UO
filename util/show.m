@@ -56,13 +56,6 @@ else
 end
 if nargin<2 || isempty(fmt)   fmt={'%_b'}; end
 
-if nofile
-  NEWLINE='\n'; % command window
-  filename='';
-else
-  NEWLINE='\r\n'; % DOS-compatible
-end
-
 if ~iscell(fmt) fmt={fmt}; end
 
 if isempty(D)
@@ -70,24 +63,7 @@ if isempty(D)
   return
 end
 
-if nofile fid=1; 
-else
-  if overwrite
-    fid=fopen(filename,'w'); 
-    appnd='overwrite';
-  else
-    fid=fopen(filename,'a'); 
-    appnd='append';
-  end
-end
-if dotitle & ~islogical(tit)
-  fprintf(fid,NEWLINE);
-  fprintf(fid,[com com com NEWLINE]);
-  fprintf(fid,[com com  NEWLINE]);
-  fprintf(fid,[com com ' %s' NEWLINE],tit{:});
-  fprintf(fid,[com com NEWLINE]);
-end
-
+% recursion
 FN=fieldnames(D);
 
 if any(cellfun(@isstruct,struct2cell(D)))
@@ -105,6 +81,45 @@ if any(cellfun(@isstruct,struct2cell(D)))
   FN(frec)=[];
   fmt={'%_b'};
 end
+
+%file output
+if nofile fid=1; 
+else
+  if isa(filename,'double')
+    % assume fid
+    if ~isempty(fopen(filename))
+      % valid
+      fid=filename;
+      filename=fopen(fid);
+      nofile=true; % emulate printing to screen
+      appnd='append';
+    else
+      error('invalid fid')
+    end
+  else
+    if overwrite
+      fid=fopen(filename,'w'); 
+      appnd='overwrite';
+    else
+      fid=fopen(filename,'a'); 
+      appnd='append';
+    end
+  end
+end
+if dotitle & ~islogical(tit)
+  fprintf(fid,NEWLINE);
+  fprintf(fid,[com com com NEWLINE]);
+  fprintf(fid,[com com  NEWLINE]);
+  fprintf(fid,[com com ' %s' NEWLINE],tit{:});
+  fprintf(fid,[com com NEWLINE]);
+end
+if nofile
+  NEWLINE='\n'; % command window
+  filename='';
+else
+  NEWLINE='\r\n'; % DOS-compatible
+end
+
 
 if length(D)==1 & ~forcetbl & cont==0
   shortprint(D(1),fmt,delim,fid);
@@ -280,13 +295,18 @@ for i=1:length(FN)
   myfmt=fmt{min([length(fmt),i])};
   if isempty(regexp(myfmt,'^%')) myfmt=['%' myfmt]; end
   % regex for fprintf format string is: '%0?[+-]?[0-9\.]*[bcdeEfgGiostuxX]{1,2}'
-  fpf='^%([#0\ +-_]*)([0-9\.]*)([bcdeEfgGiostuxX]{1,2})';
+  fpf='^%([#0\ +-_]*)([0-9\.]*)([bcdeEfgGiostuvxX]{1,2})';
   t_fmt=regexp(myfmt,fpf,'tokens'); % {1} - prefix {2} - width {3} char
   if isempty(t_fmt)
     disp([' ! Field ' FN{i} ': Invalid format string: ' myfmt])
     myfmt=ifinput('   Enter new format: ','%s','s');
     t_fmt=regexp(myfmt,fpf,'tokens'); % {1} - prefix {2} - width {3} char
   end
+  if strcmp(t_fmt{1}{2},'v') % vec
+    S=moddata(S,FN{i},@vec2char);
+    t_fmt{1}{2}='s';
+  end
+
   if t_fmt{1}{1}=='_' % nothing supplied-- try our hand
     t_fmt{1}{1}='';
     if isnumeric(S.(FN{i}))
