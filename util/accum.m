@@ -107,8 +107,8 @@ if length(MatchCols)==0
   [D(1:length(D)).nul]=deal('nul');
   NewFN={'nul'};
 else
-  FNN=strcat(FN,'__');
-  Match=[FNN{MatchCols}]; % name formed from matched fieldnames
+  %FNN=strcat(FN,'__');
+  Match='Match_Field';%[FNN{MatchCols}]; % name formed from matched fieldnames
   NewFN=FN(MatchCols);
   
   j=1;
