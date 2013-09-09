@@ -265,7 +265,6 @@ end
 if length(D)>1 & bitand(cont,1)==0
   % also add total row
   fprintf(fid,['%s' NEWLINE],'TOTAL');
-  keyboard
   sumtotal=struct2cell(accum(D,accumfmt));
   sumtotal=sumtotal(1:end-1);
   [mydat{accumfmt=='d'}]=deal(' ');
