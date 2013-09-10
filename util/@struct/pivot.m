@@ -91,7 +91,8 @@ if nargout==0
       end
       for i=1:length(Cols)  fprintf('%*g  ',FW-2,data{k}(j,i)) ; end
       %fprintf('%s\n',rName{I(j)});
-      fprintf('%s\n',D{k});
+      fprintf('%*g  %s\n',FW-2,...
+              sum(data{k}(j,~isnan(data{k}(j,:)))),D{k});
     end
     if k>1
       % print separator
@@ -113,7 +114,9 @@ if nargout==0
     fprintf('\n');
     for k=1:length(D)
       fprintf('%-*s |',HW,D{k})
-      for i=1:length(Cols) fprintf('%*.*g  ',FW-2,FW-2,sum(data{k}(:,i))) ; end
+      for i=1:length(Cols) 
+        fprintf('%*.*g  ',FW-2,FW-2,sum(data{k}(~isnan(data{k}(:,i)),i))); 
+      end
       fprintf('\n');
     end
   end
