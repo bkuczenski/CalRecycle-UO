@@ -230,6 +230,9 @@ for i=1:length(FN)
   else
     hdr_fmt{i}=['%-' num2str(floor(str2num(t_fmt{1}{2}))) 's'];
     width(i)=floor(str2num(t_fmt{1}{2}));
+    if ~ismember(t_fmt{1}{3}(1),{'c','s','v'})
+      accumfmt(i)='a';
+    end
   end
   if i==length(fmt) & i < length(FN)
     fmt{i+1}=fmt{i}; % continue last-supplied fmt
