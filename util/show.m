@@ -67,20 +67,30 @@ end
 FN=fieldnames(D);
 
 if any(cellfun(@isstruct,struct2cell(D)))
-  % recurse into substructures; then show remainder
-  fprintf(fid,'%s.',inputname(1));
-  Drec=struct2cell(D);
-  rec=cellfun(@isstruct,Drec);
-  frec=find(rec);
-  for i=1:length(frec)
-    fprintf(fid,'%s:\n',FN{frec(i)});
-    show(D.(FN{frec(i)}),fmt,filename,delim,false);
-    D=rmfield(D,FN{frec(i)});
-    fprintf(fid,'\n');
+  if length(D)==1
+    % recurse into substructures; then show remainder
+    fprintf(fid,'%s.',inputname(1));
+    Drec=struct2cell(D);
+    rec=cellfun(@isstruct,Drec);
+    frec=find(rec);
+    for i=1:length(frec)
+      fprintf(fid,'%s:\n',FN{frec(i)});
+      show(D.(FN{frec(i)}),fmt,filename,delim,false);
+      D=rmfield(D,FN{frec(i)});
+      fprintf(fid,'\n');
+    end
+    FN(frec)=[];
+    fmt={'%_b'};
+  else
+    % encode struct as text
+    for i=1:length(FN)
+      if isstruct(D(1).(FN{i}))
+        D=moddata(D,FN{i},@struct2char);
+      end
+    end
   end
-  FN(frec)=[];
-  fmt={'%_b'};
 end
+  
 
 %file output
 if nofile fid=1; 
@@ -185,7 +195,8 @@ for i=1:length(FN)
   elseif isempty(t_fmt{1}{2}) % no field width supplied - figure it out ourselves
     switch t_fmt{1}{3}(1)
       case {'b','d','i','o','t','u','x','X'} % integer
-        maxsize=max([myhwidth,1+ceil(log10(max(abs([D(~isinf([D.(FN{i})])).(FN{i})]))))]);
+        maxsize=max([myhwidth,1+ceil(log10(max(abs([D(~ ...
+                                                      isinf([D.(FN{i})])).(FN{i})]))))]);
         width(i)=maxsize;
         t_fmt{1}{2}=num2str(maxsize);
         hdr_fmt{i}=['%-' num2str(maxsize) 's'];
@@ -339,3 +350,7 @@ if prod(size(v)) < 3
 else
   S=sprintf('[ %d x %d array]',size(v,1),size(v,2));
 end
+
+function S=struct2char(v)
+S=sprintf('[ %d x %d struct ]',size(v,1),size(v,2));
+
