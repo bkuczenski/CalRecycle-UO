@@ -98,20 +98,16 @@ else
     else
       bb=list{T};
     end
-    eql=char({key;bb});
-    keyy=eql(1,:);
-    bb=eql(2,:);
-    luma=numel(keyy);	lima=numel(bb);
-    dl=dist*ones([luma+1,lima+1]);
-    dl(1,:)=0:lima;   dl(:,1)=0:luma;
+    eql=char({key;bb}); % equal length
+    keyy=eql(1,:);      % space-padded key
+    bb=eql(2,:);        % space-padded candidate
+    luma=numel(keyy);
+    dl=dist*ones([luma+1,luma+1]);
+    dl(1,:)=0:luma;   dl(:,1)=0:luma;
     %Distance
     for i=1:luma
-      for j=max([1,i-dist]):min([lima,i+dist])
-        try
-          kr=krk*(~(keyy(min([j luma]))==bb(i)));
-        catch
-          keyboard
-        end
+      for j=max([1,i-dist]):min([luma,i+dist])
+        kr=krk*(~(keyy(min([j luma]))==bb(i)));
         dl(i+1,j+1)=min([dl(i,j)+kr,dl(i,j+1)+1,dl(i+1,j)+1]);
       end
     end
