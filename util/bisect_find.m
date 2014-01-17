@@ -12,6 +12,10 @@ function ind=bisect_find(key,ref,argin);
 
 if length(ref)<4
   ind=find(strcmp(key,ref));
+  if isempty(ind)
+      [~,d]=sort([ref(:); key]);
+      ind=d(end)-1;
+  end
   return
 end
 debug=false;

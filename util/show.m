@@ -41,7 +41,10 @@ if nargin<4 || isempty(delim) delim='\t'; end
 if strcmp( delim, ',*' )
   cont=1; % can still be overridden
 end
-if nargin<3 || isempty(filename) nofile=true; 
+if nargin<3 || isempty(filename) 
+    nofile=true; 
+    fid=1;
+    filename='';
 else 
   nofile=false; 
   if iscell(filename)
@@ -77,7 +80,7 @@ if any(cellfun(@isstruct,struct2cell(D)))
       fprintf(fid,'%s:\n',FN{frec(i)});
       show(D.(FN{frec(i)}),fmt,filename,delim,false);
       D=rmfield(D,FN{frec(i)});
-      fprintf(fid,'\n');
+      %fprintf(fid,'\n');
     end
     FN(frec)=[];
     fmt={'%_b'};
@@ -262,6 +265,10 @@ if nofile
 end
 for i=1:length(D)
   mydat=struct2cell(D(i));
+  format_hack=find(cellfun(@isstruct,mydat));
+  for j=1:length(format_hack)
+      mydat{format_hack(j)}=struct2char(mydat{format_hack(j)});
+  end
   fprintf(fid,[myfmt{:} NEWLINE],mydat{:});
 end
 if length(D)>40 & bitand(cont,1)==0
