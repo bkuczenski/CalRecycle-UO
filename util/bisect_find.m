@@ -27,16 +27,18 @@ end
 L=length(ref);siz=L;ind=0;d=1;
 while 1
   siz=ceil(siz/2);
-  ind=min([ind+d*siz,L]);
+  ind=max([1,min([ind+d*siz,L])]);
   r=ref{ind};
   try 
     if ['a' key]==['a' r] break; end % 'a' to avoid '' == '' fail
+  catch
+      keyboard
   end
   [~,new_d]=sort({r;key});
   new_d=diff(new_d);
   if debug fprintf('%10g %10g %8d %s\n',siz,ind,new_d,r); end
   % break when: siz==1 and d and new_d have opposite signs
-  if siz*d*new_d==-1 || (siz==1 & ind==L)
+  if siz*d*new_d==-1 || (siz==1 & ind==L) || (new_d==-1 & ind==1)
       if new_d==-1
           ind=ind-1;
       end
