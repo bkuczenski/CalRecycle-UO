@@ -158,7 +158,7 @@ switch class(D(1).(KeyField))
           %   multi=[multi i];
           %   r=r(1);
           % end
-          if strcmp(match(1:2),'in') | strcmp(RefData(r),KeyData{i})
+          if strcmp(match(1:2),'in') | (r>0 && strcmp(RefData(r),KeyData{i}))
             result(i)=r(1);
           end
           if mod(i,1000)==0 fprintf(1,'%d records processed\n',i); end
