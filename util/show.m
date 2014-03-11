@@ -29,6 +29,7 @@ dotitle=true;
 forcetbl=false;
 cont=0;
 overwrite=false;
+MAXHWIDTH=80; % no column > 80 chars
 
 if nargin<6 com='#'; end
 
@@ -223,7 +224,8 @@ for i=1:length(FN)
 %           t_fmt{1}{2}='';
 %           hdr_fmt{i}='%s';
 %         else
-          s_width=max([myhwidth cellfun(@length,[{D.(FN{i})}])]); % check out those parens
+          s_width=min([MAXHWIDTH ...
+                       max([myhwidth cellfun(@length,[{D.(FN{i})}])])]); % check out those delims
           t_fmt{1}{2}=[num2str(s_width) '.' num2str(s_width)]; 
           
           width(i)=s_width;

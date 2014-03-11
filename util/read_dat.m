@@ -75,6 +75,7 @@ for i=length(FieldNames):-1:1 % reverse order because we may drop fields
     FieldNames{i}( FieldNames{i}==' ' )=''; % remove spaces from retained fields
     FieldNames{i}( FieldNames{i}=='"' )=''; % remove quotes from retained fields
   end
+  FieldNames{i}=tr(FieldNames{i},'-,.:;','_____');
 end
 %keyboard
 FN=[FieldNames;FieldNames];

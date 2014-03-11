@@ -17,7 +17,7 @@ function S=xls2struct(xlsfile,worksheet,fmt)
 [~,~,C]=xlsread(xlsfile,worksheet);
 C=ccrop(C);
 
-FN=tr(C(1,:),' ()/#','____N');
+FN=tr(C(1,:),' ()/-#','_____N');
 Dat=C(2:end,:);
 
 % identify valid columns manually
