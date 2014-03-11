@@ -30,9 +30,9 @@ while 1
   ind=max([1,min([ind+d*siz,L])]);
   r=ref{ind};
   try 
-    if ['a' key]==['a' r] break; end % 'a' to avoid '' == '' fail
+    if strcmp(['a' key],['a' r]) break; end % 'a' to avoid '' == '' fail
   catch
-      keyboard
+    keyboard
   end
   [~,new_d]=sort({r;key});
   new_d=diff(new_d);
